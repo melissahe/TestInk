@@ -50,15 +50,15 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-pod 'SnapKit'
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Database'
-pod 'Firebase/Storage'
-pod 'Kingfisher'
-pod 'Toucan'
-pod 'IQKeyboardManagerSwift'
-pod 'SVProgessHUD'
+    pod 'SnapKit'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Storage'
+    pod 'Kingfisher'
+    pod 'Toucan'
+    pod 'IQKeyboardManagerSwift'
+    pod 'SVProgessHUD'
 end
 ```
 
