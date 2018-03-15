@@ -10,6 +10,7 @@
 		09BA38D8AFBB3F1716CF7A0B /* Pods_TestInk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D766212326535D36FF19E7 /* Pods_TestInk.framework */; };
 		29AB680844A9E9DE12584F34 /* Pods_TestInkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */; };
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
+		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		3230906B186AD74741EB690C /* Pods-TestInkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3BB34E66547F8E9ABD0C9900 /* Pods-TestInkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkTests/Pods-TestInkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				818C25C32059DB3400401C10 /* FeedCell.swift */,
+				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
 				818C25E02059DD5E00401C10 /* UploadVC.swift in Sources */,
+				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
 				818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
