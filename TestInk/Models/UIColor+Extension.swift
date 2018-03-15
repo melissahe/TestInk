@@ -21,5 +21,7 @@ extension UIColor {
         static var gainsboro = UIColor(red: 0.859, green: 0.859, blue: 0.859, alpha: 1)
         ///light blue
         static var mediumSkyBlue = UIColor(red: 0.396, green: 0.871, blue: 0.945, alpha: 1.0)
+        ///darker gray
+        static var taupeGrey = UIColor(red: 0.549, green: 0.549, blue: 0.549, alpha: 1)
     }
 }
