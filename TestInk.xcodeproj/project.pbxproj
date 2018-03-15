@@ -45,6 +45,8 @@
 		818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */; };
 		818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */; };
 		818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C26002059E23D00401C10 /* UserServiceDelegate.swift */; };
+		81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF4205ADF88009E0F12 /* EmptyView.swift */; };
+		81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +110,8 @@
 		818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserDelegate.swift; sourceTree = "<group>"; };
 		818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDelegate.swift; sourceTree = "<group>"; };
 		818C26002059E23D00401C10 /* UserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDelegate.swift; sourceTree = "<group>"; };
+		81AF0AF4205ADF88009E0F12 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +220,7 @@
 			children = (
 				818C25CB2059DBC300401C10 /* AuthUserService.swift */,
 				818C25CD2059DBC600401C10 /* Database */,
-				818C25CE2059DBDB00401C10 /* Stroage */,
+				818C25CE2059DBDB00401C10 /* Storage */,
 				818C25FD2059E1EE00401C10 /* Delegates */,
 			);
 			path = Service;
@@ -232,6 +236,7 @@
 				818C25EF2059DE3000401C10 /* UploadView.swift */,
 				818C25F12059DE3B00401C10 /* ARView.swift */,
 				818C25F32059DE6300401C10 /* EditImageView.swift */,
+				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				818C25C92059DBAB00401C10 /* StyleSheet.swift */,
 				818C25F52059DE9600401C10 /* Alerts.swift */,
 				818C25F72059DF3100401C10 /* NetworkConnectivity.swift */,
+				81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,12 +284,12 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		818C25CE2059DBDB00401C10 /* Stroage */ = {
+		818C25CE2059DBDB00401C10 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */,
 			);
-			path = Stroage;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		818C25FD2059E1EE00401C10 /* Delegates */ = {
@@ -629,8 +635,10 @@
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
+				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
