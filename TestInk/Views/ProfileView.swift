@@ -14,8 +14,9 @@ class ProfileView: UIView {
     
     lazy var profileImageView: UIImageView = {
         var pImageView = UIImageView()
-        pImageView.image = #imageLiteral(resourceName: "placeholder-image") //place holder image
-        pImageView.isUserInteractionEnabled = true
+        pImageView.image = #imageLiteral(resourceName: "catplaceholder") //place holder image
+        //pImageView.isUserInteractionEnabled = true
+        pImageView.contentMode = .scaleAspectFill
         pImageView.backgroundColor = UIColor.red
         return pImageView
     }()
@@ -33,18 +34,11 @@ class ProfileView: UIView {
         return dn
     }()
     
-    lazy var logoutButton: UIButton = {
-        let cdn = UIButton()
-        cdn.setTitle(" Logout ", for: .normal)
-        cdn.backgroundColor = UIColor.blue
-        return cdn
-    }()
-    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = .black
+        cv.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         cv.register(FavoriteCell.self, forCellWithReuseIdentifier: "FavoriteCell")
         return cv
     }()
@@ -66,16 +60,16 @@ class ProfileView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+       self.backgroundColor = UIColor(red:0.14, green:0.48, blue:0.63, alpha:1.0)
         setUpViews()
     }
     
     private func setUpViews() {
-        addSubview(logoutButton)
         setupNameLabel()
         setUpProfileImageView()
-        //setupCollectionView()
-        setUpChangeProfileButton()
+        
+        setupChangeProfileButton()
+        setupCollectionView()
     }
     
     private func setUpProfileImageView() {
@@ -88,7 +82,7 @@ class ProfileView: UIView {
         }
     }
     
-    private func setUpChangeProfileButton() {
+    private func setupChangeProfileButton() {
         addSubview(changeProfileImageButton)
         changeProfileImageButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(profileImageView.snp.bottom).offset(spacing)
@@ -101,30 +95,21 @@ class ProfileView: UIView {
         addSubview(displayName)
         displayName.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(155)
             // make.bottom.equalTo(collectionView.snp.top).offset(spacing)
             make.trailing.equalTo(self.snp.trailing).offset(-spacing)
         }
     }
     
-    //    private func setupChangeImageButton() {
-    //        addSubview(changeProfileImageButton)
-    //        changeProfileImageButton.snp.makeConstraints { (make) -> Void in
-    //            make.top.equalTo(changeDisplayName.snp.bottom)
-    //            make.leading.equalTo(displayName.snp.leading)
-    //        }
-    //    }
-    
-    //    private func setupCollectionView() {
-    //        self.addSubview(collectionView)
-    //        collectionView.snp.makeConstraints { (make) in
-    //            make.top.equalTo(displayName.snp.bottom).offset(10)
-    //            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-spacing)
-    //            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(spacing)
-    //            make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-spacing)
-    //
-    //        }
-    //    }
+        private func setupCollectionView() {
+            self.addSubview(collectionView)
+            collectionView.snp.makeConstraints { (make) in
+                make.top.equalTo(changeProfileImageButton.snp.bottom).offset(spacing)
+                make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+                make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
+                make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
+            }
+        }
    
 
 }

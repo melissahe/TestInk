@@ -10,10 +10,26 @@ import UIKit
 
 class FavoriteCell: UICollectionViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        commonInit()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    
+    private func commonInit() {
+        backgroundColor = .gray
+        setupViews()
+    }
+    private func setupViews() {
+       
+    }
+    
+
 
     
 }
