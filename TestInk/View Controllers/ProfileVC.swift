@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ProfileVC: UIViewController {
     
     let profileView = ProfileView()
     let cellSpacing: CGFloat = 5.0
+    private let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +38,52 @@ class ProfileVC: UIViewController {
     }
     
     @objc private func changeProfileButtonPressed() {
-        
+        checkAVAuthorizationStatus()
+        imagePickerController.sourceType = .photoLibrary
+        //TODO - add another sourceType .camera 
     }
+}
 
+extension ProfileVC {
+    private func setupImagePickerController() {
+        imagePickerController.delegate = self
+    }
+    
+    private func checkAVAuthorizationStatus() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            print("authorized")
+            showPickerController()
+        case .denied:
+            print("denied")
+        case .restricted:
+            print("restricted")
+        case .notDetermined:
+            print("nonDetermined")
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted) in
+                if granted {
+                    self.showPickerController()
+                }
+            })
+        }
+    }
+    
+    private func showPickerController() {
+        present(imagePickerController, animated: true, completion: nil)
+    }
+}
+
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+}
+
+func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        profileView.profileImageView.image = image
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ProfileVC: UICollectionViewDataSource {
@@ -52,6 +97,7 @@ extension ProfileVC: UICollectionViewDataSource {
         return cell
     }
 }
+
 extension ProfileVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numCells: CGFloat = 3
