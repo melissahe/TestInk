@@ -10,26 +10,24 @@ import UIKit
 
 class ARVC: UIViewController {
 
+    var arView = ARView()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(arView)
+        arView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
+        arView.dismissButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
 
-        // Do any additional setup after loading the view.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
