@@ -38,9 +38,19 @@ class ProfileVC: UIViewController {
     }
     
     @objc private func changeProfileButtonPressed() {
-        checkAVAuthorizationStatus()
-        imagePickerController.sourceType = .photoLibrary
-        //TODO - add another sourceType .camera 
+        //checkAVAuthorizationStatus()
+        //imagePickerController.sourceType = .photoLibrary
+        let actionSheet = UIAlertController(title: "Choose source", message: "Choose Camera or Photo", preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (Action) in
+            self.imagePickerController.sourceType = .camera
+            self.checkAVAuthorizationStatus()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (Action) in
+            self.imagePickerController.sourceType = .photoLibrary
+            self.checkAVAuthorizationStatus()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
@@ -88,7 +98,7 @@ func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMe
 
 extension ProfileVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return 24
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -106,7 +116,7 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
 
-        return CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numCells, height: screenHeight * 0.25)
+        return CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numCells, height: screenHeight * 0.19)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

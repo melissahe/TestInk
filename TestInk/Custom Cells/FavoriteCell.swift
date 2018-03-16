@@ -48,6 +48,7 @@ class FavoriteCell: UICollectionViewCell {
             make.leading.equalTo(contentView.snp.leading)
             make.trailing.equalTo(contentView.snp.trailing)
             make.height.equalTo(contentView.snp.height)
+            favoriteImageView.clipsToBounds = true
            
 //            make.height.width.equalTo(self.snp.width).multipliedBy(0.09).priority(999)
 //            make.top.equalTo(self.snp.top).offset(5)

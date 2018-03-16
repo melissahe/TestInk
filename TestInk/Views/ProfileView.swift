@@ -23,8 +23,10 @@ class ProfileView: UIView {
     
     lazy var changeProfileImageButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Change Image", for: .normal)
-        btn.setTitleColor(.black, for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "addIcon"), for: .normal)
+        btn.layer.borderWidth = 2
+        btn.layer.borderColor = UIColor(red:0.14, green:0.48, blue:0.63, alpha:1.0).cgColor
+        //btn.setTitleColor(.black, for: .normal)
         return btn
     }()
     
@@ -53,6 +55,8 @@ class ProfileView: UIView {
         // we get the frame of the UI elements here
         profileImageView.layer.cornerRadius = profileImageView.bounds.height/2
         profileImageView.layer.masksToBounds = true
+        changeProfileImageButton.layer.cornerRadius = changeProfileImageButton.bounds.height/2
+        changeProfileImageButton.layer.masksToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,8 +80,8 @@ class ProfileView: UIView {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(displayName.snp.bottom).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(130)
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.2)
             make.width.equalTo(profileImageView.snp.height)
         }
     }
@@ -85,9 +89,10 @@ class ProfileView: UIView {
     private func setupChangeProfileButton() {
         addSubview(changeProfileImageButton)
         changeProfileImageButton.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(profileImageView.snp.bottom).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.01)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.05)
+            make.width.equalTo(changeProfileImageButton.snp.height)
+            make.bottom.equalTo(profileImageView.snp.bottom)
+            make.right.equalTo(profileImageView.snp.right)
         }
     }
     
@@ -104,7 +109,7 @@ class ProfileView: UIView {
         private func setupCollectionView() {
             self.addSubview(collectionView)
             collectionView.snp.makeConstraints { (make) in
-                make.top.equalTo(changeProfileImageButton.snp.bottom).offset(spacing)
+                make.top.equalTo(profileImageView.snp.bottom).offset(spacing)
                 make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
                 make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
                 make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
