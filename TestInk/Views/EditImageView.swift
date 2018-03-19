@@ -28,6 +28,11 @@ class EditImageView: UIView {
         return view
     }()
     
+    lazy var filterView: FilterView = {
+        let view = FilterView(frame: self.frame)
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -41,6 +46,7 @@ class EditImageView: UIView {
     private func commonInit() {
         backgroundColor = UIColor.Custom.taupeGrey
         editView.isHidden = true
+        filterView.isHidden = true
         setUpViews()
     }
     
@@ -48,6 +54,7 @@ class EditImageView: UIView {
         setUpPhotoImageView()
         setUpPhotoOptionsView()
         setUpEditView()
+        setUpFilterView()
     }
     
     private func setUpPhotoImageView() {
@@ -72,6 +79,14 @@ class EditImageView: UIView {
         addSubview(editView)
         
         editView.snp.makeConstraints { (make) in
+            make.edges.equalTo(photoOptionsView.snp.edges)
+        }
+    }
+    
+    private func setUpFilterView() {
+        addSubview(filterView)
+        
+        filterView.snp.makeConstraints { (make) in
             make.edges.equalTo(photoOptionsView.snp.edges)
         }
     }
