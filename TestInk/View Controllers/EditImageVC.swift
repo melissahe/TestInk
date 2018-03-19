@@ -7,29 +7,28 @@
 //
 
 import UIKit
+import SnapKit
 
 class EditImageVC: UIViewController {
 
+    lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUpViews()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setUpViews() {
+        view.addSubview(editImageView)
+        editImageView.snp.makeConstraints { (make) in
+            make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
+        }
+        
+        editImageView.photoOptionsView.resizeButton.addTarget(self, action: #selector(resizeButtonPressed), for: .touchUpInside)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc private func resizeButtonPressed() {
+        editImageView.editView.isHidden = false
     }
-    */
-
+    
 }
