@@ -14,7 +14,6 @@
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
-        818C25972059CB0400401C10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 818C25952059CB0400401C10 /* LaunchScreen.storyboard */; };
 		818C25A22059CB0500401C10 /* TestInkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25A12059CB0500401C10 /* TestInkTests.swift */; };
 		818C25AD2059CB0500401C10 /* TestInkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25AC2059CB0500401C10 /* TestInkUITests.swift */; };
 		818C25BB2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
@@ -51,6 +50,7 @@
 		81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */; };
 		81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFE205C4712009E0F12 /* EditView.swift */; };
 		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
+		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +119,7 @@
 		81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionsView.swift; sourceTree = "<group>"; };
 		81AF0AFE205C4712009E0F12 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
+		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +246,7 @@
 				818C25F32059DE6300401C10 /* EditImageView.swift */,
 				81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */,
 				81AF0AFE205C4712009E0F12 /* EditView.swift */,
+				81AF0B02206027A8009E0F12 /* FilterView.swift */,
 				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
 			);
 			path = Views;
@@ -649,6 +651,7 @@
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
 				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
 				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
