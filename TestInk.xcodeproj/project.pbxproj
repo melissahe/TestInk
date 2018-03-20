@@ -51,6 +51,9 @@
 		81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFE205C4712009E0F12 /* EditView.swift */; };
 		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
 		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
+		81BBC9182061A071003F490B /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BBC9172061A071003F490B /* Tutorial.storyboard */; };
+		81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */; };
+		81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC91B2061A406003F490B /* ImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +123,9 @@
 		81AF0AFE205C4712009E0F12 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
 		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		81BBC9172061A071003F490B /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		81BBC91B2061A406003F490B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,6 +196,7 @@
 		818C25882059CB0400401C10 /* TestInk */ = {
 			isa = PBXGroup;
 			children = (
+				81BBC9162061A055003F490B /* Storyboards */,
 				818C25892059CB0400401C10 /* AppDelegate.swift */,
 				818C25BE2059D5A300401C10 /* Service */,
 				818C25C22059D5D200401C10 /* Models */,
@@ -262,6 +269,8 @@
 				818C25DF2059DD5E00401C10 /* UploadVC.swift */,
 				818C25DD2059DD4B00401C10 /* ARVC.swift */,
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
+				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
+				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -312,6 +321,14 @@
 				818C26002059E23D00401C10 /* UserServiceDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		81BBC9162061A055003F490B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				81BBC9172061A071003F490B /* Tutorial.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		AC2F59598B6B445534256F46 /* Pods */ = {
@@ -445,6 +462,7 @@
 			files = (
 				818C25942059CB0400401C10 /* Assets.xcassets in Resources */,
 				818C25BB2059D25000401C10 /* GoogleService-Info.plist in Resources */,
+				81BBC9182061A071003F490B /* Tutorial.storyboard in Resources */,
 				81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,12 +669,14 @@
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */,
 				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
 				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
 				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
+				81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */,
 				818C25E02059DD5E00401C10 /* UploadVC.swift in Sources */,
 				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
@@ -823,9 +843,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9HW99M5PX;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
+				PRODUCT_BUNDLE_IDENTIFIER = nc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -838,9 +859,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V9HW99M5PX;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
+				PRODUCT_BUNDLE_IDENTIFIER = nc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
