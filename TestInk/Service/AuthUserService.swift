@@ -21,14 +21,14 @@ enum AuthUserStatus: Error {
 
 
 //MARK: This API client is responsible for logging the user in and creating accounts in the Firebase database.
-class AuthUserManager {
+class AuthUserService {
     
     private init(){
         self.auth = Auth.auth()
     }
     
     weak public var delegate: AuthUserDelegate!
-    static let manager = AuthUserManager()
+    static let manager = AuthUserService()
     var userService = UserProfileService()
     private var auth: Auth!
     

@@ -12,7 +12,7 @@ import UIKit
 
 struct UserProfile: Codable{
     let userID: String
-    let name: String //from email
+    let displayName: String //from email
     let likes: Int
     let profileImageURL: String? = nil
     let favorites: String //favorite image urls
@@ -26,11 +26,25 @@ struct UserProfile: Codable{
 
 
 
-struct Post: Codable {
+struct DesignPost: Codable {
     let userID: String
     let imageURL: String? = nil
     let likes: Int
-    var userLiked: Bool = false //should keep track of whether user liked post
+    var likedBy: Bool = false //should keep track of whether user liked post
+    let timestamp: Double
+    let comments: String
+    
+    func toJSON() -> Any {
+        let jsonData = try! JSONEncoder().encode(self)
+        return try! JSONSerialization.jsonObject(with: jsonData, options: [])
+    }
+}
+
+struct PreviewPost: Codable {
+    let userID: String
+    let imageURL: String? = nil
+    let likes: Int
+    var likedBy: Bool = false
     let timestamp: Double
     
     func toJSON() -> Any {

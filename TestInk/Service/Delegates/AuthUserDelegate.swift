@@ -11,22 +11,18 @@ import FirebaseAuth
 
 protocol AuthUserDelegate: class {
     //create user delegate protocols
-    func didFailCreatingUser(_ userService: AuthUserManager, error: Error)
-    func didCreateUser(_ userService: AuthUserManager, user: UserProfile)
+    func didFailCreatingUser(_ userService: AuthUserService, error: Error)
+    func didCreateUser(_ userService: AuthUserService, user: User)
     
     //sign out delegate protocols
-    func didFailSigningOut(_ userService: AuthUserManager, error: Error)
-    func didSignOut(_ userService: AuthUserManager)
+    func didFailSigningOut(_ userService: AuthUserService, error: Error)
+    func didSignOut(_ userService: AuthUserService)
     
     //sign in delegate protocols
-    func didFailToSignIn(_ userService: AuthUserManager, error: Error)
-    func didSignIn(_ userService: AuthUserManager, user: String)
-    
-    //verifying email protocols
-    func didFailToVerifyEmail(_ userService: AuthUserManager, error: Error)
-    func didSendEmailVerification(user: String, message: String)
-    
+    func didFailToSignIn(_ userService: AuthUserService, error: Error)
+    func didSignIn(_ userService: AuthUserService, user: User)
+
     //password reset protocols
-    func didFailToSendPasswordReset(_ userService: AuthUserManager, error: Error)
-    func didSendPasswordReset(_userService: AuthUserManager)
+    func didFailToSendPasswordReset(_ userService: AuthUserService, error: Error)
+    func didSendPasswordReset(_userService: AuthUserService)
 }
