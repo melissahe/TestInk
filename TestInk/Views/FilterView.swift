@@ -9,6 +9,15 @@
 import UIKit
 
 class FilterView: UIView {
+    
+    lazy var filterCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        collectionView.register(FilterCell.self, forCellWithReuseIdentifier: "filterCell")
+        collectionView.backgroundColor = UIColor.Custom.taupeGrey
+        return collectionView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +35,14 @@ class FilterView: UIView {
     }
     
     private func setUpViews() {
+        setUpFilterCollectionView()
+    }
+    
+    private func setUpFilterCollectionView() {
+        addSubview(filterCollectionView)
         
+        filterCollectionView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self)
+        }
     }
 }
