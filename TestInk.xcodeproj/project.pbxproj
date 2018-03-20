@@ -20,7 +20,7 @@
 		818C25BC2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
 		818C25BD2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
 		818C25C42059DB3400401C10 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C32059DB3400401C10 /* FeedCell.swift */; };
-		818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* StyleSheet.swift */; };
+		818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* Stylesheet.swift */; };
 		818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CB2059DBC300401C10 /* AuthUserService.swift */; };
 		818C25D02059DC1600401C10 /* FirebasePostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CF2059DC1600401C10 /* FirebasePostService.swift */; };
 		818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */; };
@@ -85,7 +85,7 @@
 		818C25AE2059CB0500401C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		818C25BA2059D25000401C10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		818C25C32059DB3400401C10 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
-		818C25C92059DBAB00401C10 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
+		818C25C92059DBAB00401C10 /* Stylesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		818C25CB2059DBC300401C10 /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
 		818C25CF2059DC1600401C10 /* FirebasePostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePostService.swift; sourceTree = "<group>"; };
 		818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				818C25D52059DCB800401C10 /* Firebase Models.swift */,
-				818C25C92059DBAB00401C10 /* StyleSheet.swift */,
+				818C25C92059DBAB00401C10 /* Stylesheet.swift */,
 				818C25F52059DE9600401C10 /* Alerts.swift */,
 				818C25F72059DF3100401C10 /* NetworkConnectivity.swift */,
 				81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */,
@@ -657,7 +657,7 @@
 				818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */,
 				818C25E42059DD8A00401C10 /* FeedVC.swift in Sources */,
 				818C25F02059DE3000401C10 /* UploadView.swift in Sources */,
-				818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */,
+				818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */,
 				818C25D62059DCB800401C10 /* Firebase Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
