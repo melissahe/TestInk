@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-struct userProfile: Codable{
+struct UserProfile: Codable{
     let userID: String
     let name: String //from email
     let likes: Int

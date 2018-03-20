@@ -14,6 +14,7 @@ class FeedCell: UITableViewCell {
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .purple
+        return iv
     }()
     
     
@@ -22,113 +23,122 @@ class FeedCell: UITableViewCell {
         let label = UILabel()
         label.text = "Billy"
         label.font = UIFont.boldSystemFont(ofSize: 17)
+        return label
     }()
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .green
+        return iv
     }()
     
     
     lazy var favoriteButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "dismissButtonIcon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "favorite-unfilled-32"), for: .normal)
+        return button
     }()
     
     lazy var numberOfLikes: UILabel = {
         let label = UILabel()
         label.text = "23"
+        return label
     }()
     
     lazy var shareButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "dismissButtonIcon"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
+        return button
     }()
-    
-    
+
     
     //initialization
-    override init(frame: CGRect) {//overriding the parent class's functions
-        super.init(frame: UIScreen.main.bounds)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: "FeedCell")
         setUpGUI()
     }
     
-    required init?(coder aDecoder: NSCoder) { //now the new initializer required for this uiView
-        super.init(coder: aDecoder)
-        //setUpGUI()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        backgroundColor = .yellow
         setupViews()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        userImage.layer.cornerRadius = userImage.bounds.width / 2.0
+        userImage.layer.masksToBounds = true
     }
 
     private func setupViews() {
         setupUserImage()
-        setupUserNameLabel()
-        setupFeedImage()
-        setupFavoriteButton()
-        setupNumberOfLikes()
-        setupShareButton()
+//        setupUserNameLabel()
+//        setupFeedImage()
+//        setupFavoriteButton()
+//        setupNumberOfLikes()
+//        setupShareButton()
     }
     
     //constraints
     private func setupUserImage() {
         addSubview(userImage)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
+        userImage.snp.makeConstraints { (make) -> Void in
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading).offset(20)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.10)
+            make.width.equalTo(userImage.snp.height)
+            make.centerY.equalTo(safeAreaLayoutGuide.snp.centerY)
         }
     }
-    private func setupUserNameLabel() {
-        addSubview(userNameLabel)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
-        }
-    }
-
-    private func setupFeedImage() {
-        addSubview(feedImage)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
-        }
-    }
-    
-    private func setupFavoriteButton() {
-        addSubview(favoriteButton)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
-        }
-    }
-
-    private func setupNumberOfLikes() {
-        addSubview(numberOfLikes)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
-        }
-    }
-
-    private func setupShareButton() {
-        addSubview(shareButton)
-        favoriteImageView.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(contentView.snp.leading)
-            make.trailing.equalTo(contentView.snp.trailing)
-            make.height.equalTo(contentView.snp.height)
-            favoriteImageView.clipsToBounds = true
-        }
-    }
+//    private func setupUserNameLabel() {
+//        addSubview(userNameLabel)
+//        favoriteImageView.snp.makeConstraints { (make) -> Void in
+//            make.leading.equalTo(contentView.snp.leading)
+//            make.trailing.equalTo(contentView.snp.trailing)
+//            make.height.equalTo(contentView.snp.height)
+//            favoriteImageView.clipsToBounds = true
+//        }
+//    }
+//
+//    private func setupFeedImage() {
+//        addSubview(feedImage)
+//        favoriteImageView.snp.makeConstraints { (make) -> Void in
+//            make.leading.equalTo(contentView.snp.leading)
+//            make.trailing.equalTo(contentView.snp.trailing)
+//            make.height.equalTo(contentView.snp.height)
+//            favoriteImageView.clipsToBounds = true
+//        }
+//    }
+//
+//    private func setupFavoriteButton() {
+//        addSubview(favoriteButton)
+//        favoriteImageView.snp.makeConstraints { (make) -> Void in
+//            make.leading.equalTo(contentView.snp.leading)
+//            make.trailing.equalTo(contentView.snp.trailing)
+//            make.height.equalTo(contentView.snp.height)
+//            favoriteImageView.clipsToBounds = true
+//        }
+//    }
+//
+//    private func setupNumberOfLikes() {
+//        addSubview(numberOfLikes)
+//        favoriteImageView.snp.makeConstraints { (make) -> Void in
+//            make.leading.equalTo(contentView.snp.leading)
+//            make.trailing.equalTo(contentView.snp.trailing)
+//            make.height.equalTo(contentView.snp.height)
+//            favoriteImageView.clipsToBounds = true
+//        }
+//    }
+//
+//    private func setupShareButton() {
+//        addSubview(shareButton)
+//        favoriteImageView.snp.makeConstraints { (make) -> Void in
+//            make.leading.equalTo(contentView.snp.leading)
+//            make.trailing.equalTo(contentView.snp.trailing)
+//            make.height.equalTo(contentView.snp.height)
+//            favoriteImageView.clipsToBounds = true
+//        }
+//    }
 }
