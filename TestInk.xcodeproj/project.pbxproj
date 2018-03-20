@@ -10,10 +10,10 @@
 		09BA38D8AFBB3F1716CF7A0B /* Pods_TestInk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1D766212326535D36FF19E7 /* Pods_TestInk.framework */; };
 		29AB680844A9E9DE12584F34 /* Pods_TestInkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */; };
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
+		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
-		818C25972059CB0400401C10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 818C25952059CB0400401C10 /* LaunchScreen.storyboard */; };
 		818C25A22059CB0500401C10 /* TestInkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25A12059CB0500401C10 /* TestInkTests.swift */; };
 		818C25AD2059CB0500401C10 /* TestInkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25AC2059CB0500401C10 /* TestInkUITests.swift */; };
 		818C25BB2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
@@ -47,6 +47,10 @@
 		818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C26002059E23D00401C10 /* UserServiceDelegate.swift */; };
 		81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF4205ADF88009E0F12 /* EmptyView.swift */; };
 		81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */; };
+		81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */; };
+		81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFE205C4712009E0F12 /* EditView.swift */; };
+		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
+		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,11 +75,11 @@
 		3230906B186AD74741EB690C /* Pods-TestInkUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3BB34E66547F8E9ABD0C9900 /* Pods-TestInkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkTests/Pods-TestInkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
 		818C25932059CB0400401C10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		818C25962059CB0400401C10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		818C25982059CB0400401C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		818C259D2059CB0500401C10 /* TestInkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestInkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25A12059CB0500401C10 /* TestInkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInkTests.swift; sourceTree = "<group>"; };
@@ -112,6 +116,10 @@
 		818C26002059E23D00401C10 /* UserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDelegate.swift; sourceTree = "<group>"; };
 		81AF0AF4205ADF88009E0F12 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionsView.swift; sourceTree = "<group>"; };
+		81AF0AFE205C4712009E0F12 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
+		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,7 +197,7 @@
 				818C25C02059D5AF00401C10 /* View Controllers */,
 				818C25C12059D5B600401C10 /* Custom Cells */,
 				818C25932059CB0400401C10 /* Assets.xcassets */,
-				818C25952059CB0400401C10 /* LaunchScreen.storyboard */,
+				81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */,
 				818C25982059CB0400401C10 /* Info.plist */,
 				818C25BA2059D25000401C10 /* GoogleService-Info.plist */,
 				818C25902059CB0400401C10 /* TestInk.xcdatamodeld */,
@@ -236,6 +244,9 @@
 				818C25EF2059DE3000401C10 /* UploadView.swift */,
 				818C25F12059DE3B00401C10 /* ARView.swift */,
 				818C25F32059DE6300401C10 /* EditImageView.swift */,
+				81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */,
+				81AF0AFE205C4712009E0F12 /* EditView.swift */,
+				81AF0B02206027A8009E0F12 /* FilterView.swift */,
 				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
 			);
 			path = Views;
@@ -259,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				818C25C32059DB3400401C10 /* FeedCell.swift */,
+				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -431,9 +443,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				818C25972059CB0400401C10 /* LaunchScreen.storyboard in Resources */,
 				818C25942059CB0400401C10 /* Assets.xcassets in Resources */,
 				818C25BB2059D25000401C10 /* GoogleService-Info.plist in Resources */,
+				81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */,
 				818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */,
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
@@ -638,11 +651,14 @@
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
+				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
 				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
 				818C25E02059DD5E00401C10 /* UploadVC.swift in Sources */,
+				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
 				818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
@@ -692,17 +708,6 @@
 			targetProxy = 818C25A92059CB0500401C10 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		818C25952059CB0400401C10 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				818C25962059CB0400401C10 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		818C25AF2059CB0500401C10 /* Debug */ = {
