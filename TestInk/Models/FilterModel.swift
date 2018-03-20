@@ -6,7 +6,7 @@
 //  Copyright © 2018 C4Q. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreImage
 
 public enum Filter: String {
@@ -40,5 +40,22 @@ class FilterModel {
             ("Sepia Tone", Filter.sepia),
             ("Viginette", Filter.viginette)
         ]
+    }
+    
+    public static func filterImage(_ image: UIImage, withFilter filter: Filter) -> UIImage {
+        if
+            let ciImage = CIImage(image: image), //create Core Image from UI Image so you can do CoreImage stuff to it
+            let ciFilter = CIFilter(name: filter.rawValue), //create CoreImage filter from the name of filter passed in
+            filter != .original
+        {
+            //set the ciImage as the value for the InputImagKey, which is a key the CI filter object uses to check which image to use for filtering
+            ciFilter.setValue(ciImage, forKey: kCIInputImageKey)
+            if let outputImage = ciFilter.outputImage { //after filtering, the filtered image is stored in the "outputImage property"
+                //convert CIImage back to UIImage
+                let filteredImage = UIImage(ciImage: outputImage)
+                return filteredImage
+            }
+        }
+        return image
     }
 }

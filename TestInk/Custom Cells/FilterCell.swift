@@ -41,21 +41,9 @@ class FilterCell: UICollectionViewCell {
     public func configureCell(withImage image: UIImage, andFilter filter: (displayName: String, filterName: Filter)) {
         filterNameLabel.text = filter.displayName
         
-        if
-            let ciImage = CIImage(image: image), //create Core Image from UI Image so you can do CoreImage stuff to it
-            let ciFilter = CIFilter(name: filter.filterName.rawValue), //create CoreImage filter from the name of filter passed in
-            filter.filterName != .original
-        {
-            //set the ciImage as the value for the InputImagKey, which is a key the CI filter object uses to check which image to use for filtering
-            ciFilter.setValue(ciImage, forKey: kCIInputImageKey)
-            if let outputImage = ciFilter.outputImage { //after filtering, the filtered image is stored in the "outputImage property"
-                //convert CIImage back to UIImage
-                let filteredImage = UIImage(ciImage: outputImage)
-                filterImageView.image = filteredImage
-            }
-        } else {
-            filterImageView.image = image
-        }
+        let image = FilterModel.filterImage(image, withFilter: filter.filterName)
+        filterImageView.image = image
+        self.layoutIfNeeded()
     }
     
     private func commonInit() {
