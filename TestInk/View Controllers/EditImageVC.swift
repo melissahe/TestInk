@@ -11,7 +11,11 @@ import SnapKit
 
 class EditImageVC: UIViewController {
 
-    var pastSliderValue: Float = 0
+    private lazy var cellSpacing = self.view.frame.width * 0.05
+    private var pastSliderValue: Float = 0
+    private var pastImage: UIImage?
+    
+    private var filters: [(displayName: String, filterName: Filter)] = FilterModel.getFilters()
     
     lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
     
@@ -31,6 +35,9 @@ class EditImageVC: UIViewController {
         editImageView.photoOptionsView.shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
         
         editImageView.photoOptionsView.filtersButton.addTarget(self, action: #selector(filtersButtonPressed), for: .touchUpInside)
+        
+        editImageView.filterView.filterCollectionView.delegate = self
+        editImageView.filterView.filterCollectionView.dataSource = self
     }
     
     private func addEditView() {
@@ -54,9 +61,11 @@ class EditImageVC: UIViewController {
     }
     
     @objc private func deleteButtonPressed() {
+        //do something to track which one you're no longer using
         //reset slider
         editImageView.editView.sliderValueLabel.text = pastSliderValue.truncatingRemainder(dividingBy: 10).description
         editImageView.editView.sizeSlider.value = pastSliderValue
+        editImageView.photoImageView.image = pastImage
         removeEditView()
     }
     
@@ -68,14 +77,58 @@ class EditImageVC: UIViewController {
     
     @objc private func shareButtonPressed() {
         let text = "Check out this tattoo preview!!"
-        let imageToBeShared: UIImage = #imageLiteral(resourceName: "checkIcon")
+        let imageToBeShared: UIImage = #imageLiteral(resourceName: "checkIcon") //change
         let activityVC = UIActivityViewController(activityItems: [text, imageToBeShared], applicationActivities: [])
         self.present(activityVC, animated: true, completion: nil)
     }
     
     @objc private func filtersButtonPressed() {
         editImageView.filterView.isHidden = false
-        
+        pastImage = editImageView.photoImageView.image
         addEditView()
+    }
+}
+
+extension EditImageVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfCells: CGFloat = 5
+        let numberOfSpaces: CGFloat = numberOfCells + 1
+        let width = (collectionView.frame.width - (numberOfSpaces * cellSpacing)) / numberOfCells
+        let height = collectionView.frame.height - (2 * cellSpacing)
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: cellSpacing, left: cellSpacing, bottom: cellSpacing, right: cellSpacing)
+    }
+}
+
+extension EditImageVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //to do - should change filter
+        print("selected filter: \(filters[indexPath.row].displayName)!!!")
+        if let cell = collectionView.cellForItem(at: indexPath) as? FilterCell {
+            editImageView.photoImageView.image = cell.filterImageView.image
+        }
+    }
+}
+
+extension EditImageVC: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return filters.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
+        let currentFilter = filters[indexPath.row]
+        cell.configureCell(withImage: #imageLiteral(resourceName: "catplaceholder"), andFilter: currentFilter)
+        return cell
     }
 }
