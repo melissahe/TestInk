@@ -116,7 +116,7 @@ class ARView: UIView {
         self.addSubview(captureButton)
         captureButton.snp.makeConstraints { (make) in
             make.top.equalTo(ARView.snp.bottom).offset(16)
-            make.width.equalTo(ARView.snp.width).multipliedBy(0.19)
+            make.width.equalTo(ARView.snp.width).multipliedBy(0.13)
             make.height.equalTo(captureButton.snp.width)
             make.centerX.equalTo(safeAreaLayoutGuide.snp.centerX)
             
@@ -126,10 +126,10 @@ class ARView: UIView {
     private func setupSegmentedControl() {
         self.addSubview(segmentedControl)
         segmentedControl.snp.makeConstraints { (make) in
-            make.top.equalTo(captureButton.snp.bottom).offset(25)
-            //make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-10)
+            //make.top.equalTo(captureButton.snp.bottom).offset(25)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-15)
             make.width.equalTo(safeAreaLayoutGuide.snp.width)
-            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.060)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.054)
         }
     }
 

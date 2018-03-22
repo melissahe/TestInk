@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import AVFoundation
 
 class UploadVC: UIViewController {
 
@@ -30,6 +31,11 @@ class UploadVC: UIViewController {
         uploadView.ARTestButton.addTarget(self, action: #selector(ARTestButtonPressed), for: .touchUpInside)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        uploadView.imageView.image = #imageLiteral(resourceName: "addphoto")
+    }
+    
     private func setupSubView() {
         view.addSubview(uploadView)
         uploadView.snp.makeConstraints { (make) in
@@ -41,8 +47,9 @@ class UploadVC: UIViewController {
     @objc func showActionSheet() {
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
-            self.imagePickerController.sourceType = .photoLibrary
-            self.present(self.self.imagePickerController, animated: true, completion: nil)
+            self.imagePickerController.sourceType
+                = .photoLibrary
+            self.checkAVAuthorizationStatus()
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -51,10 +58,31 @@ class UploadVC: UIViewController {
     
     @objc func ARTestButtonPressed() {
         let aRVC = ARVC()
-        //present(aRVC, animated: true, completion: nil)
-        //let navControler = UINavigationController(rootViewController: aRVC)
         navigationController?.present(aRVC, animated: true)
-        //present(navControler, animated: true, completion: nil)
+    }
+    
+    private func showPickerController() {
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    private func checkAVAuthorizationStatus() {
+        let status = AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            print("authorized")
+            showPickerController()
+        case .denied:
+            print("denied")
+        case .restricted:
+            print("restricted")
+        case .notDetermined:
+            print("nonDetermined")
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted) in
+                if granted {
+                    self.showPickerController()
+                }
+            })
+        }
     }
     
 }
