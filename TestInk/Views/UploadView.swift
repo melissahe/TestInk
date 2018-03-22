@@ -15,7 +15,7 @@ class UploadView: UIView {
        let iv = UIImageView()
        iv.backgroundColor = .gray
        iv.isUserInteractionEnabled = true
-       iv.image = #imageLiteral(resourceName: "placeholder-image")
+       iv.image = #imageLiteral(resourceName: "addphoto")
        return iv
     }()
     
