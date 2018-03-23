@@ -52,8 +52,14 @@ class FilterModel {
             ciFilter.setValue(ciImage, forKey: kCIInputImageKey)
             if let outputImage = ciFilter.outputImage { //after filtering, the filtered image is stored in the "outputImage property"
                 //convert CIImage back to UIImage
-                let filteredImage = UIImage(ciImage: outputImage)
-                return filteredImage
+                let context = CIContext()
+                //must convert CIImage to CGImage because the CIImage must be rendered into a UIImage
+                    //UIImage needs bitmap-based image
+                //source: https://stackoverflow.com/questions/32875114/why-cant-i-invert-my-image-back-to-original-with-cifilter-in-my-swift-ios-app
+                if let cgImage = context.createCGImage(outputImage, from: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)) {
+                    let filteredImage = UIImage(cgImage: cgImage)
+                    return filteredImage
+                }
             }
         }
         return image
