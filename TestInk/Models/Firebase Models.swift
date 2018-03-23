@@ -34,6 +34,7 @@ struct UserProfile: Codable{
 
 
 struct DesignPost: Codable {
+    let uid: String
     let userID: String
     let imageURL: String? = nil
     let likes: Int
@@ -53,6 +54,7 @@ struct PreviewPost: Codable {
     let likes: Int
     var likedBy: Bool = false
     let timestamp: Double
+    //let designID: String //autoID of the designPost
     
     func previewPosToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
