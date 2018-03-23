@@ -9,5 +9,8 @@
 import Foundation
 
 protocol FlagDelegate: class {
-    //TODO: create flag delegates
+    //didFlag : add flag to firebase under flag node, user who flagged and post that was flagged
+    func didAddFlagToFirebase()
+    func failedToAddFlagToFirebase()
+
 }
