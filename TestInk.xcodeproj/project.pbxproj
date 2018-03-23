@@ -15,6 +15,10 @@
 		814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072820643D7600789C14 /* FirebasePreviewPostService.swift */; };
 		814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */; };
 		814F072D20643DC900789C14 /* FlagServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072C20643DC900789C14 /* FlagServiceDelegate.swift */; };
+		814F072F20652C9900789C14 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072E20652C9900789C14 /* ImageHelper.swift */; };
+		814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073020652CDD00789C14 /* NetworkHelper.swift */; };
+		814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F0732206535AD00789C14 /* StorageServiceDelegate.swift */; };
+		814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -88,6 +92,10 @@
 		814F072820643D7600789C14 /* FirebasePreviewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePreviewPostService.swift; sourceTree = "<group>"; };
 		814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFlaggingService.swift; sourceTree = "<group>"; };
 		814F072C20643DC900789C14 /* FlagServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagServiceDelegate.swift; sourceTree = "<group>"; };
+		814F072E20652C9900789C14 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		814F073020652CDD00789C14 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		814F0732206535AD00789C14 /* StorageServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceDelegate.swift; sourceTree = "<group>"; };
+		814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "REFACTOREDSS...DO NOT COMMIT.swift"; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -304,6 +312,8 @@
 				818C25F72059DF3100401C10 /* NetworkConnectivity.swift */,
 				81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */,
 				81BDAD1F2060510D00F7D450 /* FilterModel.swift */,
+				814F072E20652C9900789C14 /* ImageHelper.swift */,
+				814F073020652CDD00789C14 /* NetworkHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */,
+				814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -334,6 +345,7 @@
 				818C26002059E23D00401C10 /* UserServiceDelegate.swift */,
 				818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */,
 				814F072C20643DC900789C14 /* FlagServiceDelegate.swift */,
+				814F0732206535AD00789C14 /* StorageServiceDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -674,6 +686,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */,
 				81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */,
 				818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */,
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
@@ -681,10 +694,12 @@
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
+				814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */,
 				81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */,
 				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
 				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
@@ -715,6 +730,7 @@
 				818C25F02059DE3000401C10 /* UploadView.swift in Sources */,
 				818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */,
 				818C25D62059DCB800401C10 /* Firebase Models.swift in Sources */,
+				814F072F20652C9900789C14 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +881,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -882,7 +898,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -73,7 +73,7 @@ struct Flags: Codable {
     let postID: String
     let flagMessage: String //users reasoning for flagging
     
-    func FlagsToJSON() -> Any {
+    func flagsToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
     }

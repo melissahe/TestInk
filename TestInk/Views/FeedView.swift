@@ -45,17 +45,4 @@ class FeedView: UIView {
             make.edges.equalTo(snp.edges)
         }
     }
-
-    private func setupViews() {
-        setupTableView()
-    }
-    
-    private func setupTableView() {
-        addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width)
-        }
-    }
 }
