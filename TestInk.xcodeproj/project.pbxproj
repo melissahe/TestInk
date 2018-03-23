@@ -11,6 +11,10 @@
 		29AB680844A9E9DE12584F34 /* Pods_TestInkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */; };
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
 		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
+		814F072720643D6200789C14 /* FirebaseDesignPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072620643D6200789C14 /* FirebaseDesignPostService.swift */; };
+		814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072820643D7600789C14 /* FirebasePreviewPostService.swift */; };
+		814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */; };
+		814F072D20643DC900789C14 /* FlagServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072C20643DC900789C14 /* FlagServiceDelegate.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -22,7 +26,6 @@
 		818C25C42059DB3400401C10 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C32059DB3400401C10 /* FeedCell.swift */; };
 		818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* StyleSheet.swift */; };
 		818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CB2059DBC300401C10 /* AuthUserService.swift */; };
-		818C25D02059DC1600401C10 /* FirebasePostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CF2059DC1600401C10 /* FirebasePostService.swift */; };
 		818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */; };
 		818C25D62059DCB800401C10 /* Firebase Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D52059DCB800401C10 /* Firebase Models.swift */; };
 		818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D72059DCE800401C10 /* FirebaseUserService.swift */; };
@@ -81,6 +84,10 @@
 		3BB34E66547F8E9ABD0C9900 /* Pods-TestInkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkTests/Pods-TestInkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		814F072620643D6200789C14 /* FirebaseDesignPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDesignPostService.swift; sourceTree = "<group>"; };
+		814F072820643D7600789C14 /* FirebasePreviewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePreviewPostService.swift; sourceTree = "<group>"; };
+		814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFlaggingService.swift; sourceTree = "<group>"; };
+		814F072C20643DC900789C14 /* FlagServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagServiceDelegate.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -96,7 +103,6 @@
 		818C25C32059DB3400401C10 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		818C25C92059DBAB00401C10 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		818C25CB2059DBC300401C10 /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
-		818C25CF2059DC1600401C10 /* FirebasePostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePostService.swift; sourceTree = "<group>"; };
 		818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		818C25D52059DCB800401C10 /* Firebase Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase Models.swift"; sourceTree = "<group>"; };
 		818C25D72059DCE800401C10 /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
@@ -305,8 +311,10 @@
 		818C25CD2059DBC600401C10 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				818C25CF2059DC1600401C10 /* FirebasePostService.swift */,
 				818C25D72059DCE800401C10 /* FirebaseUserService.swift */,
+				814F072620643D6200789C14 /* FirebaseDesignPostService.swift */,
+				814F072820643D7600789C14 /* FirebasePreviewPostService.swift */,
+				814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -323,8 +331,9 @@
 			isa = PBXGroup;
 			children = (
 				818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */,
-				818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */,
 				818C26002059E23D00401C10 /* UserServiceDelegate.swift */,
+				818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */,
+				814F072C20643DC900789C14 /* FlagServiceDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -685,19 +694,22 @@
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
 				81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */,
+				814F072720643D6200789C14 /* FirebaseDesignPostService.swift in Sources */,
 				818C25E02059DD5E00401C10 /* UploadVC.swift in Sources */,
 				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
 				818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */,
+				814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
 				818C25EE2059DE1E00401C10 /* ProfileView.swift in Sources */,
 				818C25F22059DE3B00401C10 /* ARView.swift in Sources */,
 				818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */,
 				818C25E62059DDB700401C10 /* CreateAccountVC.swift in Sources */,
+				814F072D20643DC900789C14 /* FlagServiceDelegate.swift in Sources */,
+				814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */,
 				818C25F82059DF3100401C10 /* NetworkConnectivity.swift in Sources */,
 				818C25F42059DE6300401C10 /* EditImageView.swift in Sources */,
 				818C25EA2059DDF700401C10 /* CreateAccountView.swift in Sources */,
-				818C25D02059DC1600401C10 /* FirebasePostService.swift in Sources */,
 				818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */,
 				818C25E42059DD8A00401C10 /* FeedVC.swift in Sources */,
 				818C25F02059DE3000401C10 /* UploadView.swift in Sources */,
@@ -851,8 +863,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V9HW99M5PX;
+				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -867,8 +880,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V9HW99M5PX;
+				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
