@@ -40,7 +40,8 @@ struct DesignPost: Codable {
     let likes: Int
     var likedBy: Bool = false //should keep track of whether user liked post
     let timestamp: Double
-    let comments: String
+    let comments: String //version 2
+    let flags: Int
     
     func designPostToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
@@ -49,13 +50,15 @@ struct DesignPost: Codable {
 }
 
 struct PreviewPost: Codable {
+    let uid: String
     let userID: String
     let imageURL: String? = nil
     let likes: Int
     var likedBy: Bool = false
     let timestamp: Double
-    //let designID: String //autoID of the designPost
-    
+    let flags: Int
+    let designID: String //used in the preview tab, when the user wants to try on a specific design, it will segue to the AR tab with that specific design by grabbing that posts autoID and passing it in
+
     func previewPosToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
