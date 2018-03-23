@@ -24,6 +24,8 @@
 	<string>LaunchScreen</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Access To Camera Needed </string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Access is needed to save your tattoo image.</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

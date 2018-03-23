@@ -13,15 +13,27 @@ class EditImageVC: UIViewController {
 
     private lazy var cellSpacing = self.view.frame.width * 0.05
     private var pastSliderValue: Float = 0
-    private var pastImage: UIImage?
+    private var pastImage: UIImage!
+    private var originalImage: UIImage!
     
     private var filters: [(displayName: String, filterName: Filter)] = FilterModel.getFilters()
     
     lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
     
+    init(image: UIImage) {
+        self.pastImage = image
+        self.originalImage = image
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+        setUpNavigation()
     }
 
     private func setUpViews() {
@@ -29,6 +41,7 @@ class EditImageVC: UIViewController {
         editImageView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
+        editImageView.photoImageView.image = pastImage
         
         editImageView.photoOptionsView.resizeButton.addTarget(self, action: #selector(resizeButtonPressed), for: .touchUpInside)
         
@@ -38,6 +51,10 @@ class EditImageVC: UIViewController {
         
         editImageView.filterView.filterCollectionView.delegate = self
         editImageView.filterView.filterCollectionView.dataSource = self
+    }
+    
+    private func setUpNavigation() {
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .done, target: self, action: #selector(postButtonPressed))
     }
     
     private func addEditView() {
@@ -51,6 +68,10 @@ class EditImageVC: UIViewController {
         navigationItem.leftBarButtonItem = nil
         editImageView.editView.isHidden = true
         editImageView.filterView.isHidden = true
+    }
+    
+    @objc private func postButtonPressed() {
+        //should post to feed?
     }
     
     @objc private func resizeButtonPressed() {
@@ -77,9 +98,10 @@ class EditImageVC: UIViewController {
     
     @objc private func shareButtonPressed() {
         let text = "Check out this tattoo preview!!"
-        let imageToBeShared: UIImage = #imageLiteral(resourceName: "checkIcon") //change
-        let activityVC = UIActivityViewController(activityItems: [text, imageToBeShared], applicationActivities: [])
-        self.present(activityVC, animated: true, completion: nil)
+        if let imageToBeShared: UIImage = editImageView.photoImageView.image {
+            let activityVC = UIActivityViewController(activityItems: [text, imageToBeShared], applicationActivities: [])
+            self.present(activityVC, animated: true, completion: nil)
+        }
     }
     
     @objc private func filtersButtonPressed() {
@@ -128,7 +150,7 @@ extension EditImageVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
         let currentFilter = filters[indexPath.row]
-        cell.configureCell(withImage: #imageLiteral(resourceName: "catplaceholder"), andFilter: currentFilter)
+            cell.configureCell(withImage: originalImage, andFilter: currentFilter)
         return cell
     }
 }

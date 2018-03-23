@@ -10,17 +10,18 @@ import UIKit
 import SnapKit
 
 class UploadView: UIView {
-
+    
     lazy var imageView: UIImageView = {
-       let iv = UIImageView()
-       iv.backgroundColor = .gray
-       iv.isUserInteractionEnabled = true
-       iv.image = #imageLiteral(resourceName: "addphoto")
-       return iv
+        let iv = UIImageView()
+        iv.backgroundColor = .gray
+        iv.isUserInteractionEnabled = true
+        iv.image = #imageLiteral(resourceName: "addphoto")
+        iv.contentMode = .scaleAspectFit
+        return iv
     }()
     
     lazy var ARTestButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.layer.borderWidth = 0.6
         button.layer.borderColor = UIColor.black.cgColor
         button.setTitleColor(.black, for: .normal)
@@ -38,7 +39,7 @@ class UploadView: UIView {
         button.setTitle("Post", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
-       
+        
         return button
     }()
     
@@ -77,10 +78,10 @@ class UploadView: UIView {
     private func setupARTestButton() {
         self.addSubview(ARTestButton)
         ARTestButton.snp.makeConstraints { (make) in
-           make.centerX.equalTo(imageView.snp.centerX)
-           make.top.equalTo(imageView.snp.bottom).offset(25)
-           make.width.equalTo(imageView.snp.width).multipliedBy(0.4)
-           make.height.equalTo(imageView.snp.height).multipliedBy(0.11)
+            make.centerX.equalTo(imageView.snp.centerX)
+            make.top.equalTo(imageView.snp.bottom).offset(25)
+            make.width.equalTo(imageView.snp.width).multipliedBy(0.4)
+            make.height.equalTo(imageView.snp.height).multipliedBy(0.11)
         }
     }
     
@@ -95,5 +96,5 @@ class UploadView: UIView {
         }
     }
     
-
+    
 }
