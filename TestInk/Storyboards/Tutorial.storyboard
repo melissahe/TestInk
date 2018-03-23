@@ -21,26 +21,54 @@
         <!--Image View Controller-->
         <scene sceneID="EDo-M6-P5M">
             <objects>
-                <viewController storyboardIdentifier="ImageViewController" id="VIL-mx-FR3" customClass="ImageViewController" customModule="TestInk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageViewController" automaticallyAdjustsScrollViewInsets="NO" id="VIL-mx-FR3" customClass="ImageViewController" customModule="TestInk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZSR-2m-Efu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uLa-Ky-R0S">
-                                <rect key="frame" x="67" y="204" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBm-8A-Ghu">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="Bai-Rn-ll7">
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="464"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Bai-Rn-ll7" secondAttribute="trailing" id="epF-cs-uSN"/>
+                                    <constraint firstItem="Bai-Rn-ll7" firstAttribute="top" secondItem="uBm-8A-Ghu" secondAttribute="top" id="iNS-0L-RTZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bai-Rn-ll7" secondAttribute="bottom" id="xPk-nK-nen"/>
+                                    <constraint firstItem="Bai-Rn-ll7" firstAttribute="leading" secondItem="uBm-8A-Ghu" secondAttribute="leading" id="xjn-Oc-f4g"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="VIL-mx-FR3" id="p1a-wf-sKa"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0bf-cj-eMM" firstAttribute="bottom" secondItem="uBm-8A-Ghu" secondAttribute="bottom" id="ehG-1N-PMz"/>
+                            <constraint firstItem="0bf-cj-eMM" firstAttribute="trailing" secondItem="uBm-8A-Ghu" secondAttribute="trailing" id="hx2-C1-0O5"/>
+                            <constraint firstItem="uBm-8A-Ghu" firstAttribute="top" secondItem="0bf-cj-eMM" secondAttribute="top" id="sQe-tP-3Or"/>
+                            <constraint firstItem="uBm-8A-Ghu" firstAttribute="leading" secondItem="0bf-cj-eMM" secondAttribute="leading" id="wo6-6o-Pwu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0bf-cj-eMM"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="imageView" destination="uLa-Ky-R0S" id="RcR-ji-R0n"/>
+                        <outlet property="imageView" destination="Bai-Rn-ll7" id="YXX-a6-cA1"/>
+                        <outlet property="imageViewBottomConstraint" destination="xPk-nK-nen" id="G12-qd-ApZ"/>
+                        <outlet property="imageViewLeadingConstraint" destination="xjn-Oc-f4g" id="QOP-2O-iNM"/>
+                        <outlet property="imageViewTopConstraint" destination="iNS-0L-RTZ" id="Vup-hw-nP4"/>
+                        <outlet property="imageViewTrailingConstraint" destination="epF-cs-uSN" id="Ega-L7-H76"/>
+                        <outlet property="scrollView" destination="uBm-8A-Ghu" id="u7p-oy-lcH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rce-Hf-gOM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="263" y="-52"/>
+            <point key="canvasLocation" x="261.60000000000002" y="-52.623688155922046"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="photo1" width="580" height="464"/>
+    </resources>
 </document>

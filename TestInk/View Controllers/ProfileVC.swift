@@ -11,13 +11,14 @@ import AVFoundation
 
 class ProfileVC: UIViewController {
     
-    let profileView = ProfileView()
+    lazy var profileView = ProfileView(frame: self.view.frame)
+    
     let cellSpacing: CGFloat = 5.0
     private let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Profile"
+        self.title = "Favorite"
         view.addSubview(profileView)
         view.backgroundColor = .green
         setupViews()

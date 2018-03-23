@@ -15,7 +15,7 @@ class FilterCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .white
-        imageView.image = #imageLiteral(resourceName: "catplaceholder")
+//        imageView.image = #imageLiteral(resourceName: "catplaceholder")
         return imageView
     }()
     

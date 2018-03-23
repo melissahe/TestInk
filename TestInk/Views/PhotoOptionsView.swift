@@ -14,7 +14,7 @@ class PhotoOptionsView: UIView {
         let button = UIButton(type: UIButtonType.system)
         button.setImage(#imageLiteral(resourceName: "resizeIcon"), for: .normal)
         //Meseret
-        button.backgroundColor = UIColor.Custom.mandarin
+        button.backgroundColor = UIColor.Custom.lapisLazuli
         button.tintColor = UIColor.Custom.whiteSmoke
         return button
     }()
@@ -23,7 +23,7 @@ class PhotoOptionsView: UIView {
         let button = UIButton(type: UIButtonType.system)
         button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
         //Meseret
-        button.backgroundColor = UIColor.Custom.mandarin
+        button.backgroundColor = UIColor.Custom.lapisLazuli
         button.tintColor = UIColor.Custom.whiteSmoke
         return button
     }()
@@ -33,7 +33,7 @@ class PhotoOptionsView: UIView {
         button.setImage(#imageLiteral(resourceName: "filterIcon"), for: .normal)
 //        button.setTitle("FILTERS", for: .normal)
         //Meseret
-        button.backgroundColor = UIColor.Custom.mandarin
+        button.backgroundColor = UIColor.Custom.lapisLazuli
         button.tintColor = UIColor.Custom.whiteSmoke
         return button
     }()
