@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 
 class FeedView: UIView {
-
     //tableview - register cell using FeedTableViewCell
     lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -31,8 +31,19 @@ class FeedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .clear
+        backgroundColor = .white
         setupViews()
+    }
+    
+    private func setupViews() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(snp.edges)
+        }
     }
 
     private func setupViews() {
