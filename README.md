@@ -36,6 +36,7 @@ CocoaPods is a dependency manager for Cocoa projects. You can install it with th
   - Firebase/Core
   - Firebase/Auth
   - Firebase/Database
+  -Firebase/Storage
 - [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager)
 - [KingFisher](https://github.com/onevcat/Kingfisher)
 - [SnapKit](http://snapkit.io/docs)

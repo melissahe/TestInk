@@ -46,7 +46,7 @@ class ProfileView: UIView {
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
+        super.init(frame: frame)
         commonInit()
     }
     
