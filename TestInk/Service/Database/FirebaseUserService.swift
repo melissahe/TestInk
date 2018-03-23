@@ -35,12 +35,12 @@ class UserProfileService {
     
     
     //MARK: Adds user to database
-    func addUserToFirebaseDatabase(userUID: String, name: String, likes: Int, favorites: String){
-        let userNameDatabaseReference = usersRef.child(name)
+    func addUserToFirebaseDatabase(userUID: String, displayName: String, likes: Int, profileImageURL: String, favorites: String, flags: Int, isBanned: Bool){
+        let userNameDatabaseReference = usersRef.child(displayName)
         let childKey = userNameDatabaseReference.key
         let user: UserProfile
-        user = UserProfile(userID: userUID, name: name, likes: likes, favorites: favorites)
-        userNameDatabaseReference.setValue(user.toJSON()) { (error, _) in
+        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, favorites: favorites, flags: flags, isBanned: isBanned)
+        userNameDatabaseReference.setValue(user.convertToJSON()) { (error, _) in
             if let error = error {
                 print("User not added with error: \(error)")
             } else {
@@ -50,7 +50,7 @@ class UserProfileService {
     }
     
     
-    //MARK: load user for injection into public and private user profiles
+    //MARK: get user for injection into public and private user profiles
     private func getUser(fromUserUID userUID: String, completion: @escaping (_ currentUser: UserProfile) -> Void){
         usersRef.child(userUID)
         usersRef.observe(.value) { (dataSnapshot) in

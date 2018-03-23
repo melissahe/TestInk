@@ -69,7 +69,7 @@ class AuthUserService {
                     } else{
                         print("changeRequest was successful for userName: \(userName)")
                         self.delegate?.didCreateUser(self, user: user) //creating user with UserProfile Object and adding to database
-                        self.userService.addUserToFirebaseDatabase(userUID: user.uid, name: displayName, likes: 0, favorites: "")
+                        self.userService.addUserToFirebaseDatabase(userUID: user.uid, displayName: displayName, likes: 0, profileImageURL: "", favorites: "", flags: 0, isBanned: false)
                         print("\(userName) was added to database)")
                     }
                 })

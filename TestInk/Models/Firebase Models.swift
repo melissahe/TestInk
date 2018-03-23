@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+struct objectConversion: Codable{
+    
+
+}
+
 
 struct UserProfile: Codable{
     let userID: String
@@ -16,9 +21,11 @@ struct UserProfile: Codable{
     let likes: Int
     let profileImageURL: String? = nil
     let favorites: String //favorite image urls
+    var flags: Int
+    var isBanned: Bool
     
     //trying to convert the parrot object into json data and add to database
-    func toJSON() -> Any {
+    func convertToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
     }
@@ -34,7 +41,7 @@ struct DesignPost: Codable {
     let timestamp: Double
     let comments: String
     
-    func toJSON() -> Any {
+    func designPostToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
     }
@@ -47,7 +54,21 @@ struct PreviewPost: Codable {
     var likedBy: Bool = false
     let timestamp: Double
     
-    func toJSON() -> Any {
+    func previewPosToJSON() -> Any {
+        let jsonData = try! JSONEncoder().encode(self)
+        return try! JSONSerialization.jsonObject(with: jsonData, options: [])
+    }
+}
+
+
+struct Flags: Codable {
+    let flagID: String
+    let flaggedBY: String //userID of poster
+    let userFlagged: String //userID of person being flagged
+    let postID: String
+    let flagMessage: String //users reasoning for flagging
+    
+    func FlagsToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
     }
