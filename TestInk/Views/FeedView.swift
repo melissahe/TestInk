@@ -10,10 +10,13 @@ import UIKit
 import SnapKit
 
 class FeedView: UIView {
-
+    //tableview - register cell using FeedTableViewCell
     lazy var tableView: UITableView = {
         let tv = UITableView()
+        //create and register a cell
         tv.register(FeedCell.self, forCellReuseIdentifier: "FeedCell")
+        tv.backgroundColor = UIColor(red:0.92, green:0.47, blue:0.25, alpha:1.0)
+        tv.isHidden = false
         return tv
     }()
     
@@ -43,4 +46,16 @@ class FeedView: UIView {
         }
     }
 
+    private func setupViews() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        addSubview(tableView)
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.width.equalTo(self.safeAreaLayoutGuide.snp.width)
+        }
+    }
 }
