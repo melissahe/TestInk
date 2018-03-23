@@ -57,8 +57,11 @@ class UploadVC: UIViewController {
     }
     
     @objc func ARTestButtonPressed() {
-        let aRVC = ARVC()
-        navigationController?.present(aRVC, animated: true)
+        if let image = uploadView.imageView.image {
+            let arVC = ARVC(tattooImage: image)
+            let navVC = UINavigationController(rootViewController: arVC)
+            navigationController?.present(navVC, animated: true)
+        }
     }
     
     private func showPickerController() {
