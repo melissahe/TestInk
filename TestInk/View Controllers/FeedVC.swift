@@ -12,8 +12,6 @@ import SnapKit
 class FeedVC: UIViewController {
     
     let feedView = FeedView()
-
-    let feedView = FeedView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
