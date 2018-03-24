@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 
 class FeedView: UIView {
-
     //tableview - register cell using FeedTableViewCell
     lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -31,10 +31,10 @@ class FeedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .clear
+        backgroundColor = .white
         setupViews()
     }
-
+    
     private func setupViews() {
         setupTableView()
     }
@@ -42,9 +42,7 @@ class FeedView: UIView {
     private func setupTableView() {
         addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width)
+            make.edges.equalTo(snp.edges)
         }
     }
 }
