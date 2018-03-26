@@ -18,7 +18,6 @@
 		814F072F20652C9900789C14 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072E20652C9900789C14 /* ImageHelper.swift */; };
 		814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073020652CDD00789C14 /* NetworkHelper.swift */; };
 		814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F0732206535AD00789C14 /* StorageServiceDelegate.swift */; };
-		814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -95,7 +94,6 @@
 		814F072E20652C9900789C14 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		814F073020652CDD00789C14 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		814F0732206535AD00789C14 /* StorageServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceDelegate.swift; sourceTree = "<group>"; };
-		814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "REFACTOREDSS...DO NOT COMMIT.swift"; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -333,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */,
-				814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -694,7 +691,6 @@
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
-				814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
