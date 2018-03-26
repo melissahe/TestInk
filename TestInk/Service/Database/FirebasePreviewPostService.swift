@@ -33,12 +33,12 @@ class FirebasePreviewPostService {
     
     
     //MARK: Adding a design post to database
-    public func addPreviewPostToDatabase(with uid: String, userID: String, imageURL: String?, likes: Int, likedBy: Bool, timeStamp: Double, comments: String, designID: String, flags: Int){
+    public func addPreviewPostToDatabase(userID: String, imageURL: String?, likes: Int, timeStamp: Double, comments: String, designID: String, flags: Int){
         //creating a unique key identifier
         let childByAutoID = Database.database().reference(withPath: "preview posts").childByAutoId()
         let childKey = childByAutoID.key
         var previewPost: PreviewPost
-        previewPost = PreviewPost(uid: childKey, userID: userID, likes: likes, likedBy: likedBy, timestamp: timeStamp, flags: flags, designID: designID)
+        previewPost = PreviewPost(uid: childKey, userID: userID, likes: likes, likedBy: false, timestamp: timeStamp, flags: flags, designID: designID)
         //setting the value of the design posts
         childByAutoID.setValue(previewPost.previewPosToJSON()) { (error, dbRef) in
             if let error = error {
