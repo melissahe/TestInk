@@ -13,11 +13,13 @@ import Foundation
 import FirebaseStorage
 import FirebaseDatabase
 
+
 enum ImageType: String {
     case userProfileImg = "users"
     case designPost = "design posts"
     case previewPost = "preview posts"
 }
+
 
 class FirebaseStorageService {
     private init(){
@@ -40,6 +42,7 @@ class FirebaseStorageService {
     private var previewImgRef: StorageReference!
     private var userProfileImgRef: StorageReference!
     
+    //MARK: storing images to Firebase
     func storeImage(with type: String,
                     uid: String,
                     image: UIImage){
@@ -59,7 +62,7 @@ class FirebaseStorageService {
             } else if let storageMetaData = storageMetaData{
                 print("storageMetadata: \(storageMetaData)")
                 //there are alot of properties on storageMetaData!!
-                print(storageMetaData.bucket, storageMetaData.name, storageMetaData.path)
+                print("\(storageMetaData.bucket), \(storageMetaData.name ?? "no name"), \(storageMetaData.path ?? "no path")")
             }
         }
         //when upload is successful call the delegate and do things in the delegate method
@@ -72,7 +75,7 @@ class FirebaseStorageService {
         }
     }
     
-    //MARK: Getting the image from firebase
+    //MARK: Getting the image from Firebase
     func retrieveImage(imageURL: String,
                        completionHandler: @escaping (UIImage) -> Void,
                        errorHandler: @escaping (Error) -> Void) {

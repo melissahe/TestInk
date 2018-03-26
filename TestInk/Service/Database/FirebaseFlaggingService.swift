@@ -22,8 +22,10 @@ class FirebaseFlaggingService{
     }
     
     private var flagRef: DatabaseReference!
-    weak var delegate: FlagDelegate?
+    
     static let service = FirebaseFlaggingService()
+    weak var delegate: FlagDelegate?
+    
     
     //TODO: complete add function
     
@@ -32,6 +34,17 @@ class FirebaseFlaggingService{
      -Add flag to user who is flagged
      -Add flag to user who flagged the post
      */
+    
+    //adds flag under the flag node in firebase
+    func addFlagToFirebase(){}
+    
+    
+    //user who flagged the post
+    func addFlagToFlagger(){}
+    
+    
+    //user who is being flagged
+    func addFlagToFlagee(){}
     
     
     //get

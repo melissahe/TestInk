@@ -1,8 +1,8 @@
 //
-//  Firebase Models.swift
+//  FirebaseModels.swift
 //  TestInk
 //
-//  Created by C4Q on 3/14/18.
+//  Created by C4Q on 3/26/18.
 //  Copyright © 2018 C4Q. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 
 struct objectConversion: Codable{
     
-
+    
 }
 
 
@@ -58,7 +58,7 @@ struct PreviewPost: Codable {
     let timestamp: Double
     let flags: Int
     let designID: String //used in the preview tab, when the user wants to try on a specific design, it will segue to the AR tab with that specific design by grabbing that posts autoID and passing it in
-
+    
     func previewPosToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -78,3 +78,4 @@ struct Flags: Codable {
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
     }
 }
+
