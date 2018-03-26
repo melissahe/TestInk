@@ -34,16 +34,17 @@ class FirebaseDesignPostService {
     //MARK: Adding a design post to database
     public func addDesignPostToDatabase(with uid: String, userID: String, imageURL: String?, likes: Int, likedBy: Bool, timeStamp: Double, comments: String, flags: Int){
         //creating a unique key identifier
-        let childByAutoID = Database.database().reference(withPath: "design post").childByAutoId()
+        let childByAutoID = Database.database().reference(withPath: "design posts").childByAutoId()
         let childKey = childByAutoID.key
         var designPost: DesignPost
-        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, likedBy: likedBy, timestamp: timeStamp, comments: comments, flags: flags)
+        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
         //setting the value of the design posts
         childByAutoID.setValue(designPost.designPostToJSON()) { (error, dbRef) in
             if let error = error {
                 self.delegate?.failedToAddDesignPostToFirebase(self, error: DesignPostStatus.designPostNotAdded)
                 print("failed to add flashcard error: \(error)")
             } else {
+                //store image function here
                 self.delegate?.didAddDesignPostToFirebase(self, post: designPost)
                 print("flashcard saved to dbRef: \(dbRef)")
             }

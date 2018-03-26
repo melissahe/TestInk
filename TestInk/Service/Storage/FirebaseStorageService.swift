@@ -44,7 +44,7 @@ class FirebaseStorageService {
     
     //MARK: storing images to Firebase
     func storeImage(with type: String,
-                    uid: String,
+                    imageID: String,
                     image: UIImage){
         //convert data to PNG
         guard let data = UIImagePNGRepresentation(image) else {return}
@@ -67,8 +67,9 @@ class FirebaseStorageService {
         }
         //when upload is successful call the delegate and do things in the delegate method
         uploadTask.observe(.success) { (snapshot) in
-            self.delegate?.didStoreImage(self, image: image)
+            self.delegate?.didStoreImage(self)
         }
+        
         //if upload is unsucessful call the delegate and do things in the delegate method
         uploadTask.observe(.failure) { (snapshot) in
             self.delegate?.didFailStoreImage(self, error: "Error with notifying user when upload fails")
