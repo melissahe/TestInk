@@ -76,7 +76,12 @@ class UploadVC: UIViewController {
     @objc private func postButtonPressed() {
         let currentUser = AuthUserService.manager.getCurrentUser()!
        FirebaseDesignPostService.service.delegate = self
-        FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: currentSelectedImage, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
+        if let image = currentSelectedImage {
+            FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: image, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
+        } else {
+            let errorAlert = Alert.createErrorAlert(withMessage: "Please select an image to upload.")
+            self.present(errorAlert, animated: true, completion: nil)
+        }
     }
     
     private func showPickerController() {
@@ -110,6 +115,7 @@ extension UploadVC: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         uploadView.imageView.image = image
+        currentSelectedImage = image
         picker.dismiss(animated: true, completion: nil)
     }
     
