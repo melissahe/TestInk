@@ -282,13 +282,13 @@
 			isa = PBXGroup;
 			children = (
 				818C25D92059DD1700401C10 /* LoginVC.swift */,
+				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				818C25E32059DD8A00401C10 /* FeedVC.swift */,
 				818C25E12059DD7200401C10 /* ProfileVC.swift */,
 				818C25DF2059DD5E00401C10 /* UploadVC.swift */,
 				818C25DD2059DD4B00401C10 /* ARVC.swift */,
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
-				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 			);
 			path = ViewControllers;

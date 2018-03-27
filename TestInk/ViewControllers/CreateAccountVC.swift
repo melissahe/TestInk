@@ -21,7 +21,7 @@ class CreateAccountVC: UIViewController {
         super.viewDidLoad()
         configViews()
         configureNavigation()
-        
+        view.backgroundColor = Stylesheet.Colors.Lapislazuli
         //textfield delegates
         createAccountView.usernameTextField.delegate = self
         createAccountView.emailTextField.delegate = self
@@ -31,7 +31,7 @@ class CreateAccountVC: UIViewController {
         
     }
     private func configureNavigation(){
-        
+        self.navigationController?.isNavigationBarHidden = false
         navigationItem.title = "Create an account"
         navigationItem.leftItemsSupplementBackButton = false
         let backButton = UIBarButtonItem()

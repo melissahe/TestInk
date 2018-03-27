@@ -12,7 +12,7 @@ class ForgotPasswordView: UIView {
  
         lazy var dismissButton: UIButton = {
             let button = UIButton()
-            button.setImage(#imageLiteral(resourceName: "Actions-window-close-icon"), for: .normal)
+            button.setImage(#imageLiteral(resourceName: "icons8-Close"), for: .normal)
             button.tintColor = .orange
             return button
         }()
@@ -49,13 +49,14 @@ class ForgotPasswordView: UIView {
         }
         
         private func commonInit() {
-            backgroundColor = Stylesheet.Colors.LightGrey
+            backgroundColor = Stylesheet.Colors.LightBlue//.LightGrey
             self.layer.cornerRadius = 15
-            self.layer.masksToBounds = true
+            self.layer.masksToBounds = false
             self.layer.shadowColor = UIColor.black.cgColor
             self.layer.shadowOpacity = 1
-            self.layer.shadowOffset = CGSize.zero
+            self.layer.shadowOffset = CGSize(width: -0.2, height: 0)
             self.layer.shadowRadius = 15
+            self.layoutIfNeeded()
             setupViews()
         }
         
