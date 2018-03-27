@@ -38,8 +38,9 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Navigation barcolor
-        navigationController?.navigationBar.barTintColor = Stylesheet.Contexts.NavigationController.BarColor
+        
+        //navigationController?.navigationBar.barTintColor = Stylesheet.Contexts.NavigationController.BarColor
+        
         //TO:DO change title color...
         
         //textfield  and Auth delegate
@@ -58,14 +59,17 @@ class LoginVC: UIViewController {
         userLoginView.forgotPassButton.addTarget(self, action: #selector(resetpassword), for: .touchUpInside)
         self.verificationTimer = Timer.scheduledTimer(timeInterval: 200, target: self, selector: #selector(LoginVC.signUp) , userInfo: nil, repeats: true)
         
-        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = Stylesheet.Colors.Lapislazuli
+        self.navigationController?.isNavigationBarHidden = true
+    }
     func loginViewConstraints(){
         
         view.addSubview(logoImageView)
         logoImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.width.equalTo(view.snp.width)
             make.height.equalTo(view.snp.height).multipliedBy(0.3)
             make.centerX.equalTo(view)
@@ -102,6 +106,7 @@ class LoginVC: UIViewController {
     
     @objc private func resetpassword() {
         forgotPassView.isHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         //            let resetVC = ForgotPasswordVC()
         //            resetVC.modalTransitionStyle = .coverVertical
         //            resetVC.modalPresentationStyle = .pageSheet
@@ -164,11 +169,13 @@ class LoginVC: UIViewController {
     
     @objc func disMissSelfButton() {
         forgotPassView.isHidden = true
+        //self.navigationController?.isNavigationBarHidden = false
         //self.forgotPassView.dismiss(animated: true, completion: nil)
     }
     
     func dimissSelf() {
         forgotPassView.isHidden = true
+//       self.navigationController?.isNavigationBarHidden = false
         //self.forgotPassView.dismiss(animated: true, completion: nil)
     }
     
