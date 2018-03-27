@@ -14,9 +14,9 @@ import FirebaseStorage
 
 protocol StorageServiceDelegate: class {
     
-    func didStoreImage(_ storageService: FirebaseStorageService, image: String) //might need to try with UIImage
+    func didStoreImage(_ storageService: FirebaseStorageService) //might need to try with UIImage
     func didFailStoreImage(_ storageService: FirebaseStorageService, error: String)
     
-    func didRetrieveImage(_ storageService: FirebaseStorageService, image: String)
+    func didRetrieveImage(_ storageService: FirebaseStorageService)
     func failedToRetrieveImage(_ storageService: FirebaseStorageService, error: String)
 }
