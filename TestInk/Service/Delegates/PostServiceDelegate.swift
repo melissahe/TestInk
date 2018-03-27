@@ -10,7 +10,7 @@ import Foundation
 
 protocol DesignPostDelegate: class {
     //adding design post methods
-    func didAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, post: DesignPost)
+    func didAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, post: DesignPost, designID: String)
     func failedToAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, error: Error)
     
     //getting all design post methods

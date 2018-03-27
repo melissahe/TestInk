@@ -11,17 +11,27 @@ import SnapKit
 
 class FeedView: UIView {
     //tableview - register cell using FeedTableViewCell
-    lazy var tableView: UITableView = {
+    lazy var designTableView: UITableView = {
         let tv = UITableView()
         //create and register a cell
         tv.register(FeedCell.self, forCellReuseIdentifier: "FeedCell")
-        tv.backgroundColor = UIColor(red:0.92, green:0.47, blue:0.25, alpha:1.0)
+        tv.backgroundColor = UIColor.Custom.lapisLazuli
+        tv.isHidden = false
+        return tv
+    }()
+    
+    //to do when FeedCell is finished
+    lazy var previewTableView: UITableView = {
+        let tv = UITableView()
+        //create and register a cell
+//        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
+        tv.backgroundColor = UIColor.Custom.lapisLazuli
         tv.isHidden = false
         return tv
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
+        super.init(frame: frame)
         commonInit()
     }
     
@@ -31,7 +41,7 @@ class FeedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = UIColor.Custom.lapisLazuli
         setupViews()
     }
     
@@ -40,8 +50,8 @@ class FeedView: UIView {
     }
     
     private func setupTableView() {
-        addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
+        addSubview(designTableView)
+        designTableView.snp.makeConstraints { (make) in
             make.edges.equalTo(snp.edges)
         }
     }
