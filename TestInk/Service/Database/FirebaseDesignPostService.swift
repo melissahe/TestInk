@@ -32,12 +32,12 @@ class FirebaseDesignPostService {
     weak var delegate: DesignPostDelegate?
     
     //MARK: Adding a design post to database
-    public func addDesignPostToDatabase(with uid: String, userID: String, imageURL: String?, likes: Int, likedBy: Bool, timeStamp: Double, comments: String, flags: Int){
+    public func addDesignPostToDatabase(userID: String, imageURL: String?, likes: Int, timeStamp: Double, comments: String, flags: Int){
         //creating a unique key identifier
         let childByAutoID = Database.database().reference(withPath: "design posts").childByAutoId()
         let childKey = childByAutoID.key
         var designPost: DesignPost
-        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
+        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, likedBy: false, timestamp: timeStamp, comments: comments, flags: flags)
         //setting the value of the design posts
         childByAutoID.setValue(designPost.designPostToJSON()) { (error, dbRef) in
             if let error = error {
@@ -47,6 +47,7 @@ class FirebaseDesignPostService {
                 //store image function here
                 self.delegate?.didAddDesignPostToFirebase(self, post: designPost)
                 print("flashcard saved to dbRef: \(dbRef)")
+                //should do storage here
             }
         }
     }
