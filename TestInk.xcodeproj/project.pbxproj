@@ -28,7 +28,7 @@
 		818C25BC2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
 		818C25BD2059D25000401C10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818C25BA2059D25000401C10 /* GoogleService-Info.plist */; };
 		818C25C42059DB3400401C10 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C32059DB3400401C10 /* FeedCell.swift */; };
-		818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* StyleSheet.swift */; };
+		818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* Stylesheet.swift */; };
 		818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CB2059DBC300401C10 /* AuthUserService.swift */; };
 		818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */; };
 		818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D72059DCE800401C10 /* FirebaseUserService.swift */; };
@@ -57,6 +57,7 @@
 		81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFE205C4712009E0F12 /* EditView.swift */; };
 		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
 		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
+		81B6B958206A9F7F007D46A2 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */; };
 		81BBC9182061A071003F490B /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BBC9172061A071003F490B /* Tutorial.storyboard */; };
 		81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */; };
 		81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC91B2061A406003F490B /* ImageViewController.swift */; };
@@ -108,7 +109,7 @@
 		818C25AE2059CB0500401C10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		818C25BA2059D25000401C10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		818C25C32059DB3400401C10 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
-		818C25C92059DBAB00401C10 /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
+		818C25C92059DBAB00401C10 /* Stylesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		818C25CB2059DBC300401C10 /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
 		818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		818C25D72059DCE800401C10 /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		81AF0AFE205C4712009E0F12 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
 		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		81BBC9172061A071003F490B /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		81BBC91B2061A406003F490B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			children = (
 				818C25E72059DDE200401C10 /* LoginView.swift */,
 				818C25E92059DDF700401C10 /* CreateAccountView.swift */,
+				81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */,
 				818C25EB2059DE0500401C10 /* FeedView.swift */,
 				818C25ED2059DE1E00401C10 /* ProfileView.swift */,
 				818C25EF2059DE3000401C10 /* UploadView.swift */,
@@ -279,13 +282,13 @@
 			isa = PBXGroup;
 			children = (
 				818C25D92059DD1700401C10 /* LoginVC.swift */,
+				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				818C25E32059DD8A00401C10 /* FeedVC.swift */,
 				818C25E12059DD7200401C10 /* ProfileVC.swift */,
 				818C25DF2059DD5E00401C10 /* UploadVC.swift */,
 				818C25DD2059DD4B00401C10 /* ARVC.swift */,
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
-				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 			);
 			path = ViewControllers;
@@ -305,7 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				814F073620698F3600789C14 /* FirebaseModels.swift */,
-				818C25C92059DBAB00401C10 /* StyleSheet.swift */,
+				818C25C92059DBAB00401C10 /* Stylesheet.swift */,
 				818C25F52059DE9600401C10 /* Alerts.swift */,
 				818C25F72059DF3100401C10 /* NetworkConnectivity.swift */,
 				81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */,
@@ -719,13 +722,14 @@
 				818C25E62059DDB700401C10 /* CreateAccountVC.swift in Sources */,
 				814F072D20643DC900789C14 /* FlagServiceDelegate.swift in Sources */,
 				814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */,
+				81B6B958206A9F7F007D46A2 /* ForgotPasswordView.swift in Sources */,
 				818C25F82059DF3100401C10 /* NetworkConnectivity.swift in Sources */,
 				818C25F42059DE6300401C10 /* EditImageView.swift in Sources */,
 				818C25EA2059DDF700401C10 /* CreateAccountView.swift in Sources */,
 				818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */,
 				818C25E42059DD8A00401C10 /* FeedVC.swift in Sources */,
 				818C25F02059DE3000401C10 /* UploadView.swift in Sources */,
-				818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */,
+				818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */,
 				814F072F20652C9900789C14 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -878,7 +882,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -897,7 +901,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
