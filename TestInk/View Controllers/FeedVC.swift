@@ -11,8 +11,8 @@ import SnapKit
 
 class FeedVC: UIViewController {
     
-    let feedView = FeedView()
-    var designPosts: [DesignPost] = []
+    private let feedView = FeedView()
+    private var designPosts: [DesignPost] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
