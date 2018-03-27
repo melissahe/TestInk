@@ -47,6 +47,7 @@ class ARVC: UIViewController {
         }
         setUpViews()
         setUpNavigation()
+        self.title = "AR"
     }
     
     override func viewWillAppear(_ animated: Bool) {
