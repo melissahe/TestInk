@@ -35,7 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tbc
         window?.makeKeyAndVisible()
-        
         return true
     }
     
