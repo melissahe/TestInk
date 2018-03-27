@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
@@ -35,7 +36,8 @@ class ProfileVC: UIViewController {
     
     
     @objc private func logoutPressed() {
-        
+        AuthUserService.manager.delegate = self
+        AuthUserService.manager.logout()
     }
     
     @objc private func changeProfileButtonPressed() {
@@ -133,7 +135,33 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+extension ProfileVC: AuthUserDelegate {
+    func didFailCreatingUser(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didCreateUser(_ userService: AuthUserService, user: User) {
+    }
+    
+    func didFailSigningOut(_ userService: AuthUserService, error: Error) {
+        //todo
+    }
+    
+    func didSignOut(_ userService: AuthUserService) {
+        //todo
+    }
+    
+    func didFailToSignIn(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSignIn(_ userService: AuthUserService, user: User) {
+    }
+    
+    func didFailToSendPasswordReset(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSendPasswordReset(_userService: AuthUserService) {
+    }
+}
 
 
 
