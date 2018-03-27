@@ -13,17 +13,18 @@ class FeedVC: UIViewController {
     
     private let feedView = FeedView()
     private var designPosts: [DesignPost] = []
+    private var previewPosts: [PreviewPost] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(feedView)
-        feedView.tableView.delegate = self
-        feedView.tableView.dataSource = self
+        feedView.designTableView.delegate = self
+        feedView.designTableView.dataSource = self
         view.backgroundColor = .orange
         view.addSubview(feedView)
-        feedView.tableView.dataSource = self
-        feedView.tableView.rowHeight = UITableViewAutomaticDimension
-        feedView.tableView.estimatedRowHeight = 120
+        feedView.designTableView.dataSource = self
+        feedView.designTableView.rowHeight = UITableViewAutomaticDimension
+        feedView.designTableView.estimatedRowHeight = 120
         setupViews()
     }
     
@@ -36,9 +37,21 @@ class FeedVC: UIViewController {
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
             if let posts = posts {
                 self.designPosts = posts
+                self.feedView.designTableView.reloadData()
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get designs. Please check network connection.")
+                self.present(errorAlert, animated: true, completion: nil)
+            }
+        }
+        
+        FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in
+            if let posts = posts {
+                self.previewPosts = posts
+                self.feedView.previewTableView.reloadData()
+            } else if let error = error {
+                print(error)
+                let errorAlert = Alert.createErrorAlert(withMessage: "Could not get tattoo previews. Please check network connection.")
                 self.present(errorAlert, animated: true, completion: nil)
             }
         }
@@ -70,8 +83,18 @@ extension FeedVC: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
-        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        if tableView == feedView.designTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+            let currentDesign = designPosts[indexPath.row]
+            cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell")!
+            //as! PreviewCell
+        let currentPreview = previewPosts[indexPath.row]
+//        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        
         return cell
     }
 }
