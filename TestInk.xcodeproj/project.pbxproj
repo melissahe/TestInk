@@ -217,8 +217,8 @@
 				818C25BE2059D5A300401C10 /* Service */,
 				818C25C22059D5D200401C10 /* Models */,
 				818C25BF2059D5A900401C10 /* Views */,
-				818C25C02059D5AF00401C10 /* View Controllers */,
-				818C25C12059D5B600401C10 /* Custom Cells */,
+				818C25C02059D5AF00401C10 /* ViewControllers */,
+				818C25C12059D5B600401C10 /* CustomCells */,
 				818C25932059CB0400401C10 /* Assets.xcassets */,
 				81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */,
 				818C25982059CB0400401C10 /* Info.plist */,
@@ -275,7 +275,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		818C25C02059D5AF00401C10 /* View Controllers */ = {
+		818C25C02059D5AF00401C10 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				818C25D92059DD1700401C10 /* LoginVC.swift */,
@@ -288,17 +288,17 @@
 				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		818C25C12059D5B600401C10 /* Custom Cells */ = {
+		818C25C12059D5B600401C10 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				818C25C32059DB3400401C10 /* FeedCell.swift */,
 				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 				81BDAD1D206046D000F7D450 /* FilterCell.swift */,
 			);
-			path = "Custom Cells";
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		818C25C22059D5D200401C10 /* Models */ = {
@@ -878,7 +878,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -897,7 +897,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

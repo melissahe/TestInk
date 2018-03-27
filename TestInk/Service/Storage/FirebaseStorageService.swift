@@ -41,12 +41,10 @@ class FirebaseStorageService {
     private var designImgRef: StorageReference!
     private var previewImgRef: StorageReference!
     private var userProfileImgRef: StorageReference!
-    
+
     
     //MARK: storing images to Firebase
-    func storeImage(with type: String,
-                    imageID: String,
-                    image: UIImage){
+    func storeImage(imageType: ImageType, imageID: String, image: UIImage){
         //convert data to PNG
         guard let data = UIImagePNGRepresentation(image) else {return}
         //resize the image
@@ -57,7 +55,7 @@ class FirebaseStorageService {
         metadata.contentType = "image/png"
         
         //set upload task: Updates the sub-node under the specific type bucket
-        let uploadTask = FirebaseStorageService.service.storageRef.child(type).putData(data, metadata: metadata) { (storageMetaData, error) in
+        let uploadTask = FirebaseStorageService.service.storageRef.child(imageType.rawValue).putData(data, metadata: metadata) { (storageMetaData, error) in
             if let error = error {
                 print("uploadTask error: \(error)")
             } else if let storageMetaData = storageMetaData{
@@ -71,7 +69,7 @@ class FirebaseStorageService {
             self.delegate?.didStoreImage(self)
             let imageURL = String(describing: snapshot.metadata?.downloadURL()!)
             //set that url string at the correct reference: EX) whatever bucket/uid/image = pic
-           Database.database().reference(withPath: type.rawValue).child(uid).child("image").setValue(imageURL)
+            Database.database().reference(withPath: imageType.rawValue).child(imageID).child("image").setValue(imageURL)
         }
         
         //if upload is unsucessful call the delegate and do things in the delegate method
