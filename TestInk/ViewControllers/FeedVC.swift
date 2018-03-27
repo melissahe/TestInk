@@ -11,21 +11,18 @@ import SnapKit
 
 class FeedVC: UIViewController {
     
-    private let feedView = FeedView()
+    private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     private var designPosts: [DesignPost] = []
     private var previewPosts: [PreviewPost] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(feedView)
+        setupViews()
         feedView.designTableView.delegate = self
         feedView.designTableView.dataSource = self
-        view.backgroundColor = .orange
-        view.addSubview(feedView)
         feedView.designTableView.dataSource = self
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 120
-        setupViews()
     }
     
     private func loadData() {
@@ -58,6 +55,13 @@ class FeedVC: UIViewController {
     }
     
     private func setupViews() {
+        view.addSubview(feedView)
+        view.backgroundColor = UIColor.Custom.lapisLazuli
+        view.addSubview(feedView)
+        feedView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
         //right bar button
         let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
         navigationItem.rightBarButtonItem = uploadButton

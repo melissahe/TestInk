@@ -12,7 +12,7 @@ import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
-    lazy var profileView = ProfileView(frame: self.view.frame)
+    lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     
     let cellSpacing: CGFloat = 5.0
     private let imagePickerController = UIImagePickerController()
@@ -20,14 +20,19 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Favorite"
-        view.addSubview(profileView)
-        view.backgroundColor = .green
         setupViews()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
     }
     
     private func setupViews() {
+        view.addSubview(profileView)
+        view.backgroundColor = UIColor.Custom.lapisLazuli
+        
+        profileView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
         //right bar button
         let addLogoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
         navigationItem.rightBarButtonItem = addLogoutItem
