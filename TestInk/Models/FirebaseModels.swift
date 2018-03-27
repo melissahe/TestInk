@@ -59,6 +59,7 @@ struct PreviewPost: Codable {
 
 struct Flags: Codable {
     let flagID: String
+    let userID: String
     let flaggedBy: String //userID of poster
     let userFlagged: String //userID of person being flagged
     let postID: String
