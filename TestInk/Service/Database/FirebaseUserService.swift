@@ -36,8 +36,8 @@ class UserProfileService {
     
     //MARK: Adds user to database
     func addUserToFirebaseDatabase(userUID: String, displayName: String, likes: Int, profileImageURL: String, favorites: String, flags: Int, isBanned: Bool){
-        let userNameDatabaseReference = usersRef.child(displayName)
-        let childKey = userNameDatabaseReference.key
+        let userNameDatabaseReference = usersRef.child(userUID)
+//        let childKey = userNameDatabaseReference.key
         let user: UserProfile
         user = UserProfile(userID: userUID, displayName: displayName, likes: likes, favorites: favorites, flags: flags, isBanned: isBanned)
         userNameDatabaseReference.setValue(user.convertToJSON()) { (error, _) in
