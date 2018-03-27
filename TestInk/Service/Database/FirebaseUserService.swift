@@ -64,11 +64,7 @@ class UserProfileService {
             }
         }
     }
-    
-    //TODO: change user profile image
-    //TODO: get favorites from user: user -> favorites -> GET
 
-    
     /////////////Functions to use in version 2
     
     

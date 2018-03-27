@@ -68,6 +68,9 @@ class FirebaseStorageService {
         //when upload is successful call the delegate and do things in the delegate method
         uploadTask.observe(.success) { (snapshot) in
             self.delegate?.didStoreImage(self)
+            let imageURL = String(describing: snapshot.metadata?.downloadURL()!)
+            //set that url string at the correct reference: EX) whatever bucket/uid/image = pic
+           Database.database().reference(withPath: type.rawValue).child(uid).child("image").setValue(imageURL)
         }
         
         //if upload is unsucessful call the delegate and do things in the delegate method
