@@ -46,7 +46,7 @@ class FirebaseDesignPostService {
             } else {
                 //storing image into design posts bucket in firebase
                 FirebaseStorageService.service.storeImage(imageType: .designPost, imageID: childKey, image: image)
-                self.delegate?.didAddDesignPostToFirebase(self, post: designPost)
+                self.delegate?.didAddDesignPostToFirebase(self, post: designPost, designID: childKey)
                 print("flashcard saved to dbRef: \(dbRef)")
                 //should do storage here
             }
