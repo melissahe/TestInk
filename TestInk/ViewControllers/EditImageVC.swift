@@ -10,12 +10,12 @@ import UIKit
 import SnapKit
 
 class EditImageVC: UIViewController {
-
+    
     private lazy var cellSpacing = self.view.frame.width * 0.05
     private var pastSliderValue: Float = 0
     private var pastImage: UIImage!
     private var originalImage: UIImage!
-//    private var designID: String?
+    //    private var designID: String?
     private var filters: [(displayName: String, filterName: Filter)] = FilterModel.getFilters()
     
     lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
@@ -35,7 +35,7 @@ class EditImageVC: UIViewController {
         setUpViews()
         setUpNavigation()
     }
-
+    
     private func setUpViews() {
         view.addSubview(editImageView)
         editImageView.snp.makeConstraints { (make) in
@@ -43,7 +43,7 @@ class EditImageVC: UIViewController {
         }
         editImageView.photoImageView.image = pastImage
         
-//        editImageView.photoOptionsView.resizeButton.addTarget(self, action: #selector(resizeButtonPressed), for: .touchUpInside)
+        //        editImageView.photoOptionsView.resizeButton.addTarget(self, action: #selector(resizeButtonPressed), for: .touchUpInside)
         
         editImageView.photoOptionsView.shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
         
@@ -69,7 +69,7 @@ class EditImageVC: UIViewController {
         navigationItem.rightBarButtonItem = nil
         navigationItem.leftBarButtonItem = nil
         setUpNavigation()
-//        editImageView.editView.isHidden = true
+        //        editImageView.editView.isHidden = true
         editImageView.filterView.isHidden = true
     }
     
@@ -78,21 +78,24 @@ class EditImageVC: UIViewController {
         let currentUser = AuthUserService.manager.getCurrentUser()!
         //DesignID won't work if the user doesn't upload the design they're trying - maybe we should scrap this
         FirebasePreviewPostService.service.delegate = self
-        FirebasePreviewPostService.service.addPreviewPostToDatabase(userID: currentUser.uid, imageURL: nil, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", designID: "", flags: 0)
+        
+        if let userSavedImage = editImageView.photoImageView.image {
+            FirebasePreviewPostService.service.addPreviewPostToDatabase(userID: currentUser.uid, image: userSavedImage, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", designID: "", flags: 0)
+        }
     }
     
-//    @objc private func resizeButtonPressed() {
-//        editImageView.editView.isHidden = false
-//
-//        pastSliderValue = editImageView.editView.sizeSlider.value
-//        addEditView()
-//    }
+    //    @objc private func resizeButtonPressed() {
+    //        editImageView.editView.isHidden = false
+    //
+    //        pastSliderValue = editImageView.editView.sizeSlider.value
+    //        addEditView()
+    //    }
     
     @objc private func deleteButtonPressed() {
         //do something to track which one you're no longer using
         //reset slider
-//        editImageView.editView.sliderValueLabel.text = pastSliderValue.truncatingRemainder(dividingBy: 10).description
-//        editImageView.editView.sizeSlider.value = pastSliderValue
+        //        editImageView.editView.sliderValueLabel.text = pastSliderValue.truncatingRemainder(dividingBy: 10).description
+        //        editImageView.editView.sizeSlider.value = pastSliderValue
         editImageView.photoImageView.image = pastImage
         removeEditView()
     }
@@ -157,7 +160,7 @@ extension EditImageVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filterCell", for: indexPath) as! FilterCell
         let currentFilter = filters[indexPath.row]
-            cell.configureCell(withImage: originalImage, andFilter: currentFilter)
+        cell.configureCell(withImage: originalImage, andFilter: currentFilter)
         return cell
     }
 }
