@@ -63,7 +63,7 @@ class ARVC: UIViewController {
     }
     
     private func startAR() {
-        arOn = true
+//        arOn = true
         //remove all existing nodes
         sceneView.scene.rootNode.childNodes.forEach { (node) in
             node.removeFromParentNode()
@@ -90,7 +90,7 @@ class ARVC: UIViewController {
     //delete
     //check to see what happens if screen rotates
     private func startARWithoutImageTracking() {
-        arOn = false
+//        arOn = false
         //remove all existing nodes
         sceneView.scene.rootNode.childNodes.forEach { (node) in
             node.removeFromParentNode()
