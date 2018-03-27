@@ -15,12 +15,14 @@ enum ImageError: Error {
 }
 
 class ImageHelper {
-    private init() {}
+    private init(){}
     static let manager = ImageHelper()
     
-    func getImage(from urlStr: String, completionHandler: @escaping (UIImage) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func getImage(from imageURL: String,
+                  completionHandler: @escaping (UIImage) -> Void,
+                  errorHandler: @escaping (Error) -> Void) {
         
-        guard let url = URL(string: urlStr) else {
+        guard let url = URL(string: imageURL) else {
             errorHandler(ImageError.badUrl)
             return
         }

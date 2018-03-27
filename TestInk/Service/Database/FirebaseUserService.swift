@@ -36,10 +36,9 @@ class UserProfileService {
     
     //MARK: Adds user to database
     func addUserToFirebaseDatabase(userUID: String, displayName: String, likes: Int, profileImageURL: String, favorites: String, flags: Int, isBanned: Bool){
-        let userNameDatabaseReference = usersRef.child(displayName)
-        let childKey = userNameDatabaseReference.key
+        let userNameDatabaseReference = usersRef.child(userUID)
         let user: UserProfile
-        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, favorites: favorites, flags: flags, isBanned: isBanned)
+        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, favorites: [favorites], flags: flags, isBanned: isBanned)
         userNameDatabaseReference.setValue(user.convertToJSON()) { (error, _) in
             if let error = error {
                 print("User not added with error: \(error)")
@@ -65,8 +64,7 @@ class UserProfileService {
             }
         }
     }
-    
-    
+
     /////////////Functions to use in version 2
     
     
@@ -92,6 +90,7 @@ class UserProfileService {
         let child = usersRef.child(userUID)
         child.child("userName").setValue(newUserName)
     }
+    
 
     //TODO: delete user account and sign them out
 }

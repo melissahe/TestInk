@@ -1,14 +1,14 @@
 //
-//  CreateAccountVC.swift
+//  ForgotPasswordVC.swift
 //  TestInk
 //
-//  Created by C4Q on 3/14/18.
+//  Created by C4Q on 3/25/18.
 //  Copyright © 2018 C4Q. All rights reserved.
 //
 
 import UIKit
 
-class CreateAccountVC: UIViewController {
+class ForgotPasswordVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
