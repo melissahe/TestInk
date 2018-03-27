@@ -6,7 +6,6 @@
 //  Copyright © 2018 C4Q. All rights reserved.
 //
 
-
 import Foundation
 import UIKit
 
@@ -20,6 +19,7 @@ enum Stylesheet {
         static let MediumSkyBlue = UIColor(hex: "#65DEF1")
         static let LightGrey = UIColor(hex: "#d3d3d3")
         static let DarkSlateGray = UIColor(hex: "#2F4858")
+        static let LightBlue = UIColor(hex: "#A8DCE5")
         static let White = UIColor.white
         
     }
@@ -28,9 +28,9 @@ enum Stylesheet {
     
     enum Fonts {
         static let AppName = UIFont(name: "HelveticaNeue-CondensedBold", size: 45.0)
-        static let PostTitle = UIFont(name: "HelveticaNeue-CondensedBold", size: 30.0)
+        static let Title = UIFont(name: "HelveticaNeue-CondensedBold", size: 30.0)
         static let Regular = UIFont(name: "HelveticaNeue-Light", size: 15.0)
-        static let TextfieldFont = UIFont(name: "HelveticaNeue-Light", size: 15.0)
+        static let TextfieldFont = UIFont(name: "HelveticaNeue-Light", size: 20.0)
         static let Link = UIFont(name: "HelveticaNeue", size: 15.0)
         static let Bold = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
     }
@@ -61,8 +61,8 @@ enum Stylesheet {
         
         enum NavigationController {
             static let BarTintColor = Colors.White
-            static let BarTextColor = Colors.LightGrey
-            static let BarColor = Colors.Mandarin
+            static let BarTextColor = Colors.Lapislazuli
+            static let BarColor = Colors.LightGrey
         }
         
         enum TabBarController {
@@ -165,15 +165,22 @@ extension Stylesheet {
         }
         
         enum Labels {
+            case Title
             case Regular
             case AppName
             case PostUsername
             
             func style(label: UILabel) {
                 switch self {
+                case .Title:
+                    label.font = Stylesheet.Fonts.Title
+                    label.textColor = Stylesheet.Colors.DarkSlateGray
+                    label.backgroundColor = .clear
+                    label.textAlignment = .left
+                    label.numberOfLines = 0
                 case .Regular:
                     label.font = Stylesheet.Fonts.Regular
-                    label.textColor = Stylesheet.Colors.LightGrey
+                    label.textColor = Stylesheet.Colors.DarkSlateGray
                     label.backgroundColor = .clear
                     label.textAlignment = .left
                     label.numberOfLines = 0
@@ -246,7 +253,7 @@ extension Stylesheet {
                     textfield.layer.borderColor = (Stylesheet.Colors.LightGrey).cgColor
                     textfield.textAlignment = NSTextAlignment.left
                     textfield.font = Stylesheet.Fonts.TextfieldFont
-                    textfield.textColor = Stylesheet.Colors.DarkSlateGray
+                    textfield.textColor = Stylesheet.Colors.White
                     textfield.adjustsFontSizeToFitWidth = true
                     textfield.autocapitalizationType = .words
                     textfield.autocorrectionType = .no
