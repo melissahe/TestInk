@@ -15,11 +15,19 @@ class UploadVC: UIViewController {
     private let imagePickerController = UIImagePickerController()
     private var currentSelectedImage: UIImage!
     private var uploadView = UploadView()
+    //used if user triggers AR from tattoo image in feed or if user uploads tattoo image to feed
     private var designID: String?
-    
     
     private var tapRecognizer: UITapGestureRecognizer!
     
+    init(designID: String? = nil) {
+        self.designID = designID
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +51,6 @@ class UploadVC: UIViewController {
         uploadView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
-
     }
     
     @objc private func showActionSheet() {
@@ -60,7 +67,7 @@ class UploadVC: UIViewController {
     
     @objc private func ARTestButtonPressed() {
         if let image = uploadView.imageView.image {
-            let arVC = ARVC(tattooImage: image)
+            let arVC = ARVC(tattooImage: image, designID: self.designID)
             let navVC = UINavigationController(rootViewController: arVC)
             navigationController?.present(navVC, animated: true)
         }
@@ -69,7 +76,7 @@ class UploadVC: UIViewController {
     @objc private func postButtonPressed() {
         let currentUser = AuthUserService.manager.getCurrentUser()!
        FirebaseDesignPostService.service.delegate = self
-        FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, imageURL: nil, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
+        FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: currentSelectedImage, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
     }
     
     private func showPickerController() {
@@ -95,7 +102,6 @@ class UploadVC: UIViewController {
             })
         }
     }
-    
 }
 
 //TODO add actions for post and AR Test buttons
@@ -117,12 +123,13 @@ extension UploadVC: UINavigationControllerDelegate {
 }
 
 extension UploadVC: DesignPostDelegate {
-    func didAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, post: DesignPost) {
+    func didAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, post: DesignPost, designID: String) {
         //success
         let successAlert = Alert.create(withTitle: "Success", andMessage: "Posted design to feed.", withPreferredStyle: .alert)
         Alert.addAction(withTitle: "OK", style: .default, andHandler: nil, to: successAlert)
         self.present(successAlert, animated: true, completion: nil)
-        //get designID of tattoo design
+        
+        self.designID = designID
     }
     
     func failedToAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, error: Error) {

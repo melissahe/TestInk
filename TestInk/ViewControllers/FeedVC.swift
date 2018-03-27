@@ -60,7 +60,13 @@ class FeedVC: UIViewController {
 
 extension FeedVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return designPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentDesign = designPosts[indexPath.row]
+        let uploadVC = UploadVC(designID: currentDesign.uid)
+        self.navigationController?.pushViewController(uploadVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
