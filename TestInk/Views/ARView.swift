@@ -111,15 +111,15 @@ class ARView: UIView {
             make.top.equalTo(self)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(self).multipliedBy(0.85)
+            make.height.equalTo(self).multipliedBy(0.80)
         }
     }
     
     private func setupCaptureButton() {
         self.addSubview(captureButton)
         captureButton.snp.makeConstraints { (make) in
-            make.top.equalTo(ARView.snp.bottom).offset(10)
-            make.bottom.equalTo(self.snp.bottom).offset(-10)
+            make.top.equalTo(ARView.snp.bottom).offset(20)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
 //            make.width.equalTo(ARView.snp.width).multipliedBy(0.13)
             make.width.equalTo(captureButton.snp.height)
 //            make.height.equalTo(captureButton.snp.width)
