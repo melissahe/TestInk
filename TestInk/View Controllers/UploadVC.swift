@@ -14,10 +14,11 @@ class UploadVC: UIViewController {
 
     private let imagePickerController = UIImagePickerController()
     private var currentSelectedImage: UIImage!
-    var uploadView = UploadView()
+    private var uploadView = UploadView()
+    private var designID: String?
     
     
-    var tapRecognizer: UITapGestureRecognizer!
+    private var tapRecognizer: UITapGestureRecognizer!
     
     
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class UploadVC: UIViewController {
         setupSubView()
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
         uploadView.ARTestButton.addTarget(self, action: #selector(ARTestButtonPressed), for: .touchUpInside)
+        uploadView.postButton.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,7 +46,7 @@ class UploadVC: UIViewController {
 
     }
     
-    @objc func showActionSheet() {
+    @objc private func showActionSheet() {
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
             self.imagePickerController.sourceType
@@ -56,12 +58,18 @@ class UploadVC: UIViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @objc func ARTestButtonPressed() {
+    @objc private func ARTestButtonPressed() {
         if let image = uploadView.imageView.image {
             let arVC = ARVC(tattooImage: image)
             let navVC = UINavigationController(rootViewController: arVC)
             navigationController?.present(navVC, animated: true)
         }
+    }
+    
+    @objc private func postButtonPressed() {
+        let currentUser = AuthUserService.manager.getCurrentUser()!
+       FirebaseDesignPostService.service.delegate = self
+        FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, imageURL: nil, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
     }
     
     private func showPickerController() {
@@ -106,4 +114,26 @@ extension UploadVC: UIImagePickerControllerDelegate {
 
 extension UploadVC: UINavigationControllerDelegate {
     
+}
+
+extension UploadVC: DesignPostDelegate {
+    func didAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, post: DesignPost) {
+        //success
+        let successAlert = Alert.create(withTitle: "Success", andMessage: "Posted design to feed.", withPreferredStyle: .alert)
+        Alert.addAction(withTitle: "OK", style: .default, andHandler: nil, to: successAlert)
+        self.present(successAlert, animated: true, completion: nil)
+        //get designID of tattoo design
+    }
+    
+    func failedToAddDesignPostToFirebase(_ postService: FirebaseDesignPostService, error: Error) {
+        //error
+        let errorAlert = Alert.createErrorAlert(withMessage: "Could not add tattoo design to feed.")
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func didGetAllDesignPosts(_ postService: FirebaseDesignPostService, post: DesignPost) {
+    }
+    
+    func failedToGetAllDesignPosts(_ postService: FirebaseDesignPostService, error: Error) {
+    }
 }
