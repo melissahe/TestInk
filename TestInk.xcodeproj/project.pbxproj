@@ -18,7 +18,7 @@
 		814F072F20652C9900789C14 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072E20652C9900789C14 /* ImageHelper.swift */; };
 		814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073020652CDD00789C14 /* NetworkHelper.swift */; };
 		814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F0732206535AD00789C14 /* StorageServiceDelegate.swift */; };
-		814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */; };
+		814F073720698F3600789C14 /* FirebaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073620698F3600789C14 /* FirebaseModels.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -31,7 +31,6 @@
 		818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25C92059DBAB00401C10 /* Stylesheet.swift */; };
 		818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25CB2059DBC300401C10 /* AuthUserService.swift */; };
 		818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */; };
-		818C25D62059DCB800401C10 /* Firebase Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D52059DCB800401C10 /* Firebase Models.swift */; };
 		818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D72059DCE800401C10 /* FirebaseUserService.swift */; };
 		818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25D92059DD1700401C10 /* LoginVC.swift */; };
 		818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25DB2059DD3600401C10 /* EditImageVC.swift */; };
@@ -95,7 +94,7 @@
 		814F072E20652C9900789C14 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		814F073020652CDD00789C14 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		814F0732206535AD00789C14 /* StorageServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceDelegate.swift; sourceTree = "<group>"; };
-		814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "REFACTOREDSS...DO NOT COMMIT.swift"; sourceTree = "<group>"; };
+		814F073620698F3600789C14 /* FirebaseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModels.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		818C25C92059DBAB00401C10 /* Stylesheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stylesheet.swift; sourceTree = "<group>"; };
 		818C25CB2059DBC300401C10 /* AuthUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserService.swift; sourceTree = "<group>"; };
 		818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
-		818C25D52059DCB800401C10 /* Firebase Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase Models.swift"; sourceTree = "<group>"; };
 		818C25D72059DCE800401C10 /* FirebaseUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserService.swift; sourceTree = "<group>"; };
 		818C25D92059DD1700401C10 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		818C25DB2059DD3600401C10 /* EditImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageVC.swift; sourceTree = "<group>"; };
@@ -219,8 +217,8 @@
 				818C25BE2059D5A300401C10 /* Service */,
 				818C25C22059D5D200401C10 /* Models */,
 				818C25BF2059D5A900401C10 /* Views */,
-				818C25C02059D5AF00401C10 /* View Controllers */,
-				818C25C12059D5B600401C10 /* Custom Cells */,
+				818C25C02059D5AF00401C10 /* ViewControllers */,
+				818C25C12059D5B600401C10 /* CustomCells */,
 				818C25932059CB0400401C10 /* Assets.xcassets */,
 				81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */,
 				818C25982059CB0400401C10 /* Info.plist */,
@@ -277,37 +275,37 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		818C25C02059D5AF00401C10 /* View Controllers */ = {
+		818C25C02059D5AF00401C10 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				818C25D92059DD1700401C10 /* LoginVC.swift */,
-				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				818C25E32059DD8A00401C10 /* FeedVC.swift */,
 				818C25E12059DD7200401C10 /* ProfileVC.swift */,
 				818C25DF2059DD5E00401C10 /* UploadVC.swift */,
 				818C25DD2059DD4B00401C10 /* ARVC.swift */,
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
+				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		818C25C12059D5B600401C10 /* Custom Cells */ = {
+		818C25C12059D5B600401C10 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				818C25C32059DB3400401C10 /* FeedCell.swift */,
 				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 				81BDAD1D206046D000F7D450 /* FilterCell.swift */,
 			);
-			path = "Custom Cells";
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		818C25C22059D5D200401C10 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				818C25D52059DCB800401C10 /* Firebase Models.swift */,
-				818C25C92059DBAB00401C10 /* Stylesheet.swift */,
+				814F073620698F3600789C14 /* FirebaseModels.swift */,
+				818C25C92059DBAB00401C10 /* StyleSheet.swift */,
 				818C25F52059DE9600401C10 /* Alerts.swift */,
 				818C25F72059DF3100401C10 /* NetworkConnectivity.swift */,
 				81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */,
@@ -333,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				818C25D32059DC7E00401C10 /* FirebaseStorageService.swift */,
-				814F07342065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -694,7 +691,6 @@
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
-				814F07352065632E00789C14 /* REFACTOREDSS...DO NOT COMMIT.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
@@ -708,6 +704,7 @@
 				81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
+				814F073720698F3600789C14 /* FirebaseModels.swift in Sources */,
 				81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */,
 				814F072720643D6200789C14 /* FirebaseDesignPostService.swift in Sources */,
 				818C25E02059DD5E00401C10 /* UploadVC.swift in Sources */,
@@ -728,8 +725,7 @@
 				818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */,
 				818C25E42059DD8A00401C10 /* FeedVC.swift in Sources */,
 				818C25F02059DE3000401C10 /* UploadView.swift in Sources */,
-				818C25CA2059DBAC00401C10 /* Stylesheet.swift in Sources */,
-				818C25D62059DCB800401C10 /* Firebase Models.swift in Sources */,
+				818C25CA2059DBAC00401C10 /* StyleSheet.swift in Sources */,
 				814F072F20652C9900789C14 /* ImageHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -878,6 +874,7 @@
 			baseConfigurationReference = BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
@@ -885,6 +882,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -895,6 +893,7 @@
 			baseConfigurationReference = 1F1922A04BA030D7CA8DA2B3 /* Pods-TestInk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
@@ -902,6 +901,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
