@@ -42,6 +42,7 @@ class FirebaseStorageService {
     private var previewImgRef: StorageReference!
     private var userProfileImgRef: StorageReference!
     
+    
     //MARK: storing images to Firebase
     func storeImage(with type: String,
                     imageID: String,
@@ -78,6 +79,8 @@ class FirebaseStorageService {
             self.delegate?.didFailStoreImage(self, error: "Error with notifying user when upload fails")
         }
     }
+    
+    
     
     //MARK: Getting the image from Firebase
     func retrieveImage(imageURL: String,
