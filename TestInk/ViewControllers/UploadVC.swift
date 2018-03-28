@@ -39,6 +39,7 @@ class UploadVC: UIViewController {
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
         uploadView.ARTestButton.addTarget(self, action: #selector(ARTestButtonPressed), for: .touchUpInside)
         uploadView.postButton.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
+        self.title = "Upload"
     }
     
     override func viewWillDisappear(_ animated: Bool) {

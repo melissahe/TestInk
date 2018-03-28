@@ -34,7 +34,7 @@ struct DesignPost: Codable {
     let timestamp: Double
     let comments: String //version 2
     let flags: Int
-    
+  
     func designPostToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -59,6 +59,7 @@ struct PreviewPost: Codable {
 
 struct Flags: Codable {
     let flagID: String
+    let userID: String
     let flaggedBy: String //userID of poster
     let userFlagged: String //userID of person being flagged
     let postID: String

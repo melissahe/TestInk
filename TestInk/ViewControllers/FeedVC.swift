@@ -23,6 +23,7 @@ class FeedVC: UIViewController {
         feedView.designTableView.dataSource = self
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
+        self.title = "Feed"
     }
     
     private func loadData() {
