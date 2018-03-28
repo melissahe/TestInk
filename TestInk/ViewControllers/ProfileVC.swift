@@ -152,7 +152,8 @@ extension ProfileVC: AuthUserDelegate {
     }
     
     func didSignOut(_ userService: AuthUserService) {
-        //todo
+        print("user signed out!!")
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     func didFailToSignIn(_ userService: AuthUserService, error: Error) {
