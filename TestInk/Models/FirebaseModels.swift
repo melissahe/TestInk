@@ -34,7 +34,7 @@ struct DesignPost: Codable {
     let timestamp: Double
     let comments: String //version 2
     let flags: Int
-    
+  
     func designPostToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
