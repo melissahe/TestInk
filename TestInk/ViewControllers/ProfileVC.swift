@@ -8,10 +8,11 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
-    lazy var profileView = ProfileView(frame: self.view.frame)
+    lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     
     let cellSpacing: CGFloat = 5.0
     private let imagePickerController = UIImagePickerController()
@@ -19,14 +20,19 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Favorite"
-        view.addSubview(profileView)
-        view.backgroundColor = .green
         setupViews()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
     }
     
     private func setupViews() {
+        view.addSubview(profileView)
+        view.backgroundColor = UIColor.Custom.lapisLazuli
+        
+        profileView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
         //right bar button
         let addLogoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
         navigationItem.rightBarButtonItem = addLogoutItem
@@ -35,7 +41,8 @@ class ProfileVC: UIViewController {
     
     
     @objc private func logoutPressed() {
-        
+        AuthUserService.manager.delegate = self
+        AuthUserService.manager.logout()
     }
     
     @objc private func changeProfileButtonPressed() {
@@ -133,7 +140,34 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
+extension ProfileVC: AuthUserDelegate {
+    func didFailCreatingUser(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didCreateUser(_ userService: AuthUserService, user: User) {
+    }
+    
+    func didFailSigningOut(_ userService: AuthUserService, error: Error) {
+        //todo
+    }
+    
+    func didSignOut(_ userService: AuthUserService) {
+        print("user signed out!!")
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func didFailToSignIn(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSignIn(_ userService: AuthUserService, user: User) {
+    }
+    
+    func didFailToSendPasswordReset(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSendPasswordReset(_userService: AuthUserService) {
+    }
+}
 
 
 

@@ -11,20 +11,19 @@ import SnapKit
 
 class FeedVC: UIViewController {
     
-    let feedView = FeedView()
-    var designPosts: [DesignPost] = []
+    private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private var designPosts: [DesignPost] = []
+    private var previewPosts: [PreviewPost] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(feedView)
-        feedView.tableView.delegate = self
-        feedView.tableView.dataSource = self
-        view.backgroundColor = .orange
-        view.addSubview(feedView)
-        feedView.tableView.dataSource = self
-        feedView.tableView.rowHeight = UITableViewAutomaticDimension
-        feedView.tableView.estimatedRowHeight = 120
         setupViews()
+        feedView.designTableView.delegate = self
+        feedView.designTableView.dataSource = self
+        feedView.designTableView.dataSource = self
+        feedView.designTableView.rowHeight = UITableViewAutomaticDimension
+        feedView.designTableView.estimatedRowHeight = 200
+        self.title = "Feed"
     }
     
     private func loadData() {
@@ -36,19 +35,37 @@ class FeedVC: UIViewController {
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
             if let posts = posts {
                 self.designPosts = posts
+                self.feedView.designTableView.reloadData()
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get designs. Please check network connection.")
                 self.present(errorAlert, animated: true, completion: nil)
             }
         }
+        
+        FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in
+            if let posts = posts {
+                self.previewPosts = posts
+                self.feedView.previewTableView.reloadData()
+            } else if let error = error {
+                print(error)
+                let errorAlert = Alert.createErrorAlert(withMessage: "Could not get tattoo previews. Please check network connection.")
+                self.present(errorAlert, animated: true, completion: nil)
+            }
+        }
     }
     
     private func setupViews() {
+        view.addSubview(feedView)
+        view.backgroundColor = UIColor.Custom.lapisLazuli
+        view.addSubview(feedView)
+        feedView.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        }
+        
         //right bar button
         let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
         navigationItem.rightBarButtonItem = uploadButton
-        
     }
     
     @objc private func uploadButtonPressed() {
@@ -60,12 +77,31 @@ class FeedVC: UIViewController {
 
 extension FeedVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentDesign = designPosts[indexPath.row]
+        let uploadVC = UploadVC(designID: currentDesign.uid)
+        self.navigationController?.pushViewController(uploadVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
-        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        if tableView == feedView.designTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
+//            let currentDesign = designPosts[indexPath.row]
+            cell.feedImage.image = #imageLiteral(resourceName: "catplaceholder")
+            cell.userImage.image = #imageLiteral(resourceName: "molang") //todo
+            cell.userNameLabel.text = "molang"
+            cell.layoutIfNeeded()
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell")!
+            //as! PreviewCell
+        let currentPreview = previewPosts[indexPath.row]
+//        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        
         return cell
     }
 }

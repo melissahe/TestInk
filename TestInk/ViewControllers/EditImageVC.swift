@@ -15,12 +15,13 @@ class EditImageVC: UIViewController {
     private var pastSliderValue: Float = 0
     private var pastImage: UIImage!
     private var originalImage: UIImage!
-    //    private var designID: String?
+    private var designID: String?
     private var filters: [(displayName: String, filterName: Filter)] = FilterModel.getFilters()
     
     lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
     
-    init(image: UIImage) {
+    init(image: UIImage, designID: String?) {
+        self.designID = designID
         self.pastImage = image
         self.originalImage = image
         super.init(nibName: nil, bundle: nil)
@@ -34,6 +35,11 @@ class EditImageVC: UIViewController {
         super.viewDidLoad()
         setUpViews()
         setUpNavigation()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.editImageView.filterView.filterCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     private func setUpViews() {
@@ -77,10 +83,9 @@ class EditImageVC: UIViewController {
         //should post to feed?
         let currentUser = AuthUserService.manager.getCurrentUser()!
         //DesignID won't work if the user doesn't upload the design they're trying - maybe we should scrap this
-        FirebasePreviewPostService.service.delegate = self
-        
+        FirebasePreviewPostService.service.delegate = self  
         if let userSavedImage = editImageView.photoImageView.image {
-            FirebasePreviewPostService.service.addPreviewPostToDatabase(userID: currentUser.uid, image: userSavedImage, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", designID: "", flags: 0)
+            FirebasePreviewPostService.service.addPreviewPostToDatabase(userID: currentUser.uid, image: userSavedImage, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", designID: self.designID, flags: 0)
         }
     }
     
@@ -123,7 +128,7 @@ class EditImageVC: UIViewController {
 
 extension EditImageVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCells: CGFloat = 5
+        let numberOfCells: CGFloat = 3
         let numberOfSpaces: CGFloat = numberOfCells + 1
         let width = (collectionView.frame.width - (numberOfSpaces * cellSpacing)) / numberOfCells
         let height = collectionView.frame.height - (2 * cellSpacing)

@@ -26,10 +26,12 @@ class ARVC: UIViewController {
     //    private var tattooImageView: UIImageView {
     //        return UIImageView(image: tattooImage)
     //    }
+    //used only if user triggers AR from tattoo image in feed
     private var designID: String?
     
-    init(tattooImage: UIImage) {
+    init(tattooImage: UIImage, designID: String?) {
         self.tattooImage = tattooImage
+        self.designID = designID
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -183,7 +185,7 @@ class ARVC: UIViewController {
         //            }
         //        }
         if let image = image {
-            let editImageVC = EditImageVC(image: image)
+            let editImageVC = EditImageVC(image: image, designID: self.designID)
             self.navigationController?.pushViewController(editImageVC, animated: false)
         }
     }
