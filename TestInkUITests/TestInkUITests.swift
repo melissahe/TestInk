@@ -7,19 +7,24 @@
 //
 
 import XCTest
+import FirebaseAuth
+@testable import TestInk
 
 class TestInkUITests: XCTestCase {
-        
+  
+    private var app: XCUIApplication!
+    
     override func setUp() {
         super.setUp()
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        // In UI tests it is usually best to stop immediately when a failure occurs
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
+        app = XCUIApplication()
+        app.launch()
+        
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
@@ -28,9 +33,63 @@ class TestInkUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLoginButton() {
+        
+        let app = XCUIApplication()
+        let enterEmailTextField = app.textFields["Enter email"]
+        app.secureTextFields["Password"].tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+       let nav = app.buttons["Login"]
+        XCTAssert(nav.exists, "The loginVC does not exist")
+        
     }
     
+    
+    func testNavigationBars() {
+        
+        let app = XCUIApplication()
+        
+        //testing login
+        app.textFields["Enter email"].tap()
+        app.textFields["Enter email"].typeText("izza.nadeem@yahoo.com")
+        app.secureTextFields["Password"].tap()
+        app.secureTextFields["Password"].typeText("newyork")
+        app.buttons["Login"].tap()
+        let tabBarsQuery = app.tabBars
+        let feedTab = tabBarsQuery.buttons["Feed"]
+        
+        //waiting for it to login and then tabbar and feedVC to exists, once the feedTab is tapped, it will continue testimg
+        let exp = expectation(for: NSPredicate(format: "hittable == true"), evaluatedWith: feedTab, handler: nil)
+        waitForExpectations(timeout: 10.0, handler: nil)
+        feedTab.tap()
+        let feedNav = app.navigationBars["Feed"]
+        
+        //Testing if the Feed NavigationBar exist
+        XCTAssert(feedNav.exists, "The Feed Navigation does not exist")
+        tabBarsQuery.buttons["Profile"].tap()
+        let favoriteNav = app.navigationBars["Favorite"]
+        
+         //Testing if the Favorite NavigationBar exist
+        XCTAssert(favoriteNav.exists, "The favorite Nav does not exist")
+        tabBarsQuery.buttons["Feed"].tap()
+        feedNav.buttons["Add"].tap()
+        
+        //Testing if the Upload Navigation exist
+        let uploadNav = app.navigationBars["Upload"]
+        XCTAssert(uploadNav.exists, "The upload nav does not exist")
+        
+        //testing source Types //ImagePicker
+        let addphotoImage = app.images["addphoto"]
+        addphotoImage.tap()
+        let photoSourceSheet = app.sheets["Photo Source"]
+        XCTAssert(photoSourceSheet.exists, "Photo source type does not exist")
+        
+        
+        
+    }
+    
+  
+
+    
 }
+
