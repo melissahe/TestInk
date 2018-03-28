@@ -46,7 +46,7 @@ class FirebasePreviewPostService {
                 print("failed to add flashcard error: \(error)")
             } else {
                 //storing image into preview posts bucket in firebase
-                FirebaseStorageService.service.storeImage(imageType: .previewPost, imageID: childKey, image: image)
+                FirebaseStorageService.service.storeImage(with: .previewImgRef, imageType: .previewPost, imageID: childKey, image: image)
                 self.delegate?.didAddPreviewPostToFirebase(self, post: previewPost)
                 print("flashcard saved to dbRef: \(dbRef)")
             }
