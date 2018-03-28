@@ -46,7 +46,6 @@ class LoginVC: UIViewController {
         //textfield  and Auth delegate
         userLoginView.emailTextField.delegate = self
         userLoginView.passwordTextField.delegate = self
-        authUserService.delegate = self
         loginViewConstraints()
         
         //To check if user is already logged in.
@@ -89,6 +88,7 @@ class LoginVC: UIViewController {
         guard let password = userLoginView.passwordTextField.text else { self.alertForErrors(with: "Please enter a password."); return }
         guard !password.isEmpty else { self.alertForErrors(with: "Please enter a password."); return }
         
+        authUserService.delegate = self
         authUserService.login(withEmail: email, password: password)
     }
     
