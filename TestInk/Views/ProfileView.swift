@@ -32,7 +32,8 @@ class ProfileView: UIView {
     
     lazy var displayName: UILabel = {
         let dn = UILabel()
-        dn.text = "Name Label"
+        dn.text = "Name Label" //should be changed in table view
+        dn.textAlignment = .center
         return dn
     }()
     
@@ -80,8 +81,9 @@ class ProfileView: UIView {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(displayName.snp.bottom).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.2)
+//            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
             make.width.equalTo(profileImageView.snp.height)
         }
     }
@@ -100,7 +102,8 @@ class ProfileView: UIView {
         addSubview(displayName)
         displayName.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(155)
+            make.centerX.equalTo(self)
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(spacing)
             // make.bottom.equalTo(collectionView.snp.top).offset(spacing)
             make.trailing.equalTo(self.snp.trailing).offset(-spacing)
         }

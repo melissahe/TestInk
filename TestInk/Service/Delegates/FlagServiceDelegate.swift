@@ -10,8 +10,20 @@ import Foundation
 
 protocol FlagDelegate: class {
     
-    //didFlag : add flag to firebase under flag node, user who flagged and post that was flagged
-    func didAddFlagToFirebase()
-    func failedToAddFlagToFirebase()
-
+    //Methods to handle adding flags to Firebase
+    func didAddFlagToFirebase(_ service: FirebaseFlaggingService)
+    func failedToAddFlagToFirebase(_ service: FirebaseFlaggingService, error: String)
+    
+    
+    //Methods to handle post flagging functionality
+    func didFlagPostAlready(_ service: FirebaseFlaggingService, error: String)
+    func didFlagPost(_ service: FirebaseFlaggingService)
+    func didFailToFlagPost(_ service: FirebaseFlaggingService, error: String)
+    
+    
+    //Methods to handle favoriting functionality
+    func didUnfavoritePost(_ service: FirebaseFlaggingService, withPostID: String )
+    func didFavoritePost(_ service: FirebaseFlaggingService, withPostID: String )
+    func didFailFavoritingPost(_ service: FirebaseFlaggingService, error: String)
+    
 }

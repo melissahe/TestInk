@@ -22,7 +22,7 @@ class FeedVC: UIViewController {
         feedView.designTableView.dataSource = self
         feedView.designTableView.dataSource = self
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
-        feedView.designTableView.estimatedRowHeight = 120
+        feedView.designTableView.estimatedRowHeight = 200
         self.title = "Feed"
     }
     
@@ -66,7 +66,6 @@ class FeedVC: UIViewController {
         //right bar button
         let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
         navigationItem.rightBarButtonItem = uploadButton
-        
     }
     
     @objc private func uploadButtonPressed() {
@@ -78,7 +77,7 @@ class FeedVC: UIViewController {
 
 extension FeedVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return designPosts.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -90,8 +89,11 @@ extension FeedVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == feedView.designTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
-            let currentDesign = designPosts[indexPath.row]
-            cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+//            let currentDesign = designPosts[indexPath.row]
+            cell.feedImage.image = #imageLiteral(resourceName: "catplaceholder")
+            cell.userImage.image = #imageLiteral(resourceName: "molang") //todo
+            cell.userNameLabel.text = "molang"
+            cell.layoutIfNeeded()
             return cell
         }
         
