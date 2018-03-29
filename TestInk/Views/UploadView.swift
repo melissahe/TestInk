@@ -43,6 +43,15 @@ class UploadView: UIView {
         return button
     }()
     
+    //Collection view to populate stored tattoo images
+    lazy var stockImageCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.register(StockImagesCollectionViewCell.self, forCellWithReuseIdentifier: "StockImageCell")
+        return cv
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,6 +72,7 @@ class UploadView: UIView {
         setupImageView()
         setupARTestButton()
         setupPostButton()
+        setupStockImageCollectionView()
     }
     
     private func setupImageView() {
@@ -92,8 +102,18 @@ class UploadView: UIView {
             make.centerX.equalTo(ARTestButton.snp.centerX)
             make.height.equalTo(ARTestButton.snp.height)
             make.width.equalTo(ARTestButton.snp.width)
-            
         }
+    }
+    
+    private func setupStockImageCollectionView(){
+        addSubview(stockImageCollectionView)
+        stockImageCollectionView.snp.makeConstraints { (collection) in
+            collection.bottom.equalTo(self).offset(-8)
+            collection.trailing.leading.centerX.equalTo(self)
+            collection.height.equalTo(self).multipliedBy(0.25)
+        }
+        stockImageCollectionView.layer.cornerRadius = 15
+        stockImageCollectionView.layer.masksToBounds = true
     }
     
     
