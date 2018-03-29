@@ -14,8 +14,8 @@ struct UserProfile: Codable{
     let userID: String
     let displayName: String //from email
     let likes: Int
-    let profileImageURL: String? = nil
-    let favorites: [String] //favorite image urls
+    let image: String?
+    let favorites: [String]? //favorite image urls
     var flags: Int
     var isBanned: Bool
     
