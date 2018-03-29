@@ -13,8 +13,11 @@ import FirebaseAuth
 class ProfileVC: UIViewController {
     
     lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+
+    let currentUserID = AuthUserService.manager.getCurrentUser()!.uid
     
     let cellSpacing: CGFloat = 5.0
+    
     private let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -23,6 +26,23 @@ class ProfileVC: UIViewController {
         setupViews()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
+        imagePickerController.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let cachedUserImage = NSCacheHelper.manager.getImage(with: currentUserID) {
+           profileView.profileImageView.image = cachedUserImage
+        } else {
+            UserProfileService.manager.getUser(fromUserUID: currentUserID) { (userProfile) in
+                guard let imageURL = userProfile.image else {return}
+                ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
+                    self.profileView.profileImageView.image = profileImage
+                    FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: self.currentUserID, image: profileImage)
+                }, errorHandler: { (error) in
+                    print("Couldn't get profile Image \(error)")
+                })
+            }
+        }
     }
     
     private func setupViews() {
@@ -100,6 +120,8 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
 func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         profileView.profileImageView.image = image
+        FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: currentUserID, image: image)
+        NSCacheHelper.manager.addImage(with: currentUserID, and: image)
         dismiss(animated: true, completion: nil)
     }
 }

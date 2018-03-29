@@ -11,16 +11,18 @@ import SnapKit
 import AVFoundation
 
 class UploadVC: UIViewController {
-
+    
     private let imagePickerController = UIImagePickerController()
     private var currentSelectedImage: UIImage!
     private var uploadView = UploadView()
     //used if user triggers AR from tattoo image in feed or if user uploads tattoo image to feed
     private var designID: String?
+    private var designPost: DesignPost?
     
     private var tapRecognizer: UITapGestureRecognizer!
     
-    init(designID: String? = nil) {
+    init(image: UIImage? = nil, designID: String? = nil) {
+        self.uploadView.imageView.image = (image != nil) ? image : #imageLiteral(resourceName: "addphoto")
         self.designID = designID
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,8 +33,9 @@ class UploadVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
         imagePickerController.delegate = self
+        FirebaseStorageService.service.delegate = self
         view.addSubview(uploadView)
         //uploadView.frame = view.bounds
         setupSubView()
@@ -76,9 +79,13 @@ class UploadVC: UIViewController {
     
     @objc private func postButtonPressed() {
         let currentUser = AuthUserService.manager.getCurrentUser()!
-       FirebaseDesignPostService.service.delegate = self
+        FirebaseDesignPostService.service.delegate = self
         if let image = currentSelectedImage {
             FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: image, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
+            
+            if let designID = designPost?.uid {
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: designID, image: image)
+            }
         } else {
             let errorAlert = Alert.createErrorAlert(withMessage: "Please select an image to upload.")
             self.present(errorAlert, animated: true, completion: nil)
@@ -150,4 +157,24 @@ extension UploadVC: DesignPostDelegate {
     
     func failedToGetAllDesignPosts(_ postService: FirebaseDesignPostService, error: Error) {
     }
+}
+
+extension UploadVC: StorageServiceDelegate{
+    func didStoreImage(_ storageService: FirebaseStorageService) {
+        print("Image stored to Firebase")
+    }
+    
+    func didFailStoreImage(_ storageService: FirebaseStorageService, error: String) {
+        
+    }
+    
+    func didRetrieveImage(_ storageService: FirebaseStorageService) {
+        
+    }
+    
+    func failedToRetrieveImage(_ storageService: FirebaseStorageService, error: String) {
+        
+    }
+    
+    
 }

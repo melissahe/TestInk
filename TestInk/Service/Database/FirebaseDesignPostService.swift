@@ -17,7 +17,7 @@ enum DesignPostStatus: Error {
     case designPostNotDeleted
 }
 
-
+//This service is responsible adding, getting, editing and deleting desgin posts with Firebase
 class FirebaseDesignPostService {
     
     private init(){
@@ -37,7 +37,7 @@ class FirebaseDesignPostService {
         let childByAutoID = Database.database().reference(withPath: "design posts").childByAutoId()
         let childKey = childByAutoID.key
         var designPost: DesignPost
-        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
+        designPost = DesignPost(uid: childKey, userID: userID, image: nil, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
         //setting the value of the design posts
         childByAutoID.setValue(designPost.designPostToJSON()) { (error, dbRef) in
             if let error = error {
@@ -45,14 +45,13 @@ class FirebaseDesignPostService {
                 print("failed to add flashcard error: \(error)")
             } else {
                 //storing image into design posts bucket in firebase
-                FirebaseStorageService.service.storeImage(imageType: .designPost, imageID: childKey, image: image)
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: childKey, image: image)
                 self.delegate?.didAddDesignPostToFirebase(self, post: designPost, designID: childKey)
                 print("flashcard saved to dbRef: \(dbRef)")
                 //should do storage here
             }
         }
     }
-    
     
     //MARK: Getting a design post from database
     func getAllDesignPosts(completionHandler: @escaping ([DesignPost]?, Error?) -> Void){
