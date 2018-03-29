@@ -83,7 +83,7 @@ class UploadVC: UIViewController {
             FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: image, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
             
             if let designID = designPost?.uid {
-                FirebaseStorageService.service.storeImage(with: .designImgRef, imageType: .designPost, imageID: designID, image: image)
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: designID, image: image)
             }
         } else {
             let errorAlert = Alert.createErrorAlert(withMessage: "Please select an image to upload.")

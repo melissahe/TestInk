@@ -19,7 +19,7 @@ enum UserProfileStatus: Error {
 
 }
 
-//This API client is responsible for handling any changes, updatesin regards to the User Profile Object.
+//This service is responsible for handling any changes in regards to the User Profile Object.
 class UserProfileService {
     
     init(){ //not private because class is needed to add user profile object to firbase when the user is created
