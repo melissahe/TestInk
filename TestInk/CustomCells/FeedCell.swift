@@ -8,12 +8,22 @@
 
 import UIKit
 
+protocol FeedCellDelegate: class {
+    func didTapFlag(onPost post: DesignPost, cell: FeedCell)
+    func didTapShare(image: UIImage, forPost post: DesignPost)
+    func didTapLike(onPost post: DesignPost)
+}
+
 class FeedCell: UITableViewCell {
+    public var delegate: FeedCellDelegate?
+    private var designPost: DesignPost?
     
     //lazy vars
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .purple
+        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -28,8 +38,9 @@ class FeedCell: UITableViewCell {
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .green
+        iv.backgroundColor = .white
         iv.contentMode = .scaleAspectFill
+        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
         return iv
     }()
     
@@ -37,13 +48,15 @@ class FeedCell: UITableViewCell {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
+        button.addTarget(self, action: #selector(flagButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    lazy var favoriteButton: UIButton = {
+    lazy var likeButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "heartUnfilled"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
+        button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -58,6 +71,7 @@ class FeedCell: UITableViewCell {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
+        button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -87,9 +101,52 @@ class FeedCell: UITableViewCell {
         setupUserNameLabel()
         setupFlagButton()
         setupFeedImage()
-        setupFavoriteButton()
+        setupLikeButton()
         setupNumberOfLikes()
         setupShareButton()
+    }
+    
+    public func configureCell(withPost post: DesignPost) {
+        self.designPost = post
+        numberOfLikes.text = post.likes.description
+        configureFeedImage(withPost: post)
+        configureUserNameAndImage(withPost: post)
+        configureFlag(withPost: post)
+    }
+    
+    private func configureFeedImage(withPost post: DesignPost) {
+        guard let imageURLString = post.image else {
+            print("could not get image URL")
+            return
+        }
+        //get image from cache, if non existent then run this
+        if let image = NSCacheHelper.manager.getImage(with: post.uid) {
+            feedImage.image = image
+            layoutIfNeeded()
+        } else {
+            ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
+                //cache image for post id
+                NSCacheHelper.manager.addImage(with: post.uid, and: image)
+                self.feedImage.image = image
+                self.layoutIfNeeded()
+            }, errorHandler: { (error) in
+                print("Error: Could not get image:\n\(error)")
+            })
+        }
+    }
+    
+    private func configureUserNameAndImage(withPost post: DesignPost) {
+        UserProfileService.manager.getName(from: post.userID) { (username) in
+            self.userNameLabel.text = username
+        }
+    }
+    
+    private func configureFlag(withPost post: DesignPost) {
+        FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
+            if postHasBeenFlaggedByUser {
+                self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
+            }
+        }
     }
     
     //constraints
@@ -135,9 +192,9 @@ class FeedCell: UITableViewCell {
         feedImage.clipsToBounds = true
     }
 
-    private func setupFavoriteButton() {
-        addSubview(favoriteButton)
-        favoriteButton.snp.makeConstraints { (make) -> Void in
+    private func setupLikeButton() {
+        addSubview(likeButton)
+        likeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.height.equalTo(userImage)
             make.leading.bottom.equalTo(contentView).inset(8)
@@ -147,8 +204,8 @@ class FeedCell: UITableViewCell {
     private func setupNumberOfLikes() {
         contentView.addSubview(numberOfLikes)
         numberOfLikes.snp.makeConstraints { (make) -> Void in
-            make.leading.equalTo(favoriteButton.snp.trailing).offset(8)
-            make.centerY.equalTo(favoriteButton)
+            make.leading.equalTo(likeButton.snp.trailing).offset(8)
+            make.centerY.equalTo(likeButton)
 //            make.trailing.equalTo(contentView.snp.trailing)
 //            make.height.equalTo(contentView.snp.height)
         }
@@ -161,7 +218,25 @@ class FeedCell: UITableViewCell {
             make.trailing.equalTo(contentView).offset(-8)
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.bottom.equalTo(contentView).offset(-8)
-            make.height.equalTo(favoriteButton)
+            make.height.equalTo(likeButton)
+        }
+    }
+    
+    @objc private func flagButtonTapped() {
+        if let designPost = designPost {
+            delegate?.didTapFlag(onPost: designPost, cell: self)
+        }
+    }
+    
+    @objc private func shareButtonTapped() {
+        if let designPost = designPost, let image = feedImage.image {
+            delegate?.didTapShare(image: image, forPost: designPost)
+        }
+    }
+    
+    @objc private func likeButtonTapped() {
+        if let designPost = designPost {
+            delegate?.didTapLike(onPost: designPost)
         }
     }
 }

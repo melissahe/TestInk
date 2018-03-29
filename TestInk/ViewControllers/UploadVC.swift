@@ -21,7 +21,8 @@ class UploadVC: UIViewController {
     
     private var tapRecognizer: UITapGestureRecognizer!
     
-    init(designID: String? = nil) {
+    init(image: UIImage? = nil, designID: String? = nil) {
+        self.uploadView.imageView.image = (image != nil) ? image : #imageLiteral(resourceName: "addphoto")
         self.designID = designID
         super.init(nibName: nil, bundle: nil)
     }

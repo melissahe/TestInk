@@ -63,7 +63,6 @@ class FirebaseStorageService {
         //Initialize storage meta data and set its content type
         let metadata = StorageMetadata()
         metadata.contentType = "image/png"
-        
         //Uploads the file to the path under the specific image type
         //ImageUID will be the same as the database post UID that it is associated with i.e) 12345 == 12345
         let uploadTask = storageRef.child(imageType.rawValue).child(imageUID).putData(data, metadata: metadata) { (storageMetaData, error) in
