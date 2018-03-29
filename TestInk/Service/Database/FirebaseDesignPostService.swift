@@ -37,7 +37,7 @@ class FirebaseDesignPostService {
         let childByAutoID = Database.database().reference(withPath: "design posts").childByAutoId()
         let childKey = childByAutoID.key
         var designPost: DesignPost
-        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
+        designPost = DesignPost(uid: childKey, userID: userID, image: nil, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
         //setting the value of the design posts
         childByAutoID.setValue(designPost.designPostToJSON()) { (error, dbRef) in
             if let error = error {
@@ -52,7 +52,6 @@ class FirebaseDesignPostService {
             }
         }
     }
-    
     
     //MARK: Getting a design post from database
     func getAllDesignPosts(completionHandler: @escaping ([DesignPost]?, Error?) -> Void){
