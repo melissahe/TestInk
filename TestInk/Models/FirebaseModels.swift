@@ -29,7 +29,7 @@ struct UserProfile: Codable{
 struct DesignPost: Codable {
     let uid: String
     let userID: String
-    let imageURL: String? = nil
+    let image: String?
     let likes: Int
     let timestamp: Double
     let comments: String //version 2
@@ -59,7 +59,7 @@ struct PreviewPost: Codable {
 
 struct Flags: Codable {
     let flagID: String
-    let userID: String
+//    let userID: String
     let flaggedBy: String //userID of poster
     let userFlagged: String //userID of person being flagged
     let postID: String

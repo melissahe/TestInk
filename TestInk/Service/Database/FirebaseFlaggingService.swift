@@ -10,6 +10,10 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+enum FlagStatus: Error {
+    case errorParsingFlagData
+    case errorGettingFlagData
+}
 
 class FirebaseFlaggingService{
     
@@ -30,13 +34,13 @@ class FirebaseFlaggingService{
     weak var delegate: FlagDelegate?
 
     //MARK: Adding a flag under the flag node in firebase
-    func addFlagToFirebase(flagID: String, userID: String, flaggedBy: String, userFlagged: String, postID: String, flagMessage: String ){
+    func addFlagToFirebase(flaggedBy: String, userFlagged: String, postID: String, flagMessage: String){
         //create unique identifier
         let childByAutoID = Database.database().reference(withPath: "flags").childByAutoId()
         let childKey = childByAutoID.key
         //initialize the flag
         var flags: Flags
-        flags = Flags(flagID: childKey, userID: userID, flaggedBy: flaggedBy, userFlagged: userFlagged, postID: postID, flagMessage: flagMessage)
+        flags = Flags(flagID: childKey, flaggedBy: flaggedBy, userFlagged: userFlagged, postID: postID, flagMessage: flagMessage)
         //set that value of the data converted by json
         childByAutoID.setValue(flags.flagsToJSON()) { (error, dbRef) in
             if let error = error {
@@ -45,7 +49,7 @@ class FirebaseFlaggingService{
                 print("Flag not added to fb")
             } else {
                 self.delegate?.didAddFlagToFirebase(self)
-                print("Flag added to firebase with flagID: \(flagID)")
+                print("Flag added to firebase with flagID: \(childKey)")
             }
         }
     }
@@ -140,8 +144,53 @@ class FirebaseFlaggingService{
         })
     }
     
+    public func getAllFlags(completionHandler: @escaping ([Flags]?, Error?) -> Void) {
+        flagRef.observeSingleEvent(of: .value) { (snapshot) in
+            guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {
+                print("couldn't get flags")
+                completionHandler(nil, FlagStatus.errorGettingFlagData)
+                return
+            }
+            var flags: [Flags] = []
+            
+            for snapshot in snapshots {
+                guard let rawJSON = snapshot.value else {
+                    print("couldn't get json from snapshot")
+                    return
+                }
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
+                    let flag = try JSONDecoder().decode(Flags.self, from: data)
+                    flags.append(flag)
+                    print("Added flag to array of flags")
+                } catch let error {
+                    print("Failed to parse flag data: \(error)")
+                    completionHandler(nil, FlagStatus.errorParsingFlagData)
+                    print("failed to get all flags")
+                    return
+                }   
+            }
+            completionHandler(flags, nil)
+            print("got all flags successfully!")
+        }
+    }
     
-    
+    public func checkIfPostIsFlagged(post: DesignPost, byUserID userID: String, completionHandler: @escaping (Bool) -> Void) {
+        getAllFlags { (flags, error) in
+            if let flags = flags {
+                if flags.contains(where: { (flag) -> Bool in
+                    return flag.postID == post.uid && flag.flaggedBy == userID && flag.userFlagged == post.userID
+                }) {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            } else if let error = error {
+                print(error)
+                completionHandler(false)
+            }
+        }
+    }
     
     ///////// VERSION 2 of app: flag users
     
