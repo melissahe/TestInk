@@ -17,7 +17,7 @@ enum DesignPostStatus: Error {
     case designPostNotDeleted
 }
 
-
+//This service is responsible adding, getting, editing and deleting desgin posts with Firebase
 class FirebaseDesignPostService {
     
     private init(){
@@ -45,7 +45,7 @@ class FirebaseDesignPostService {
                 print("failed to add flashcard error: \(error)")
             } else {
                 //storing image into design posts bucket in firebase
-                FirebaseStorageService.service.storeImage(with: .designImgRef, imageType: .designPost, imageID: childKey, image: image)
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: childKey, image: image)
                 self.delegate?.didAddDesignPostToFirebase(self, post: designPost, designID: childKey)
                 print("flashcard saved to dbRef: \(dbRef)")
                 //should do storage here

@@ -20,7 +20,7 @@ enum AuthUserStatus: Error {
 }
 
 
-//MARK: This API client is responsible for logging the user in and creating accounts in the Firebase database.
+//MARK: This service is responsible for logging the user in and creating accounts in the Firebase database.
 class AuthUserService {
     
     private init(){
@@ -63,7 +63,7 @@ class AuthUserService {
                 let stringArray = user.email!.components(separatedBy: "@") //["ncsouvenir", "@", "gmail.com"]
                 let userName = stringArray[0] //["ncsouvenir"]
                 changeRequest.displayName = userName
-                changeRequest.commitChanges(completion: { (error) in
+                changeRequest.commitChanges(completion: {(error) in
                     if let error = error{
                         print("change request error: \(error)")
                     } else{
@@ -78,7 +78,7 @@ class AuthUserService {
     }
     
     
-    //MARK: Logs the user in with their email and password.WORKS!
+    //MARK: Logs the user in with their email and password
     public func login(withEmail email: String, password: String){
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
@@ -104,7 +104,7 @@ class AuthUserService {
         }
     }
     
-    //MARK: Sends user email to reset
+    //MARK: Sends the user an email to reset password
     public func forgotPassword(withEmail email: String){
         auth.sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
