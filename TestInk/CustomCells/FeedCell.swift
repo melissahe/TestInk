@@ -145,6 +145,8 @@ class FeedCell: UITableViewCell {
         FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
             if postHasBeenFlaggedByUser {
                 self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
+            } else {
+                self.flagButton.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
             }
         }
     }
