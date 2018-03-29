@@ -63,20 +63,24 @@ class FirebaseStorageService {
         let metadata = StorageMetadata()
         metadata.contentType = "image/png"
         
-        //switching on different references for more dynamic functionality
-        let ref: StorageReference
-        switch imageRef {
-        case .designImgRef:
-            ref = FirebaseStorageService.service.designImgRef
-        case .previewImgRef:
-            ref = FirebaseStorageService.service.previewImgRef
-        case .userProfileImgRef:
-            ref = FirebaseStorageService.service.userProfileImgRef
-        }
+        //Nicole's
+//        //switching on different references for more dynamic functionality
+//        let ref: StorageReference
+//        switch imageRef {
+//        case .designImgRef:
+//            ref = FirebaseStorageService.service.designImgRef
+//        case .previewImgRef:
+//            ref = FirebaseStorageService.service.previewImgRef
+//        case .userProfileImgRef:
+//            ref = FirebaseStorageService.service.userProfileImgRef
+//        }
+//
+//        //set upload task: Updates the sub-node under the specific type bucket...imageID == designPost uid
+//        //upload the file to the path
+//        let uploadTask = ref.child(imageID).putData(data, metadata: metadata) { (storageMetaData, error) in
         
-        //set upload task: Updates the sub-node under the specific type bucket...imageID == designPost uid
-        //upload the file to the path
-        let uploadTask = ref.child(imageID).putData(data, metadata: metadata) { (storageMetaData, error) in
+        //set upload task: Updates the sub-node under the specific type bucket
+        let uploadTask = FirebaseStorageService.service.storageRef.child(imageType.rawValue).child(imageID).putData(data, metadata: metadata) { (storageMetaData, error) in
             if let error = error {
                 print("uploadTask error: \(error)")
             } else if let storageMetaData = storageMetaData{
