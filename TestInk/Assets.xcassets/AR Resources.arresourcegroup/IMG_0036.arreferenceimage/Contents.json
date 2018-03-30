@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "white.png.jpeg"
+      "filename" : "IMG_0036.png"
     }
   ],
   "info" : {
@@ -10,7 +10,7 @@
     "author" : "xcode"
   },
   "properties" : {
-    "width" : 2.4399999999999999,
+    "width" : 1.1000000000000001,
     "unit" : "inches"
   }
 }
