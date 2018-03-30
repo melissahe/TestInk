@@ -52,7 +52,7 @@ class UserProfileService {
     //MARK: get user for injection into public and private user profiles
     public func getUser(fromUserUID userUID: String, completion: @escaping (_ currentUser: UserProfile) -> Void){
         usersRef.child(userUID)
-        usersRef.observe(.value) { (dataSnapshot) in
+        usersRef.observeSingleEvent(of: .value) { (dataSnapshot) in
             guard let snapshots = dataSnapshot.children.allObjects as? [DataSnapshot] else {
                 print("couldn't get user snapshots")
                 return
