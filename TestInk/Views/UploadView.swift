@@ -13,7 +13,7 @@ class UploadView: UIView {
     
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .gray
+        iv.backgroundColor = .white
         iv.isUserInteractionEnabled = true
         iv.image = #imageLiteral(resourceName: "addphoto")
         iv.contentMode = .scaleAspectFit
@@ -64,7 +64,7 @@ class UploadView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         setupViews()
     }
     
@@ -83,6 +83,11 @@ class UploadView: UIView {
             make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).offset(-8)
             make.height.equalTo(imageView.snp.width).multipliedBy(0.8)
         }
+        
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
+        imageView.layer.borderWidth = 0.5
     }
     
     private func setupARTestButton() {
@@ -108,9 +113,9 @@ class UploadView: UIView {
     private func setupStockImageCollectionView(){
         addSubview(stockImageCollectionView)
         stockImageCollectionView.snp.makeConstraints { (collection) in
-            collection.bottom.equalTo(self).offset(-8)
+            collection.bottom.equalTo(self)
             collection.trailing.leading.centerX.equalTo(self)
-            collection.height.equalTo(self).multipliedBy(0.25)
+            collection.top.equalTo(postButton.snp.bottom).offset(25)
         }
         stockImageCollectionView.layer.cornerRadius = 15
         stockImageCollectionView.layer.masksToBounds = true
