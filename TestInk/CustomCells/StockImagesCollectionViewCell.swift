@@ -11,7 +11,7 @@ import UIKit
 class StockImagesCollectionViewCell: UICollectionViewCell {
     lazy var stockImage: UIImageView = {
         let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "placeholder-image")
+        image.image = #imageLiteral(resourceName: "placeholder")
         image.contentMode = .scaleAspectFit
         return image
     }()
