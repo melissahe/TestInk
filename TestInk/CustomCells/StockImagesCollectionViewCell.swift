@@ -12,7 +12,7 @@ class StockImagesCollectionViewCell: UICollectionViewCell {
     lazy var stockImage: UIImageView = {
         let image = UIImageView()
         image.image = #imageLiteral(resourceName: "placeholder-image")
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
@@ -30,10 +30,9 @@ class StockImagesCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViews(){
-        addSubview(stockImage)
+        contentView.addSubview(stockImage)
         stockImage.snp.makeConstraints { (image) in
-            image.top.leading.trailing.equalTo(self)
-            image.bottom.equalTo(self.snp.top)
+            image.edges.equalTo(contentView)
         }
     }
 }
