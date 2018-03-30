@@ -14,7 +14,7 @@ class FavoriteCell: UICollectionViewCell {
     
     lazy var favoriteImageView: UIImageView = {
         var pImageView = UIImageView()
-        pImageView.image = #imageLiteral(resourceName: "placeholder-image") //place holder image
+        pImageView.image = #imageLiteral(resourceName: "placeholder") //place holder image
         //pImageView.isUserInteractionEnabled = true
         pImageView.contentMode = .scaleAspectFill
         pImageView.backgroundColor = .clear
@@ -33,7 +33,7 @@ class FavoriteCell: UICollectionViewCell {
     
     public func configureCell(withPostID postID: String) {
         favoriteImageView.image = nil
-        favoriteImageView.image = #imageLiteral(resourceName: "placeholder-image")
+        favoriteImageView.image = #imageLiteral(resourceName: "placeholder")
         if let cachedImage = NSCacheHelper.manager.getImage(with: postID) {
             favoriteImageView.image = cachedImage
             self.layoutIfNeeded()
