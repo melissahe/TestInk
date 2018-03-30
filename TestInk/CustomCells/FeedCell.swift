@@ -21,7 +21,7 @@ class FeedCell: UITableViewCell {
     //lazy vars
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .purple
+        iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
         iv.contentMode = .scaleAspectFit
         return iv
@@ -38,7 +38,7 @@ class FeedCell: UITableViewCell {
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .white
+        iv.backgroundColor = .clear
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
         return iv
@@ -94,6 +94,8 @@ class FeedCell: UITableViewCell {
         super.layoutSubviews()
         userImage.layer.cornerRadius = userImage.bounds.width / 2.0
         userImage.layer.masksToBounds = true
+        userImage.layer.borderWidth = 0.5
+        userImage.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
     }
 
     private func setupViews() {
@@ -115,6 +117,8 @@ class FeedCell: UITableViewCell {
     }
     
     private func configureFeedImage(withPost post: DesignPost) {
+        self.feedImage.image = nil
+        self.feedImage.image = #imageLiteral(resourceName: "placeholder-image")
         guard let imageURLString = post.image else {
             print("could not get image URL")
             return
@@ -138,6 +142,23 @@ class FeedCell: UITableViewCell {
     private func configureUserNameAndImage(withPost post: DesignPost) {
         UserProfileService.manager.getName(from: post.userID) { (username) in
             self.userNameLabel.text = username
+        }
+        self.userImage.image = nil
+        self.userImage.image = #imageLiteral(resourceName: "placeholder-image")
+        if let cachedUserImage = NSCacheHelper.manager.getImage(with: post.userID) {
+            self.userImage.image = cachedUserImage
+            self.userImage.layoutIfNeeded()
+        } else {
+            UserProfileService.manager.getUser(fromUserUID: post.userID) { (userProfile) in
+                guard let imageURL = userProfile.image else {return}
+                ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
+                    self.userImage.image = profileImage
+                    self.layoutIfNeeded()
+                    FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: AuthUserService.manager.getCurrentUser()!.uid, image: profileImage)
+                }, errorHandler: { (error) in
+                    print("Couldn't get profile Image \(error)")
+                })
+            }
         }
     }
     
