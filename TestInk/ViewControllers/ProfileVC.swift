@@ -14,7 +14,7 @@ class ProfileVC: UIViewController {
     
     lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
 
-    let currentUserID = AuthUserService.manager.getCurrentUser()!.uid
+    lazy var currentUserID = AuthUserService.manager.getCurrentUser()!.uid
     
     let cellSpacing: CGFloat = 5.0
     
