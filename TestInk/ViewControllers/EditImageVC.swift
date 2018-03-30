@@ -43,6 +43,7 @@ class EditImageVC: UIViewController {
     }
     
     private func setUpViews() {
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(editImageView)
         editImageView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)

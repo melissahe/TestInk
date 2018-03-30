@@ -65,7 +65,6 @@ class UploadVC: UIViewController {
         FirebaseStorageService.service.delegate = self
         uploadView.stockImageCollectionView.dataSource = self
         uploadView.stockImageCollectionView.delegate = self
-        view.addSubview(uploadView)
         //uploadView.frame = view.bounds
         setupSubView()
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
@@ -80,6 +79,7 @@ class UploadVC: UIViewController {
     }
     
     private func setupSubView() {
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(uploadView)
         uploadView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)

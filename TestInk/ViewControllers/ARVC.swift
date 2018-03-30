@@ -41,6 +41,7 @@ class ARVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(arView)
         arView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)

@@ -17,7 +17,7 @@ class FavoriteCell: UICollectionViewCell {
         pImageView.image = #imageLiteral(resourceName: "catplaceholder") //place holder image
         //pImageView.isUserInteractionEnabled = true
         pImageView.contentMode = .scaleAspectFill
-        pImageView.backgroundColor = UIColor.red
+        pImageView.backgroundColor = .clear
         return pImageView
     }()
     

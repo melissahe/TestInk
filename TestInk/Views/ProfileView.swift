@@ -17,7 +17,7 @@ class ProfileView: UIView {
         pImageView.image = #imageLiteral(resourceName: "placeholder-image") //place holder image
         //pImageView.isUserInteractionEnabled = true
         pImageView.contentMode = .scaleAspectFill
-        pImageView.backgroundColor = .clear
+        pImageView.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         return pImageView
     }()
     
@@ -57,7 +57,7 @@ class ProfileView: UIView {
         profileImageView.layer.cornerRadius = profileImageView.bounds.height/2
         profileImageView.layer.masksToBounds = true
         profileImageView.layer.borderWidth = 0.5
-        profileImageView.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
+        profileImageView.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
         changeProfileImageButton.layer.cornerRadius = changeProfileImageButton.bounds.height/2
         changeProfileImageButton.layer.masksToBounds = true
     }
