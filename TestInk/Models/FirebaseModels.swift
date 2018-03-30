@@ -14,8 +14,7 @@ struct UserProfile: Codable{
     let userID: String
     let displayName: String //from email
     let likes: Int
-    let profileImageURL: String? = nil
-    let favorites: [String] //favorite image urls
+    let image: String?
     var flags: Int
     var isBanned: Bool
     
@@ -29,12 +28,12 @@ struct UserProfile: Codable{
 struct DesignPost: Codable {
     let uid: String
     let userID: String
-    let imageURL: String? = nil
+    let image: String?
     let likes: Int
     let timestamp: Double
     let comments: String //version 2
     let flags: Int
-    
+  
     func designPostToJSON() -> Any {
         let jsonData = try! JSONEncoder().encode(self)
         return try! JSONSerialization.jsonObject(with: jsonData, options: [])
@@ -59,6 +58,7 @@ struct PreviewPost: Codable {
 
 struct Flags: Codable {
     let flagID: String
+//    let userID: String
     let flaggedBy: String //userID of poster
     let userFlagged: String //userID of person being flagged
     let postID: String

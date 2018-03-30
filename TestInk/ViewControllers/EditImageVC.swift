@@ -37,7 +37,13 @@ class EditImageVC: UIViewController {
         setUpNavigation()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.editImageView.filterView.filterCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     private func setUpViews() {
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(editImageView)
         editImageView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
@@ -123,7 +129,7 @@ class EditImageVC: UIViewController {
 
 extension EditImageVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfCells: CGFloat = 5
+        let numberOfCells: CGFloat = 3
         let numberOfSpaces: CGFloat = numberOfCells + 1
         let width = (collectionView.frame.width - (numberOfSpaces * cellSpacing)) / numberOfCells
         let height = collectionView.frame.height - (2 * cellSpacing)

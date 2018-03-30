@@ -11,6 +11,9 @@
 		29AB680844A9E9DE12584F34 /* Pods_TestInkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */; };
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
 		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
+		81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138184F206AD5EC00E29DEA /* PreviewCell.swift */; };
+		81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381851206D2C6900E29DEA /* FirebaseLikingService.swift */; };
+		81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */; };
 		814F072720643D6200789C14 /* FirebaseDesignPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072620643D6200789C14 /* FirebaseDesignPostService.swift */; };
 		814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072820643D7600789C14 /* FirebasePreviewPostService.swift */; };
 		814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */; };
@@ -58,6 +61,7 @@
 		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
 		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
 		81B6B958206A9F7F007D46A2 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */; };
+		81B6B962206D64CB007D46A2 /* StockImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */; };
 		81BBC9182061A071003F490B /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BBC9172061A071003F490B /* Tutorial.storyboard */; };
 		81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */; };
 		81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC91B2061A406003F490B /* ImageViewController.swift */; };
@@ -88,6 +92,9 @@
 		3BB34E66547F8E9ABD0C9900 /* Pods-TestInkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkTests/Pods-TestInkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		8138184F206AD5EC00E29DEA /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
+		81381851206D2C6900E29DEA /* FirebaseLikingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLikingService.swift; sourceTree = "<group>"; };
+		81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceDelegate.swift; sourceTree = "<group>"; };
 		814F072620643D6200789C14 /* FirebaseDesignPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDesignPostService.swift; sourceTree = "<group>"; };
 		814F072820643D7600789C14 /* FirebasePreviewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePreviewPostService.swift; sourceTree = "<group>"; };
 		814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFlaggingService.swift; sourceTree = "<group>"; };
@@ -139,6 +146,7 @@
 		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
 		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		81BBC9172061A071003F490B /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		81BBC91B2061A406003F490B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -298,8 +306,10 @@
 			isa = PBXGroup;
 			children = (
 				818C25C32059DB3400401C10 /* FeedCell.swift */,
+				8138184F206AD5EC00E29DEA /* PreviewCell.swift */,
 				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 				81BDAD1D206046D000F7D450 /* FilterCell.swift */,
+				81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -326,6 +336,7 @@
 				814F072620643D6200789C14 /* FirebaseDesignPostService.swift */,
 				814F072820643D7600789C14 /* FirebasePreviewPostService.swift */,
 				814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */,
+				81381851206D2C6900E29DEA /* FirebaseLikingService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -346,6 +357,7 @@
 				818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */,
 				814F072C20643DC900789C14 /* FlagServiceDelegate.swift */,
 				814F0732206535AD00789C14 /* StorageServiceDelegate.swift */,
+				81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -690,7 +702,9 @@
 				81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */,
 				818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */,
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
+				81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */,
 				81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */,
+				81B6B962206D64CB007D46A2 /* StockImagesCollectionViewCell.swift in Sources */,
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
@@ -706,6 +720,7 @@
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
+				81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
 				814F073720698F3600789C14 /* FirebaseModels.swift in Sources */,
 				81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */,
@@ -717,6 +732,7 @@
 				814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
 				818C25EE2059DE1E00401C10 /* ProfileView.swift in Sources */,
+				81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */,
 				818C25F22059DE3B00401C10 /* ARView.swift in Sources */,
 				818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */,
 				818C25E62059DDB700401C10 /* CreateAccountVC.swift in Sources */,
@@ -814,7 +830,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -865,7 +881,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -918,6 +934,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkTests;
@@ -935,6 +952,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkTests;
@@ -951,6 +969,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkUITests;
@@ -967,6 +986,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkUITests;

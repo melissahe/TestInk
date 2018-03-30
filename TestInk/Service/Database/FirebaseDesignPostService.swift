@@ -17,7 +17,7 @@ enum DesignPostStatus: Error {
     case designPostNotDeleted
 }
 
-
+//This service is responsible adding, getting, editing and deleting desgin posts with Firebase
 class FirebaseDesignPostService {
     
     private init(){
@@ -37,7 +37,7 @@ class FirebaseDesignPostService {
         let childByAutoID = Database.database().reference(withPath: "design posts").childByAutoId()
         let childKey = childByAutoID.key
         var designPost: DesignPost
-        designPost = DesignPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
+        designPost = DesignPost(uid: childKey, userID: userID, image: nil, likes: likes, timestamp: timeStamp, comments: comments, flags: flags)
         //setting the value of the design posts
         childByAutoID.setValue(designPost.designPostToJSON()) { (error, dbRef) in
             if let error = error {
@@ -45,7 +45,7 @@ class FirebaseDesignPostService {
                 print("failed to add flashcard error: \(error)")
             } else {
                 //storing image into design posts bucket in firebase
-                FirebaseStorageService.service.storeImage(imageType: .designPost, imageID: childKey, image: image)
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: childKey, image: image)
                 self.delegate?.didAddDesignPostToFirebase(self, post: designPost, designID: childKey)
                 print("flashcard saved to dbRef: \(dbRef)")
                 //should do storage here
@@ -53,12 +53,11 @@ class FirebaseDesignPostService {
         }
     }
     
-    
     //MARK: Getting a design post from database
     func getAllDesignPosts(completionHandler: @escaping ([DesignPost]?, Error?) -> Void){
         // getting the reference for the node that is Posts
         let dbReference = Database.database().reference().child("design posts")
-        dbReference.observe(.value){(snapshot) in
+        dbReference.observeSingleEvent(of: .value){(snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {print("design posts node has no children");return}
             var allDesignPosts = [DesignPost]()
             for snap in snapshots {
@@ -74,6 +73,7 @@ class FirebaseDesignPostService {
                     print(error)
                 }
             }
+            allDesignPosts.reverse() //so they're in order of most recent
             completionHandler(allDesignPosts, nil)
             //For testing purposes
             if allDesignPosts.isEmpty {
@@ -83,6 +83,24 @@ class FirebaseDesignPostService {
             }
         }
     }
+    
+    public func getPost(withPostID postID: String, completionHandler: @escaping (DesignPost?, Error?) -> Void) {
+        let ref = designPostRef.child(postID)
+        ref.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let rawJSON = dataSnapshot.value else {
+                print("could not get raw json")
+                return
+            }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
+                let designPost = try JSONDecoder().decode(DesignPost.self, from: jsonData)
+                completionHandler(designPost, nil)
+            } catch {
+                completionHandler(nil, DesignPostStatus.errorParsingDesignPostData)
+            }
+        }
+    }
+    
     //delete
     //edit
 }

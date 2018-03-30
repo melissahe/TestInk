@@ -46,13 +46,25 @@ class LoginVC: UIViewController {
         //textfield  and Auth delegate
         userLoginView.emailTextField.delegate = self
         userLoginView.passwordTextField.delegate = self
-        authUserService.delegate = self
         loginViewConstraints()
         
         //To check if user is already logged in.
-        /*     if Auth.auth().currentUser != nil {
-         self.present(feedVC, animated: true, completion: nil)
-         }*/
+            if Auth.auth().currentUser != nil {
+                let tbc = UITabBarController()
+                let profileVC = ProfileVC()
+                let feedVC = FeedVC()
+                
+                let feedNavController = UINavigationController(rootViewController: feedVC)
+                feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
+                
+                let profileNavController = UINavigationController(rootViewController: profileVC)
+                profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
+                
+                tbc.viewControllers = [feedNavController, profileNavController]
+                present(tbc, animated: true, completion: nil)
+                
+         //self.present(feedVC, animated: true, completion: nil)
+         }
         //For buttons clicked
         userLoginView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         userLoginView.signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
@@ -89,6 +101,7 @@ class LoginVC: UIViewController {
         guard let password = userLoginView.passwordTextField.text else { self.alertForErrors(with: "Please enter a password."); return }
         guard !password.isEmpty else { self.alertForErrors(with: "Please enter a password."); return }
         
+        authUserService.delegate = self
         authUserService.login(withEmail: email, password: password)
     }
     
@@ -99,9 +112,6 @@ class LoginVC: UIViewController {
         createAccountVC.modalPresentationStyle = .pageSheet
         navigationController?.pushViewController(createAccountVC, animated: true)
         
-        //self.present(signUpVC, animated: true, completion: nil)
-        // Present = Start a VC, NavVC or NavBar (but all are new)
-        // Push = You are inside of a previous Navigation Controller
     }
     
     @objc private func resetpassword() {

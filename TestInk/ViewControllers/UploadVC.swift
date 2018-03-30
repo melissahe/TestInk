@@ -11,16 +11,45 @@ import SnapKit
 import AVFoundation
 
 class UploadVC: UIViewController {
-
+    
+    // Stock images populating collection view
+    private let cellSpacing: CGFloat = UIScreen.main.bounds.width * 0.025
+    private var selectedCellIndex = 0
+    
+    let stockImages = [UIImage(named:"swiftbird")!,
+                       UIImage(named:"tattoo1"),
+                       UIImage(named:"tattoo2")!,
+                       UIImage(named:"tattoo3")!,
+                       UIImage(named:"tattoo4")!,
+                       UIImage(named:"tattoo5")!,
+                       UIImage(named:"bear")!,
+                       UIImage(named:"chicago")!,
+                       UIImage(named:"car")!,
+                       UIImage(named:"crown")!,
+                       UIImage(named:"eyeball")!,
+                       UIImage(named:"feather")!,
+                       UIImage(named:"flowertat")!,
+                       UIImage(named:"music")!,
+                       UIImage(named:"nodetree")!,
+                       UIImage(named:"owl")!,
+                       UIImage(named:"pheonix")!,
+                       UIImage(named:"star")!,
+                       UIImage(named:"sun")!,
+                       
+    ]
+    
+    //
     private let imagePickerController = UIImagePickerController()
     private var currentSelectedImage: UIImage!
     private var uploadView = UploadView()
     //used if user triggers AR from tattoo image in feed or if user uploads tattoo image to feed
     private var designID: String?
+    private var designPost: DesignPost?
     
     private var tapRecognizer: UITapGestureRecognizer!
     
-    init(designID: String? = nil) {
+    init(image: UIImage? = nil, designID: String? = nil) {
+        self.uploadView.imageView.image = (image != nil) ? image : #imageLiteral(resourceName: "addphoto")
         self.designID = designID
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,9 +60,11 @@ class UploadVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
         imagePickerController.delegate = self
-        view.addSubview(uploadView)
+        FirebaseStorageService.service.delegate = self
+        uploadView.stockImageCollectionView.dataSource = self
+        uploadView.stockImageCollectionView.delegate = self
         //uploadView.frame = view.bounds
         setupSubView()
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
@@ -48,6 +79,7 @@ class UploadVC: UIViewController {
     }
     
     private func setupSubView() {
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(uploadView)
         uploadView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
@@ -69,16 +101,20 @@ class UploadVC: UIViewController {
     @objc private func ARTestButtonPressed() {
         if let image = uploadView.imageView.image {
             let arVC = ARVC(tattooImage: image, designID: self.designID)
-            let navVC = UINavigationController(rootViewController: arVC)
-            navigationController?.present(navVC, animated: true)
+//            let navVC = UINavigationController(rootViewController: arVC)
+            navigationController?.pushViewController(arVC, animated: true)
         }
     }
     
     @objc private func postButtonPressed() {
         let currentUser = AuthUserService.manager.getCurrentUser()!
-       FirebaseDesignPostService.service.delegate = self
+        FirebaseDesignPostService.service.delegate = self
         if let image = currentSelectedImage {
             FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: image, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
+            
+            if let designID = designPost?.uid {
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: designID, image: image)
+            }
         } else {
             let errorAlert = Alert.createErrorAlert(withMessage: "Please select an image to upload.")
             self.present(errorAlert, animated: true, completion: nil)
@@ -150,4 +186,73 @@ extension UploadVC: DesignPostDelegate {
     
     func failedToGetAllDesignPosts(_ postService: FirebaseDesignPostService, error: Error) {
     }
+}
+
+extension UploadVC: StorageServiceDelegate{
+    func didStoreImage(_ storageService: FirebaseStorageService) {
+        print("Image stored to Firebase")
+    }
+    
+    func didFailStoreImage(_ storageService: FirebaseStorageService, error: String) {
+        
+    }
+    
+    func didRetrieveImage(_ storageService: FirebaseStorageService) {
+        
+    }
+    
+    func failedToRetrieveImage(_ storageService: FirebaseStorageService, error: String) {
+        
+    }
+    
+}
+    //Collection view delegates
+extension UploadVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return stockImages.count
+    }
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        self.selectedCellIndex = indexPath.row
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StockImageCell", for: indexPath) as! StockImagesCollectionViewCell
+        let currentCollection = stockImages[indexPath.row]
+        cell.stockImage.image = currentCollection
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.layoutIfNeeded()
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let currentStockImage = stockImages[indexPath.row] {
+            let arVC = ARVC(tattooImage: currentStockImage, designID: nil)
+            self.navigationController?.pushViewController(arVC, animated: true)
+        }
+    }
+    
+}
+extension UploadVC: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfCells: CGFloat = 4.5
+        let numberOfSpaces: CGFloat = numberOfCells + 1
+        let width = (collectionView.bounds.width - (numberOfSpaces * cellSpacing)) / numberOfCells
+        let height = width
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
+}
+    
 }

@@ -62,7 +62,7 @@ class EditImageView: UIView {
         
         photoImageView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.85)
+            make.height.equalTo(self).multipliedBy(0.80)
         }
     }
     
