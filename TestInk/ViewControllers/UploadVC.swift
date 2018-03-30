@@ -65,7 +65,6 @@ class UploadVC: UIViewController {
         FirebaseStorageService.service.delegate = self
         uploadView.stockImageCollectionView.dataSource = self
         uploadView.stockImageCollectionView.delegate = self
-        view.addSubview(uploadView)
         //uploadView.frame = view.bounds
         setupSubView()
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
@@ -80,6 +79,7 @@ class UploadVC: UIViewController {
     }
     
     private func setupSubView() {
+        view.backgroundColor = UIColor.Custom.lapisLazuli
         view.addSubview(uploadView)
         uploadView.snp.makeConstraints { (make) in
             make.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
@@ -101,8 +101,8 @@ class UploadVC: UIViewController {
     @objc private func ARTestButtonPressed() {
         if let image = uploadView.imageView.image {
             let arVC = ARVC(tattooImage: image, designID: self.designID)
-            let navVC = UINavigationController(rootViewController: arVC)
-            navigationController?.present(navVC, animated: true)
+//            let navVC = UINavigationController(rootViewController: arVC)
+            navigationController?.pushViewController(arVC, animated: true)
         }
     }
     
@@ -217,19 +217,24 @@ extension UploadVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StockImageCell", for: indexPath) as! StockImagesCollectionViewCell
-        
         let currentCollection = stockImages[indexPath.row]
         cell.stockImage.image = currentCollection
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.layoutIfNeeded()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if let currentStockImage = stockImages[indexPath.row] {
+            let arVC = ARVC(tattooImage: currentStockImage, designID: nil)
+            self.navigationController?.pushViewController(arVC, animated: true)
+        }
     }
     
 }
 extension UploadVC: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCells: CGFloat = 4.5
         let numberOfSpaces: CGFloat = numberOfCells + 1
