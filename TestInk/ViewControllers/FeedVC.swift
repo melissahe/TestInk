@@ -17,16 +17,24 @@ class FeedVC: UIViewController {
     private var currentUserID: String {
         return AuthUserService.manager.getCurrentUser()!.uid
     }
+    private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         loadData()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
+        feedView.designTableView.refreshControl = refreshControl
         feedView.designTableView.delegate = self
         feedView.designTableView.dataSource = self
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         self.title = "Feed"
+    }
+    
+    @objc private func tableViewRefreshed() {
+        loadData()
     }
     
     private func presentNoInternetAlert() {
