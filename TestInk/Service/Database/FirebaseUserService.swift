@@ -38,7 +38,7 @@ class UserProfileService {
     func addUserToFirebaseDatabase(userUID: String, displayName: String, likes: Int, profileImageURL: String, favorites: String, flags: Int, isBanned: Bool){
         let userNameDatabaseReference = usersRef.child(userUID)
         let user: UserProfile
-        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, image: nil, favorites: [favorites], flags: flags, isBanned: isBanned)
+        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, image: nil, flags: flags, isBanned: isBanned)
         userNameDatabaseReference.setValue(user.convertToJSON()) { (error, _) in
             if let error = error {
                 print("User not added with error: \(error)")
