@@ -83,6 +83,24 @@ class FirebaseDesignPostService {
             }
         }
     }
+    
+    public func getPost(withPostID postID: String, completionHandler: @escaping (DesignPost?, Error?) -> Void) {
+        let ref = designPostRef.child(postID)
+        ref.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let rawJSON = dataSnapshot.value else {
+                print("could not get raw json")
+                return
+            }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
+                let designPost = try JSONDecoder().decode(DesignPost.self, from: jsonData)
+                completionHandler(designPost, nil)
+            } catch {
+                completionHandler(nil, DesignPostStatus.errorParsingDesignPostData)
+            }
+        }
+    }
+    
     //delete
     //edit
 }
