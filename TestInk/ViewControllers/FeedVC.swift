@@ -161,10 +161,16 @@ extension FeedVC: FeedCellDelegate {
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    func didTapLike(onPost post: DesignPost) {
+    func didTapLike(onPost post: DesignPost, cell: FeedCell) {
         print("tapped like button!!")
-        
-        
+        FirebaseLikingService.service.delegate = self
+//        let currentImage = cell.likeButton.imageView?.image
+//        let newImage = (currentImage == #imageLiteral(resourceName: "heartUnfilled")) ? #imageLiteral(resourceName: "heartFilled") : #imageLiteral(resourceName: "heartUnfilled")
+//        updates like button icon
+//        cell.likeButton.setImage(#imageLiteral(resourceName: "heartFilled"), for: .normal)
+        FirebaseLikingService.service.favoritePost(withDesignPostID: post.uid, favoritedByUserID: currentUserID) { (numberOfLikes) in
+            cell.numberOfLikes.text = numberOfLikes.description
+        }
     }
     
 }
@@ -190,13 +196,15 @@ extension FeedVC: FlagDelegate {
         let errorAlert = Alert.createErrorAlert(withMessage: "Could not flag this post. Please check your internet connection and try again.")
         self.present(errorAlert, animated: true, completion: nil)
     }
-    
-    func didUnfavoritePost(_ service: FirebaseFlaggingService, withPostID: String) {
+}
+
+extension FeedVC: LikeServiceDelegate {
+    func didUnfavoritePost(_ service: FirebaseLikingService, withPostID: String) {
     }
     
-    func didFavoritePost(_ service: FirebaseFlaggingService, withPostID: String) {
+    func didFavoritePost(_ service: FirebaseLikingService, withPostID: String) {
     }
     
-    func didFailFavoritingPost(_ service: FirebaseFlaggingService, error: String) {
+    func didFailFavoritingPost(_ service: FirebaseLikingService, error: String) {
     }
 }
