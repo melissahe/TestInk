@@ -59,6 +59,7 @@
 		81AF0B0120600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */; };
 		81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0B02206027A8009E0F12 /* FilterView.swift */; };
 		81B6B958206A9F7F007D46A2 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */; };
+		81B6B962206D64CB007D46A2 /* StockImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */; };
 		81BBC9182061A071003F490B /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81BBC9172061A071003F490B /* Tutorial.storyboard */; };
 		81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */; };
 		81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC91B2061A406003F490B /* ImageViewController.swift */; };
@@ -141,6 +142,7 @@
 		81AF0B0020600828009E0F12 /* LaunchScreen 10-59-26-041.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "LaunchScreen 10-59-26-041.storyboard"; sourceTree = "<group>"; };
 		81AF0B02206027A8009E0F12 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		81B6B957206A9F7F007D46A2 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		81BBC9172061A071003F490B /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
 		81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		81BBC91B2061A406003F490B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				8138184F206AD5EC00E29DEA /* PreviewCell.swift */,
 				8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */,
 				81BDAD1D206046D000F7D450 /* FilterCell.swift */,
+				81B6B961206D64CB007D46A2 /* StockImagesCollectionViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
 				81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */,
 				81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */,
+				81B6B962206D64CB007D46A2 /* StockImagesCollectionViewCell.swift in Sources */,
 				818C25E22059DD7200401C10 /* ProfileVC.swift in Sources */,
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
@@ -886,7 +890,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -905,7 +909,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";

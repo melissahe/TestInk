@@ -12,6 +12,33 @@ import AVFoundation
 
 class UploadVC: UIViewController {
     
+    // Stock images populating collection view
+    private let cellSpacing: CGFloat = UIScreen.main.bounds.width * 0.025
+    private var selectedCellIndex = 0
+    
+    let stockImages = [UIImage(named:"swiftbird")!,
+                       UIImage(named:"tattoo1"),
+                       UIImage(named:"tattoo2")!,
+                       UIImage(named:"tattoo3")!,
+                       UIImage(named:"tattoo4")!,
+                       UIImage(named:"tattoo5")!,
+                       UIImage(named:"bear")!,
+                       UIImage(named:"chicago")!,
+                       UIImage(named:"car")!,
+                       UIImage(named:"crown")!,
+                       UIImage(named:"eyeball")!,
+                       UIImage(named:"feather")!,
+                       UIImage(named:"flowertat")!,
+                       UIImage(named:"music")!,
+                       UIImage(named:"nodetree")!,
+                       UIImage(named:"owl")!,
+                       UIImage(named:"pheonix")!,
+                       UIImage(named:"star")!,
+                       UIImage(named:"sun")!,
+                       
+    ]
+    
+    //
     private let imagePickerController = UIImagePickerController()
     private var currentSelectedImage: UIImage!
     private var uploadView = UploadView()
@@ -36,6 +63,8 @@ class UploadVC: UIViewController {
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
         imagePickerController.delegate = self
         FirebaseStorageService.service.delegate = self
+        uploadView.stockImageCollectionView.dataSource = self
+        uploadView.stockImageCollectionView.delegate = self
         view.addSubview(uploadView)
         //uploadView.frame = view.bounds
         setupSubView()
@@ -84,7 +113,7 @@ class UploadVC: UIViewController {
             FirebaseDesignPostService.service.addDesignPostToDatabase(userID: currentUser.uid, image: image, likes: 0, timeStamp: Date.timeIntervalSinceReferenceDate, comments: "", flags: 0)
             
             if let designID = designPost?.uid {
-                FirebaseStorageService.service.storeImage(with: .designImgRef, imageType: .designPost, imageID: designID, image: image)
+                FirebaseStorageService.service.storeImage(withImageType: .designPost, imageUID: designID, image: image)
             }
         } else {
             let errorAlert = Alert.createErrorAlert(withMessage: "Please select an image to upload.")
@@ -176,5 +205,49 @@ extension UploadVC: StorageServiceDelegate{
         
     }
     
+}
+    //Collection view delegates
+extension UploadVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return stockImages.count
+    }
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        self.selectedCellIndex = indexPath.row
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StockImageCell", for: indexPath) as! StockImagesCollectionViewCell
+        
+        let currentCollection = stockImages[indexPath.row]
+        cell.stockImage.image = currentCollection
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+}
+extension UploadVC: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numberOfCells: CGFloat = 4.5
+        let numberOfSpaces: CGFloat = numberOfCells + 1
+        let width = (collectionView.bounds.width - (numberOfSpaces * cellSpacing)) / numberOfCells
+        let height = width
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
+}
     
 }
