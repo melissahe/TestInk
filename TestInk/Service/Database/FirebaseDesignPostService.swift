@@ -57,7 +57,7 @@ class FirebaseDesignPostService {
     func getAllDesignPosts(completionHandler: @escaping ([DesignPost]?, Error?) -> Void){
         // getting the reference for the node that is Posts
         let dbReference = Database.database().reference().child("design posts")
-        dbReference.observe(.value){(snapshot) in
+        dbReference.observeSingleEvent(of: .value){(snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {print("design posts node has no children");return}
             var allDesignPosts = [DesignPost]()
             for snap in snapshots {
@@ -73,6 +73,7 @@ class FirebaseDesignPostService {
                     print(error)
                 }
             }
+            allDesignPosts.reverse() //so they're in order of most recent
             completionHandler(allDesignPosts, nil)
             //For testing purposes
             if allDesignPosts.isEmpty {
@@ -82,6 +83,24 @@ class FirebaseDesignPostService {
             }
         }
     }
+    
+    public func getPost(withPostID postID: String, completionHandler: @escaping (DesignPost?, Error?) -> Void) {
+        let ref = designPostRef.child(postID)
+        ref.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let rawJSON = dataSnapshot.value else {
+                print("could not get raw json")
+                return
+            }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
+                let designPost = try JSONDecoder().decode(DesignPost.self, from: jsonData)
+                completionHandler(designPost, nil)
+            } catch {
+                completionHandler(nil, DesignPostStatus.errorParsingDesignPostData)
+            }
+        }
+    }
+    
     //delete
     //edit
 }

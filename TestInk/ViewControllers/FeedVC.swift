@@ -17,16 +17,24 @@ class FeedVC: UIViewController {
     private var currentUserID: String {
         return AuthUserService.manager.getCurrentUser()!.uid
     }
+    private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         loadData()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
+        feedView.designTableView.refreshControl = refreshControl
         feedView.designTableView.delegate = self
         feedView.designTableView.dataSource = self
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         self.title = "Feed"
+    }
+    
+    @objc private func tableViewRefreshed() {
+        loadData()
     }
     
     private func presentNoInternetAlert() {
@@ -40,6 +48,7 @@ class FeedVC: UIViewController {
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
+            self.refreshControl.endRefreshing()
             if let posts = posts {
                 self.designPosts = posts
                 self.feedView.designTableView.reloadData()
@@ -153,10 +162,16 @@ extension FeedVC: FeedCellDelegate {
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    func didTapLike(onPost post: DesignPost) {
+    func didTapLike(onPost post: DesignPost, cell: FeedCell) {
         print("tapped like button!!")
-        
-        
+        FirebaseLikingService.service.delegate = self
+//        let currentImage = cell.likeButton.imageView?.image
+//        let newImage = (currentImage == #imageLiteral(resourceName: "heartUnfilled")) ? #imageLiteral(resourceName: "heartFilled") : #imageLiteral(resourceName: "heartUnfilled")
+//        updates like button icon
+//        cell.likeButton.setImage(#imageLiteral(resourceName: "heartFilled"), for: .normal)
+        FirebaseLikingService.service.favoritePost(withDesignPostID: post.uid, favoritedByUserID: currentUserID) { (numberOfLikes) in
+            cell.numberOfLikes.text = numberOfLikes.description
+        }
     }
     
 }
@@ -182,13 +197,15 @@ extension FeedVC: FlagDelegate {
         let errorAlert = Alert.createErrorAlert(withMessage: "Could not flag this post. Please check your internet connection and try again.")
         self.present(errorAlert, animated: true, completion: nil)
     }
-    
-    func didUnfavoritePost(_ service: FirebaseFlaggingService, withPostID: String) {
+}
+
+extension FeedVC: LikeServiceDelegate {
+    func didUnfavoritePost(_ service: FirebaseLikingService, withPostID: String) {
     }
     
-    func didFavoritePost(_ service: FirebaseFlaggingService, withPostID: String) {
+    func didFavoritePost(_ service: FirebaseLikingService, withPostID: String) {
     }
     
-    func didFailFavoritingPost(_ service: FirebaseFlaggingService, error: String) {
+    func didFailFavoritingPost(_ service: FirebaseLikingService, error: String) {
     }
 }
