@@ -217,19 +217,24 @@ extension UploadVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StockImageCell", for: indexPath) as! StockImagesCollectionViewCell
-        
         let currentCollection = stockImages[indexPath.row]
         cell.stockImage.image = currentCollection
+        cell.layer.masksToBounds = true
+        cell.layer.cornerRadius = 10
+        cell.layoutIfNeeded()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if let currentStockImage = stockImages[indexPath.row] {
+            let arVC = ARVC(tattooImage: currentStockImage, designID: nil)
+            self.navigationController?.pushViewController(arVC, animated: true)
+        }
     }
     
 }
 extension UploadVC: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCells: CGFloat = 4.5
         let numberOfSpaces: CGFloat = numberOfCells + 1
