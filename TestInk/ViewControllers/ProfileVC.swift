@@ -51,8 +51,9 @@ class ProfileVC: UIViewController {
     }
     
     private func loadData() {
-        //load datasource for collectionView
-        //probably should cache for design ID
+        UserProfileService.manager.getName(from: currentUserID) { (displayName) in
+            self.profileView.displayName.text = displayName
+        }
         FirebaseLikingService.service.getAllLikes(forUserID: currentUserID) { (likedPosts) in
             self.favoritePostIDs = likedPosts
             self.profileView.collectionView.reloadData()
