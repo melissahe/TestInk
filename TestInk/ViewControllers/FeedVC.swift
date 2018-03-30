@@ -48,6 +48,7 @@ class FeedVC: UIViewController {
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
+            self.refreshControl.endRefreshing()
             if let posts = posts {
                 self.designPosts = posts
                 self.feedView.designTableView.reloadData()
