@@ -101,8 +101,8 @@ class UploadVC: UIViewController {
     @objc private func ARTestButtonPressed() {
         if let image = uploadView.imageView.image {
             let arVC = ARVC(tattooImage: image, designID: self.designID)
-            let navVC = UINavigationController(rootViewController: arVC)
-            navigationController?.present(navVC, animated: true)
+//            let navVC = UINavigationController(rootViewController: arVC)
+            navigationController?.pushViewController(arVC, animated: true)
         }
     }
     

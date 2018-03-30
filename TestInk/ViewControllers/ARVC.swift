@@ -163,7 +163,7 @@ class ARVC: UIViewController {
     
     private func setUpNavigation() {
         //        arView.dismissButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(dismissView))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.stop, target: self, action: #selector(dismissView))
     }
     
     @objc private func captureButtonPressed() {
