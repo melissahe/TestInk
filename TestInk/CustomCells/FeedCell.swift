@@ -18,6 +18,12 @@ class FeedCell: UITableViewCell {
     public var delegate: FeedCellDelegate?
     private var designPost: DesignPost?
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     //lazy vars
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
@@ -121,20 +127,24 @@ class FeedCell: UITableViewCell {
         self.feedImage.image = nil
         self.feedImage.image = #imageLiteral(resourceName: "placeholder")
         guard let imageURLString = post.image else {
+            self.activityIndicator.isHidden = true
             print("could not get image URL")
             return
         }
         //get image from cache, if non existent then run this
         if let image = NSCacheHelper.manager.getImage(with: post.uid) {
             feedImage.image = image
+            self.activityIndicator.isHidden = true
             self.setNeedsLayout()
         } else {
             ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
                 //cache image for post id
                 NSCacheHelper.manager.addImage(with: post.uid, and: image)
                 self.feedImage.image = image
+                self.activityIndicator.isHidden = true
                 self.setNeedsLayout()
             }, errorHandler: { (error) in
+                self.activityIndicator.isHidden = true
                 print("Error: Could not get image:\n\(error)")
             })
         }
@@ -190,6 +200,17 @@ class FeedCell: UITableViewCell {
         FirebaseLikingService.service.getAllLikes(forPostID: post.uid) { (likesArray) in
             self.numberOfLikes.text = likesArray.count.description
         }
+    }
+    
+    private func setupViews() {
+        setupUserImage()
+        setupUserNameLabel()
+        setupFlagButton()
+        setupFeedImage()
+        setupLikeButton()
+        setupNumberOfLikes()
+        setupShareButton()
+        setupActivityIndicator()
     }
     
     //constraints
@@ -263,6 +284,13 @@ class FeedCell: UITableViewCell {
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.bottom.equalTo(contentView).offset(-8)
             make.height.equalTo(likeButton)
+        }
+    }
+    
+    private func setupActivityIndicator() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { (make) in
+            make.center.equalTo(feedImage)
         }
     }
     
