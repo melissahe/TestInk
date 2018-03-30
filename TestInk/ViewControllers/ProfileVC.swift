@@ -18,6 +18,8 @@ class ProfileVC: UIViewController {
     
     let cellSpacing: CGFloat = 5.0
     
+    private var favoritePostIDs: [String] = []
+    
     private let imagePickerController = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -27,6 +29,7 @@ class ProfileVC: UIViewController {
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
         imagePickerController.delegate = self
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +47,15 @@ class ProfileVC: UIViewController {
                     print("Couldn't get profile Image \(error)")
                 })
             }
+        }
+    }
+    
+    private func loadData() {
+        //load datasource for collectionView
+        //probably should cache for design ID
+        FirebaseLikingService.service.getAllLikes(forUserID: currentUserID) { (likedPosts) in
+            self.favoritePostIDs = likedPosts
+            self.profileView.collectionView.reloadData()
         }
     }
     
@@ -130,12 +142,15 @@ func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMe
 
 extension ProfileVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 24
+        return favoritePostIDs.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as! FavoriteCell
-        cell.backgroundColor = UIColor(red:0.92, green:0.47, blue:0.25, alpha:1.0)
+        let postID = favoritePostIDs[indexPath.row]
+        cell.configureCell(withPostID: postID)
+//        cell.backgroundColor = UIColor(red:0.92, green:0.47, blue:0.25, alpha:1.0)
+        
         return cell
     }
 }
