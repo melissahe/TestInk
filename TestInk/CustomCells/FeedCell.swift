@@ -22,7 +22,7 @@ class FeedCell: UITableViewCell {
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .clear
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -40,7 +40,7 @@ class FeedCell: UITableViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .clear
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         return iv
     }()
     
@@ -119,7 +119,7 @@ class FeedCell: UITableViewCell {
     
     private func configureFeedImage(withPost post: DesignPost) {
         self.feedImage.image = nil
-        self.feedImage.image = #imageLiteral(resourceName: "placeholder-image")
+        self.feedImage.image = #imageLiteral(resourceName: "placeholder")
         guard let imageURLString = post.image else {
             print("could not get image URL")
             return
@@ -161,7 +161,7 @@ class FeedCell: UITableViewCell {
                     FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: AuthUserService.manager.getCurrentUser()!.uid, image: profileImage)
                 }, errorHandler: { (error) in
                     print("Couldn't get profile Image \(error)")
-                    self.userImage.image = #imageLiteral(resourceName: "placeholder-image")
+                    self.userImage.image = #imageLiteral(resourceName: "placeholder")
                     self.layoutIfNeeded()
                 })
             }
