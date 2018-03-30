@@ -34,6 +34,8 @@ class ProfileVC: UIViewController {
            profileView.profileImageView.image = cachedUserImage
         } else {
             UserProfileService.manager.getUser(fromUserUID: currentUserID) { (userProfile) in
+                self.profileView.displayName.text = userProfile.displayName
+                
                 guard let imageURL = userProfile.image else {return}
                 ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
                     self.profileView.profileImageView.image = profileImage
