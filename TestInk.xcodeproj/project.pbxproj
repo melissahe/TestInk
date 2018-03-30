@@ -12,6 +12,8 @@
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
 		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
 		81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138184F206AD5EC00E29DEA /* PreviewCell.swift */; };
+		81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381851206D2C6900E29DEA /* FirebaseLikingService.swift */; };
+		81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */; };
 		814F072720643D6200789C14 /* FirebaseDesignPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072620643D6200789C14 /* FirebaseDesignPostService.swift */; };
 		814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072820643D7600789C14 /* FirebasePreviewPostService.swift */; };
 		814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */; };
@@ -91,6 +93,8 @@
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		8138184F206AD5EC00E29DEA /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
+		81381851206D2C6900E29DEA /* FirebaseLikingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLikingService.swift; sourceTree = "<group>"; };
+		81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceDelegate.swift; sourceTree = "<group>"; };
 		814F072620643D6200789C14 /* FirebaseDesignPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDesignPostService.swift; sourceTree = "<group>"; };
 		814F072820643D7600789C14 /* FirebasePreviewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePreviewPostService.swift; sourceTree = "<group>"; };
 		814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFlaggingService.swift; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 				814F072620643D6200789C14 /* FirebaseDesignPostService.swift */,
 				814F072820643D7600789C14 /* FirebasePreviewPostService.swift */,
 				814F072A20643D9A00789C14 /* FirebaseFlaggingService.swift */,
+				81381851206D2C6900E29DEA /* FirebaseLikingService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */,
 				814F072C20643DC900789C14 /* FlagServiceDelegate.swift */,
 				814F0732206535AD00789C14 /* StorageServiceDelegate.swift */,
+				81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -714,6 +720,7 @@
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
+				81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
 				814F073720698F3600789C14 /* FirebaseModels.swift in Sources */,
 				81BBC91A2061A2AD003F490B /* TutorialPageViewController.swift in Sources */,
@@ -725,6 +732,7 @@
 				814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
 				818C25EE2059DE1E00401C10 /* ProfileView.swift in Sources */,
+				81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */,
 				818C25F22059DE3B00401C10 /* ARView.swift in Sources */,
 				818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */,
 				818C25E62059DDB700401C10 /* CreateAccountVC.swift in Sources */,
@@ -888,7 +896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 86N2U73XRJ;
+				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -907,7 +915,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 86N2U73XRJ;
+				DEVELOPMENT_TEAM = 2B2G4E5HKD;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
