@@ -14,7 +14,7 @@ class ProfileVC: UIViewController {
     
     lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
 
-    let currentUserID = AuthUserService.manager.getCurrentUser()!.uid
+    lazy var currentUserID = AuthUserService.manager.getCurrentUser()!.uid
     
     let cellSpacing: CGFloat = 5.0
     
@@ -51,8 +51,9 @@ class ProfileVC: UIViewController {
     }
     
     private func loadData() {
-        //load datasource for collectionView
-        //probably should cache for design ID
+        UserProfileService.manager.getName(from: currentUserID) { (displayName) in
+            self.profileView.displayName.text = displayName
+        }
         FirebaseLikingService.service.getAllLikes(forUserID: currentUserID) { (likedPosts) in
             self.favoritePostIDs = likedPosts
             self.profileView.collectionView.reloadData()

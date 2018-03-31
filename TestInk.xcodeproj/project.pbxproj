@@ -69,6 +69,7 @@
 		81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BBC91B2061A406003F490B /* ImageViewController.swift */; };
 		81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1D206046D000F7D450 /* FilterCell.swift */; };
 		81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1F2060510D00F7D450 /* FilterModel.swift */; };
+		81D17682206EC5D90049D76A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D17681206EC5D90049D76A /* UserDefault.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		81BBC91B2061A406003F490B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		81BDAD1D206046D000F7D450 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		81BDAD1F2060510D00F7D450 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
+		81D17681206EC5D90049D76A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +333,7 @@
 				81BDAD1F2060510D00F7D450 /* FilterModel.swift */,
 				814F072E20652C9900789C14 /* ImageHelper.swift */,
 				814F073020652CDD00789C14 /* NetworkHelper.swift */,
+				81D17681206EC5D90049D76A /* UserDefault.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				814F072920643D7600789C14 /* FirebasePreviewPostService.swift in Sources */,
 				81B6B958206A9F7F007D46A2 /* ForgotPasswordView.swift in Sources */,
 				818C25F82059DF3100401C10 /* NetworkConnectivity.swift in Sources */,
+				81D17682206EC5D90049D76A /* UserDefault.swift in Sources */,
 				818C25F42059DE6300401C10 /* EditImageView.swift in Sources */,
 				818C25EA2059DDF700401C10 /* CreateAccountView.swift in Sources */,
 				818C25CC2059DBC300401C10 /* AuthUserService.swift in Sources */,
