@@ -22,6 +22,8 @@
 		814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073020652CDD00789C14 /* NetworkHelper.swift */; };
 		814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F0732206535AD00789C14 /* StorageServiceDelegate.swift */; };
 		814F073720698F3600789C14 /* FirebaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073620698F3600789C14 /* FirebaseModels.swift */; };
+		8167D6C4206EC3E80072DE97 /* CropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167D6C3206EC3E80072DE97 /* CropView.swift */; };
+		8167D6C6206EC5F70072DE97 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167D6C5206EC5F70072DE97 /* CropViewController.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -103,6 +105,8 @@
 		814F073020652CDD00789C14 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		814F0732206535AD00789C14 /* StorageServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceDelegate.swift; sourceTree = "<group>"; };
 		814F073620698F3600789C14 /* FirebaseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModels.swift; sourceTree = "<group>"; };
+		8167D6C3206EC3E80072DE97 /* CropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropView.swift; sourceTree = "<group>"; };
+		8167D6C5206EC5F70072DE97 /* CropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 				81AF0AFE205C4712009E0F12 /* EditView.swift */,
 				81AF0B02206027A8009E0F12 /* FilterView.swift */,
 				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
+				8167D6C3206EC3E80072DE97 /* CropView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
+				8167D6C5206EC5F70072DE97 /* CropViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -709,9 +715,11 @@
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
+				8167D6C6206EC5F70072DE97 /* CropViewController.swift in Sources */,
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
+				8167D6C4206EC3E80072DE97 /* CropView.swift in Sources */,
 				814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */,
 				81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */,
 				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
@@ -896,7 +904,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2B2G4E5HKD;
+				DEVELOPMENT_TEAM = V9HW99M5PX;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -915,7 +923,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2B2G4E5HKD;
+				DEVELOPMENT_TEAM = V9HW99M5PX;
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
