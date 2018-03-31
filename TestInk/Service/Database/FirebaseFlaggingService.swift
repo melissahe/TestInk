@@ -96,54 +96,6 @@ class FirebaseFlaggingService{
         })
     }
     
-    
-    
-    //MARK: Functionaly to favorite posts...there should be separate functions!!
-    public func favoritePost(withDesignPostID designPostID: String,
-                             favoritedByUserID userID: String,
-                             favoriteCompletion: @escaping (Int) -> Void) {
-        let ref = designPostRef.child(designPostID)
-        
-        ref.runTransactionBlock({ (currentData) -> TransactionResult in
-            if var designPost = currentData.value as? [String : Any] {
-                var favoritesDict = designPost["favoritedBy"] as? [String : Any] ?? [:]
-                var favorites = designPost["numberOfFavorites"] as? Int ?? 0
-                
-                //if user has liked already
-                if let _ = favoritesDict[userID] {
-                    // Unfavorite the post and remove self from favorites
-                    favorites -= 1
-                    favoritesDict.removeValue(forKey: userID)
-                    DispatchQueue.main.async {
-                        self.delegate?.didUnfavoritePost(self, withPostID: designPostID)
-                        favoriteCompletion(favorites)
-                    }
-                } else { //if user has not liked yet
-                    //favorite the post and add self to favorites
-                    favorites += 1
-                    favoritesDict[userID] = true
-                    DispatchQueue.main.async {
-                        self.delegate?.didFavoritePost(self, withPostID: designPostID)
-                        favoriteCompletion(favorites)
-                    }
-                }
-                designPost["favoritedBy"] = favoritesDict
-                designPost["numberOfFavorites"] = favorites
-                
-                // Set value and report transaction success
-                currentData.value = designPost
-                return TransactionResult.success(withValue: currentData)
-            }
-            return TransactionResult.success(withValue: currentData)
-        }, andCompletionBlock: { (error, _, _) in
-            if let error = error {
-                //delegate with fail to like post
-                self.delegate?.didFailFavoritingPost(self, error: error.localizedDescription)
-                print("error favoriting post: \(error.localizedDescription)")
-            }
-        })
-    }
-    
     public func getAllFlags(completionHandler: @escaping ([Flags]?, Error?) -> Void) {
         flagRef.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {

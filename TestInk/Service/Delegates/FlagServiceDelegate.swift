@@ -19,11 +19,4 @@ protocol FlagDelegate: class {
     func didFlagPostAlready(_ service: FirebaseFlaggingService, error: String)
     func didFlagPost(_ service: FirebaseFlaggingService)
     func didFailToFlagPost(_ service: FirebaseFlaggingService, error: String)
-    
-    
-    //Methods to handle favoriting functionality
-    func didUnfavoritePost(_ service: FirebaseFlaggingService, withPostID: String )
-    func didFavoritePost(_ service: FirebaseFlaggingService, withPostID: String )
-    func didFailFavoritingPost(_ service: FirebaseFlaggingService, error: String)
-    
 }
