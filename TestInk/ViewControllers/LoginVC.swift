@@ -40,7 +40,9 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         //navigationController?.navigationBar.barTintColor = Stylesheet.Contexts.NavigationController.BarColor
-        
+        if let emailExist = UserDefaultsHelper.manager.getEmail() {
+            userLoginView.emailTextField.text = emailExist
+        }
         //TO:DO change title color...
         
         //textfield  and Auth delegate

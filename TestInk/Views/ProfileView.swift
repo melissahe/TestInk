@@ -14,7 +14,7 @@ class ProfileView: UIView {
     
     lazy var profileImageView: UIImageView = {
         var pImageView = UIImageView()
-        pImageView.image = #imageLiteral(resourceName: "placeholder-image") //place holder image
+        pImageView.image = #imageLiteral(resourceName: "placeholder") //place holder image
         //pImageView.isUserInteractionEnabled = true
         pImageView.contentMode = .scaleAspectFill
         pImageView.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
