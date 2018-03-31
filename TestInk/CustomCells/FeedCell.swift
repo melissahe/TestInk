@@ -11,18 +11,24 @@ import UIKit
 protocol FeedCellDelegate: class {
     func didTapFlag(onPost post: DesignPost, cell: FeedCell)
     func didTapShare(image: UIImage, forPost post: DesignPost)
-    func didTapLike(onPost post: DesignPost)
+    func didTapLike(onPost post: DesignPost, cell: FeedCell)
 }
 
 class FeedCell: UITableViewCell {
     public var delegate: FeedCellDelegate?
     private var designPost: DesignPost?
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     //lazy vars
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .purple
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.backgroundColor = .clear
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -30,7 +36,7 @@ class FeedCell: UITableViewCell {
     //Meseret
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Billy"
+//        label.text = "Billy"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
         return label
@@ -38,9 +44,9 @@ class FeedCell: UITableViewCell {
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .white
+        iv.backgroundColor = .clear
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         return iv
     }()
     
@@ -54,7 +60,7 @@ class FeedCell: UITableViewCell {
     
     lazy var likeButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "heartUnfilled"), for: .normal)
+//        button.setImage(#imageLiteral(resourceName: "heartUnfilled"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         return button
@@ -86,7 +92,7 @@ class FeedCell: UITableViewCell {
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         setupViews()
     }
     
@@ -94,8 +100,101 @@ class FeedCell: UITableViewCell {
         super.layoutSubviews()
         userImage.layer.cornerRadius = userImage.bounds.width / 2.0
         userImage.layer.masksToBounds = true
+        userImage.layer.borderWidth = 0.5
+        userImage.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
     }
-
+    
+    public func configureCell(withPost post: DesignPost) {
+        self.designPost = post
+//        numberOfLikes.text = post.likes.description
+        configureFeedImage(withPost: post)
+        configureUserNameAndImage(withPost: post)
+        configureFlag(withPost: post)
+        configureLike(withPost: post)
+    }
+    
+    private func configureFeedImage(withPost post: DesignPost) {
+        self.feedImage.image = nil
+        self.feedImage.image = #imageLiteral(resourceName: "placeholder")
+        guard let imageURLString = post.image else {
+            self.activityIndicator.isHidden = true
+            print("could not get image URL")
+            return
+        }
+        //get image from cache, if non existent then run this
+        if let image = NSCacheHelper.manager.getImage(with: post.uid) {
+            feedImage.image = image
+            self.activityIndicator.isHidden = true
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+        } else {
+            ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
+                //cache image for post id
+                NSCacheHelper.manager.addImage(with: post.uid, and: image)
+                self.feedImage.image = image
+                self.activityIndicator.isHidden = true
+                self.setNeedsLayout()
+                self.layoutIfNeeded()
+            }, errorHandler: { (error) in
+                self.activityIndicator.isHidden = true
+                print("Error: Could not get image:\n\(error)")
+            })
+        }
+    }
+    
+    private func configureUserNameAndImage(withPost post: DesignPost) {
+        self.userNameLabel.text = nil
+        UserProfileService.manager.getName(from: post.userID) { (username) in
+            self.userNameLabel.text = username
+        }
+        self.userImage.image = nil
+        if let cachedUserImage = NSCacheHelper.manager.getImage(with: post.userID) {
+            self.userImage.image = cachedUserImage
+            self.userImage.layoutIfNeeded()
+        } else {
+            UserProfileService.manager.getUser(fromUserUID: post.userID) { (userProfile) in
+                guard let imageURL = userProfile.image else {
+                    self.userImage.image = #imageLiteral(resourceName: "placeholder")
+                    self.layoutIfNeeded()
+                    return
+                }
+                ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
+                    self.userImage.image = profileImage
+                    self.layoutIfNeeded()
+                    NSCacheHelper.manager.addImage(with: post.userID, and: profileImage)
+                }, errorHandler: { (error) in
+                    print("Couldn't get profile Image \(error)")
+                    self.userImage.image = #imageLiteral(resourceName: "placeholder")
+                    self.layoutIfNeeded()
+                })
+            }
+        }
+    }
+    
+    private func configureFlag(withPost post: DesignPost) {
+        FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
+            if postHasBeenFlaggedByUser {
+                self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
+            } else {
+                self.flagButton.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
+            }
+        }
+    }
+    
+    public func configureLike(withPost post: DesignPost) {
+        FirebaseLikingService.service.getAllLikes(forUserID: AuthUserService.manager.getCurrentUser()!.uid) { (userLikesArray) in
+            //this isn't updated in time keeps updating too late
+            if userLikesArray.contains(post.uid) {
+                self.likeButton.setImage(#imageLiteral(resourceName: "heartFilled"), for: .normal)
+            } else {
+                self.likeButton.setImage(#imageLiteral(resourceName: "heartUnfilled"), for: .normal)
+            }
+        }
+        FirebaseLikingService.service.getAllLikes(forPostID: post.uid) { (likesArray) in
+            self.numberOfLikes.text = likesArray.count.description
+        }
+    }
+    
     private func setupViews() {
         setupUserImage()
         setupUserNameLabel()
@@ -104,49 +203,7 @@ class FeedCell: UITableViewCell {
         setupLikeButton()
         setupNumberOfLikes()
         setupShareButton()
-    }
-    
-    public func configureCell(withPost post: DesignPost) {
-        self.designPost = post
-        numberOfLikes.text = post.likes.description
-        configureFeedImage(withPost: post)
-        configureUserNameAndImage(withPost: post)
-        configureFlag(withPost: post)
-    }
-    
-    private func configureFeedImage(withPost post: DesignPost) {
-        guard let imageURLString = post.image else {
-            print("could not get image URL")
-            return
-        }
-        //get image from cache, if non existent then run this
-        if let image = NSCacheHelper.manager.getImage(with: post.uid) {
-            feedImage.image = image
-            layoutIfNeeded()
-        } else {
-            ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
-                //cache image for post id
-                NSCacheHelper.manager.addImage(with: post.uid, and: image)
-                self.feedImage.image = image
-                self.layoutIfNeeded()
-            }, errorHandler: { (error) in
-                print("Error: Could not get image:\n\(error)")
-            })
-        }
-    }
-    
-    private func configureUserNameAndImage(withPost post: DesignPost) {
-        UserProfileService.manager.getName(from: post.userID) { (username) in
-            self.userNameLabel.text = username
-        }
-    }
-    
-    private func configureFlag(withPost post: DesignPost) {
-        FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
-            if postHasBeenFlaggedByUser {
-                self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
-            }
-        }
+        setupActivityIndicator()
     }
     
     //constraints
@@ -187,6 +244,7 @@ class FeedCell: UITableViewCell {
             make.top.equalTo(userImage.snp.bottom).offset(8).priority(999)
             make.bottom.equalTo(contentView.snp.bottom).priority(999)
             make.leading.trailing.equalTo(contentView)
+            //to do - fix later
             make.height.lessThanOrEqualTo(feedImage.snp.width).priority(999)
         }
         feedImage.clipsToBounds = true
@@ -222,6 +280,13 @@ class FeedCell: UITableViewCell {
         }
     }
     
+    private func setupActivityIndicator() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { (make) in
+            make.center.equalTo(feedImage)
+        }
+    }
+    
     @objc private func flagButtonTapped() {
         if let designPost = designPost {
             delegate?.didTapFlag(onPost: designPost, cell: self)
@@ -236,7 +301,7 @@ class FeedCell: UITableViewCell {
     
     @objc private func likeButtonTapped() {
         if let designPost = designPost {
-            delegate?.didTapLike(onPost: designPost)
+            delegate?.didTapLike(onPost: designPost, cell: self)
         }
     }
 }

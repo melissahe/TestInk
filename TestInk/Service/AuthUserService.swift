@@ -57,6 +57,7 @@ class AuthUserService {
                 print("Failure creating user with error: \(error)")
                 self.delegate?.didFailCreatingUser(self, error: AuthUserStatus.failedToCreateUser)
             } else if let user = user {
+                UserDefaultsHelper.manager.saveEmail(email: email)
                 print(user.uid)
                 // update and authenticate user display name with their email
                 let changeRequest = user.createProfileChangeRequest()
@@ -85,6 +86,7 @@ class AuthUserService {
                 print("failed to sign in with error: \(error)")
                 self.delegate?.didFailToSignIn(self, error: AuthUserStatus.failedToSignIn)
             } else if let user = user {
+                UserDefaultsHelper.manager.saveEmail(email: email)
                 self.delegate?.didSignIn(self, user: user)
                 print("\(user.email, user.uid) logged in")
                 print(Auth.auth().currentUser?.uid ?? "No ID login")
