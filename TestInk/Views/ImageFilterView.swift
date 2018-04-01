@@ -34,6 +34,17 @@ class ImageFilterView: UIView {
         return slider
     }()
     
+    lazy var originalButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 0.6
+        button.layer.borderColor = UIColor.black.cgColor
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("Original", for: .normal)
+        let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
+        button.titleLabel?.font = font
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -53,6 +64,7 @@ class ImageFilterView: UIView {
         setupImageView()
         setupContrastSlider()
         setupClosenessSlider()
+        setupButton()
     }
     
     private func setupImageView() {
@@ -83,6 +95,15 @@ class ImageFilterView: UIView {
             make.height.equalTo(contrastSlider.snp.height)
             make.width.equalTo(contrastSlider.snp.width)
             
+        }
+    }
+    private func setupButton() {
+        self.addSubview(originalButton)
+        originalButton.snp.makeConstraints { (make) in
+            make.top.equalTo(closenessSlider.snp.bottom).offset(15)
+            make.centerX.equalTo(closenessSlider.snp.centerX)
+            make.height.equalTo(closenessSlider.snp.height)
+            make.width.equalTo(closenessSlider.snp.width)
         }
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
 
-    let croppedImageFilterView = ImageFilterView()
+    
     
     var image: UIImage!
     let filterView = ImageFilterView()
@@ -49,6 +49,8 @@ class FilterViewController: UIViewController {
         }
         filterView.contrastSlider.addTarget(self, action: #selector(self.contrastSliderValueChanged(_:)), for: .valueChanged)
         filterView.closenessSlider.addTarget(self, action: #selector(self.closenessSliderValueChanged(_:)), for: .valueChanged)
+        filterView.originalButton.addTarget(self, action: #selector(originalButtonPressed), for: .touchUpInside)
+        
         
     }
     private func setupNavBar() {
@@ -77,6 +79,16 @@ class FilterViewController: UIViewController {
     @objc func dismissView() {
         self.dismiss(animated: false) {
             
+        }
+    }
+    
+    @objc func originalButtonPressed() {
+        if filterView.imageView.image != image {
+            newUIImage = image
+            filterView.imageView.image = newUIImage
+            
+        } else {
+            applyFilter()
         }
     }
     
