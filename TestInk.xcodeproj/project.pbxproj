@@ -56,6 +56,8 @@
 		818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */; };
 		818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */; };
 		818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C26002059E23D00401C10 /* UserServiceDelegate.swift */; };
+		81A6CC90206FF36100B4DA64 /* ImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */; };
+		81A6CC92206FF39300B4DA64 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6CC91206FF39300B4DA64 /* FilterViewController.swift */; };
 		81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF4205ADF88009E0F12 /* EmptyView.swift */; };
 		81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */; };
 		81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */; };
@@ -144,6 +146,8 @@
 		818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserDelegate.swift; sourceTree = "<group>"; };
 		818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDelegate.swift; sourceTree = "<group>"; };
 		818C26002059E23D00401C10 /* UserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDelegate.swift; sourceTree = "<group>"; };
+		81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterView.swift; sourceTree = "<group>"; };
+		81A6CC91206FF39300B4DA64 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		81AF0AF4205ADF88009E0F12 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionsView.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				81AF0B02206027A8009E0F12 /* FilterView.swift */,
 				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
 				8167D6C3206EC3E80072DE97 /* CropView.swift */,
+				81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 				8167D6C5206EC5F70072DE97 /* CropViewController.swift */,
+				81A6CC91206FF39300B4DA64 /* FilterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -727,6 +733,7 @@
 				81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */,
 				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
 				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
+				81A6CC90206FF36100B4DA64 /* ImageFilterView.swift in Sources */,
 				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */,
@@ -740,6 +747,7 @@
 				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
 				818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */,
+				81A6CC92206FF39300B4DA64 /* FilterViewController.swift in Sources */,
 				814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
 				818C25EE2059DE1E00401C10 /* ProfileView.swift in Sources */,

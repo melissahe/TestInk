@@ -93,6 +93,10 @@ class UploadVC: UIViewController {
                 = .photoLibrary
             self.checkAVAuthorizationStatus()
         }))
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+            self.imagePickerController.sourceType = .camera
+            self.checkAVAuthorizationStatus()
+        }))
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(actionSheet, animated: true, completion: nil)
@@ -153,7 +157,11 @@ extension UploadVC: UIImagePickerControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         uploadView.imageView.image = image
         currentSelectedImage = image
-        picker.dismiss(animated: true, completion: nil)
+        let filterVC = FilterViewController(image: currentSelectedImage)
+        let navController = UINavigationController(rootViewController: filterVC)
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .overFullScreen
+        picker.present(navController, animated: false, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
