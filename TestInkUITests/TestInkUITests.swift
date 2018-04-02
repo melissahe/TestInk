@@ -48,14 +48,28 @@ class TestInkUITests: XCTestCase {
     func testNavigationBars() {
         
         let app = XCUIApplication()
+        let logoutButton = app.buttons["Log Out"]
+         let tabBarsQuery = app.tabBars
+        if tabBarsQuery.buttons["Feed"].exists || tabBarsQuery.buttons["Favorite"].exists {
+            tabBarsQuery.buttons["Favorite"].tap()
+            logoutButton.tap()
+        }
+        let myTextField = app.textFields["Enter email"]
         
-        //testing login
-        app.textFields["Enter email"].tap()
+        let exp1 = expectation(for: NSPredicate(format: "hittable == true"), evaluatedWith: myTextField, handler: nil)
+        waitForExpectations(timeout: 10.0, handler: nil)
+        myTextField.tap()
+        
+        
+         myTextField.tap()
+        myTextField.press(forDuration: 1.2)
+        app.menuItems["Select All"].tap()
+      
+        // or use app.keys["delete"].tap() if you have keyboard enabled
         app.textFields["Enter email"].typeText("izza.nadeem@yahoo.com")
         app.secureTextFields["Password"].tap()
         app.secureTextFields["Password"].typeText("newyork")
         app.buttons["Login"].tap()
-        let tabBarsQuery = app.tabBars
         let feedTab = tabBarsQuery.buttons["Feed"]
         
         //waiting for it to login and then tabbar and feedVC to exists, once the feedTab is tapped, it will continue testimg
@@ -66,7 +80,7 @@ class TestInkUITests: XCTestCase {
         
         //Testing if the Feed NavigationBar exist
         XCTAssert(feedNav.exists, "The Feed Navigation does not exist")
-        tabBarsQuery.buttons["Profile"].tap()
+        tabBarsQuery.buttons["Favorite"].tap()
         let favoriteNav = app.navigationBars["Favorite"]
         
          //Testing if the Favorite NavigationBar exist

@@ -18,11 +18,17 @@ class FeedCell: UITableViewCell {
     public var delegate: FeedCellDelegate?
     private var designPost: DesignPost?
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }()
+    
     //lazy vars
     lazy var userImage: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .clear
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -30,7 +36,7 @@ class FeedCell: UITableViewCell {
     //Meseret
     lazy var userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Billy"
+//        label.text = "Billy"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
         return label
@@ -40,7 +46,7 @@ class FeedCell: UITableViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .clear
         iv.contentMode = .scaleAspectFill
-        iv.image = #imageLiteral(resourceName: "placeholder-image") //placeholder
+        iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         return iv
     }()
     
@@ -86,7 +92,7 @@ class FeedCell: UITableViewCell {
     }
     
     private func setUpGUI() {
-        backgroundColor = .white
+        backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         setupViews()
     }
     
@@ -96,16 +102,6 @@ class FeedCell: UITableViewCell {
         userImage.layer.masksToBounds = true
         userImage.layer.borderWidth = 0.5
         userImage.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
-    }
-
-    private func setupViews() {
-        setupUserImage()
-        setupUserNameLabel()
-        setupFlagButton()
-        setupFeedImage()
-        setupLikeButton()
-        setupNumberOfLikes()
-        setupShareButton()
     }
     
     public func configureCell(withPost post: DesignPost) {
@@ -119,28 +115,35 @@ class FeedCell: UITableViewCell {
     
     private func configureFeedImage(withPost post: DesignPost) {
         self.feedImage.image = nil
-        self.feedImage.image = #imageLiteral(resourceName: "placeholder-image")
+        self.feedImage.image = #imageLiteral(resourceName: "placeholder")
         guard let imageURLString = post.image else {
+            self.activityIndicator.isHidden = true
             print("could not get image URL")
             return
         }
         //get image from cache, if non existent then run this
         if let image = NSCacheHelper.manager.getImage(with: post.uid) {
             feedImage.image = image
+            self.activityIndicator.isHidden = true
             self.setNeedsLayout()
+            self.layoutIfNeeded()
         } else {
             ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
                 //cache image for post id
                 NSCacheHelper.manager.addImage(with: post.uid, and: image)
                 self.feedImage.image = image
+                self.activityIndicator.isHidden = true
                 self.setNeedsLayout()
+                self.layoutIfNeeded()
             }, errorHandler: { (error) in
+                self.activityIndicator.isHidden = true
                 print("Error: Could not get image:\n\(error)")
             })
         }
     }
     
     private func configureUserNameAndImage(withPost post: DesignPost) {
+        self.userNameLabel.text = nil
         UserProfileService.manager.getName(from: post.userID) { (username) in
             self.userNameLabel.text = username
         }
@@ -151,17 +154,17 @@ class FeedCell: UITableViewCell {
         } else {
             UserProfileService.manager.getUser(fromUserUID: post.userID) { (userProfile) in
                 guard let imageURL = userProfile.image else {
-                    self.userImage.image = #imageLiteral(resourceName: "placeholder-image")
+                    self.userImage.image = #imageLiteral(resourceName: "placeholder")
                     self.layoutIfNeeded()
                     return
                 }
                 ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
                     self.userImage.image = profileImage
                     self.layoutIfNeeded()
-                    FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: AuthUserService.manager.getCurrentUser()!.uid, image: profileImage)
+                    NSCacheHelper.manager.addImage(with: post.userID, and: profileImage)
                 }, errorHandler: { (error) in
                     print("Couldn't get profile Image \(error)")
-                    self.userImage.image = #imageLiteral(resourceName: "placeholder-image")
+                    self.userImage.image = #imageLiteral(resourceName: "placeholder")
                     self.layoutIfNeeded()
                 })
             }
@@ -190,6 +193,17 @@ class FeedCell: UITableViewCell {
         FirebaseLikingService.service.getAllLikes(forPostID: post.uid) { (likesArray) in
             self.numberOfLikes.text = likesArray.count.description
         }
+    }
+    
+    private func setupViews() {
+        setupUserImage()
+        setupUserNameLabel()
+        setupFlagButton()
+        setupFeedImage()
+        setupLikeButton()
+        setupNumberOfLikes()
+        setupShareButton()
+        setupActivityIndicator()
     }
     
     //constraints
@@ -263,6 +277,13 @@ class FeedCell: UITableViewCell {
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.bottom.equalTo(contentView).offset(-8)
             make.height.equalTo(likeButton)
+        }
+    }
+    
+    private func setupActivityIndicator() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { (make) in
+            make.center.equalTo(feedImage)
         }
     }
     
