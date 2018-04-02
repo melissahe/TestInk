@@ -14,10 +14,10 @@ class ProfileView: UIView {
     
     lazy var profileImageView: UIImageView = {
         var pImageView = UIImageView()
-        pImageView.image = #imageLiteral(resourceName: "catplaceholder") //place holder image
+        pImageView.image = #imageLiteral(resourceName: "placeholder") //place holder image
         //pImageView.isUserInteractionEnabled = true
         pImageView.contentMode = .scaleAspectFill
-        pImageView.backgroundColor = UIColor.red
+        pImageView.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         return pImageView
     }()
     
@@ -32,7 +32,8 @@ class ProfileView: UIView {
     
     lazy var displayName: UILabel = {
         let dn = UILabel()
-        dn.text = "Name Label"
+        dn.text = "Name Label" //should be changed in table view
+        dn.textAlignment = .center
         return dn
     }()
     
@@ -55,6 +56,8 @@ class ProfileView: UIView {
         // we get the frame of the UI elements here
         profileImageView.layer.cornerRadius = profileImageView.bounds.height/2
         profileImageView.layer.masksToBounds = true
+        profileImageView.layer.borderWidth = 0.5
+        profileImageView.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
         changeProfileImageButton.layer.cornerRadius = changeProfileImageButton.bounds.height/2
         changeProfileImageButton.layer.masksToBounds = true
     }
@@ -80,8 +83,9 @@ class ProfileView: UIView {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(displayName.snp.bottom).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.2)
+//            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
+            make.centerX.equalTo(self)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
             make.width.equalTo(profileImageView.snp.height)
         }
     }
@@ -100,7 +104,8 @@ class ProfileView: UIView {
         addSubview(displayName)
         displayName.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(spacing)
-            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(155)
+            make.centerX.equalTo(self)
+            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(spacing)
             // make.bottom.equalTo(collectionView.snp.top).offset(spacing)
             make.trailing.equalTo(self.snp.trailing).offset(-spacing)
         }

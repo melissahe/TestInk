@@ -23,10 +23,10 @@ class EditImageView: UIView {
         return view
     }()
     
-    lazy var editView: EditView = {
-        let view = EditView(frame: self.frame)
-        return view
-    }()
+//    lazy var editView: EditView = {
+//        let view = EditView(frame: self.frame)
+//        return view
+//    }()
     
     lazy var filterView: FilterView = {
         let view = FilterView(frame: self.frame)
@@ -45,7 +45,7 @@ class EditImageView: UIView {
     
     private func commonInit() {
         backgroundColor = UIColor.Custom.taupeGrey
-        editView.isHidden = true
+//        editView.isHidden = true
         filterView.isHidden = true
         setUpViews()
     }
@@ -53,7 +53,7 @@ class EditImageView: UIView {
     private func setUpViews() {
         setUpPhotoImageView()
         setUpPhotoOptionsView()
-        setUpEditView()
+//        setUpEditView()
         setUpFilterView()
     }
     
@@ -62,7 +62,7 @@ class EditImageView: UIView {
         
         photoImageView.snp.makeConstraints { (make) in
             make.top.leading.trailing.equalTo(self)
-            make.height.equalTo(self).multipliedBy(0.75)
+            make.height.equalTo(self).multipliedBy(0.80)
         }
     }
     
@@ -75,13 +75,13 @@ class EditImageView: UIView {
         }
     }
 
-    private func setUpEditView() {
-        addSubview(editView)
-        
-        editView.snp.makeConstraints { (make) in
-            make.edges.equalTo(photoOptionsView.snp.edges)
-        }
-    }
+//    private func setUpEditView() {
+//        addSubview(editView)
+//
+//        editView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(photoOptionsView.snp.edges)
+//        }
+//    }
     
     private func setUpFilterView() {
         addSubview(filterView)
