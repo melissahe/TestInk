@@ -165,10 +165,23 @@ extension FeedVC: FeedCellDelegate {
     func didTapLike(onPost post: DesignPost, cell: FeedCell) {
         print("tapped like button!!")
         FirebaseLikingService.service.delegate = self
-//        let currentImage = cell.likeButton.imageView?.image
-//        let newImage = (currentImage == #imageLiteral(resourceName: "heartUnfilled")) ? #imageLiteral(resourceName: "heartFilled") : #imageLiteral(resourceName: "heartUnfilled")
-//        updates like button icon
-//        cell.likeButton.setImage(#imageLiteral(resourceName: "heartFilled"), for: .normal)
+        if cell.likeButton.imageView?.image == #imageLiteral(resourceName: "heartUnfilled") {
+            cell.likeButton.layer.shadowColor = UIColor(hex: "F78F8F").cgColor
+            cell.likeButton.layer.masksToBounds = false
+            let opacityAnimation = CABasicAnimation(keyPath: "shadowOpacity")
+            opacityAnimation.fromValue = 0 // minimum value
+            opacityAnimation.toValue = 1 // maximum value
+            
+            // changing shadow radius
+            cell.likeButton.layer.shadowRadius = 10
+            
+            // create group animation for shadow animation
+            let groupAnimation = CAAnimationGroup()
+            groupAnimation.autoreverses = true
+            groupAnimation.animations = [opacityAnimation]
+            groupAnimation.duration = 0.7
+            cell.likeButton.layer.add(groupAnimation, forKey: nil)
+        }
         FirebaseLikingService.service.favoritePost(withDesignPostID: post.uid, favoritedByUserID: currentUserID) { (numberOfLikes) in
             cell.numberOfLikes.text = numberOfLikes.description
         }
