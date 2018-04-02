@@ -36,33 +36,37 @@ class TestInkUITests: XCTestCase {
     func testLoginButton() {
         
         let app = XCUIApplication()
-        let enterEmailTextField = app.textFields["Enter email"]
-        app.secureTextFields["Password"].tap()
-        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
-       let nav = app.buttons["Login"]
-        XCTAssert(nav.exists, "The loginVC does not exist")
-        
-    }
-    
-    
-    func testNavigationBars() {
-        
-        let app = XCUIApplication()
         let logoutButton = app.buttons["Log Out"]
-         let tabBarsQuery = app.tabBars
+        let tabBarsQuery = app.tabBars
         if tabBarsQuery.buttons["Feed"].exists || tabBarsQuery.buttons["Favorite"].exists {
             tabBarsQuery.buttons["Favorite"].tap()
             logoutButton.tap()
         }
-        let myTextField = app.textFields["Enter email"]
+       let loginButton = app.buttons["Login"]
+        XCTAssert(loginButton.exists, "The loginVC does not exist")
         
+    }
+    
+    // Turn off connect hardware keyboard in the simulator otherwise this test will fail since this depends on the software keyboard
+    func testNavigationBars() {
+        
+        let app = XCUIApplication()
+        let logoutButton = app.buttons["Log Out"]
+        let tabBarsQuery = app.tabBars
+        
+        //First checking where the app is already logged in and is on either feed view or favorite view, if yes, go to favorite view and press logout to get back to login page
+        if tabBarsQuery.buttons["Feed"].exists || tabBarsQuery.buttons["Favorite"].exists {
+            tabBarsQuery.buttons["Favorite"].tap()
+            logoutButton.tap()
+        }
+        
+        let myTextField = app.textFields["Enter email"]
         let exp1 = expectation(for: NSPredicate(format: "hittable == true"), evaluatedWith: myTextField, handler: nil)
         waitForExpectations(timeout: 10.0, handler: nil)
+        
         myTextField.tap()
-        
-        
-         myTextField.tap()
         myTextField.press(forDuration: 1.2)
+        
         app.menuItems["Select All"].tap()
       
         // or use app.keys["delete"].tap() if you have keyboard enabled
@@ -97,8 +101,7 @@ class TestInkUITests: XCTestCase {
         addphotoImage.tap()
         let photoSourceSheet = app.sheets["Photo Source"]
         XCTAssert(photoSourceSheet.exists, "Photo source type does not exist")
-        
-        
+
         
     }
     

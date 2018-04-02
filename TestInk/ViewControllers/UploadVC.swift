@@ -16,6 +16,7 @@ class UploadVC: UIViewController {
     private let cellSpacing: CGFloat = UIScreen.main.bounds.width * 0.025
     private var selectedCellIndex = 0
     
+    
     let stockImages = [UIImage(named:"swiftbird")!,
                        UIImage(named:"tattoo1"),
                        UIImage(named:"tattoo2")!,
@@ -58,6 +59,8 @@ class UploadVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
@@ -77,6 +80,13 @@ class UploadVC: UIViewController {
         super.viewWillDisappear(animated)
         uploadView.imageView.image = #imageLiteral(resourceName: "addphoto")
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+    }
+    
+   
     
     private func setupSubView() {
         view.backgroundColor = UIColor.Custom.lapisLazuli
@@ -91,6 +101,10 @@ class UploadVC: UIViewController {
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action) in
             self.imagePickerController.sourceType
                 = .photoLibrary
+            self.checkAVAuthorizationStatus()
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action) in
+            self.imagePickerController.sourceType = .camera
             self.checkAVAuthorizationStatus()
         }))
         
@@ -153,7 +167,13 @@ extension UploadVC: UIImagePickerControllerDelegate {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         uploadView.imageView.image = image
         currentSelectedImage = image
-        picker.dismiss(animated: true, completion: nil)
+        let cropFilterVC = CropFilterViewController(image: image)
+        cropFilterVC.delegate = self
+        let navController = UINavigationController(rootViewController: cropFilterVC)
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .overFullScreen
+        dismiss(animated: false, completion: nil)
+        self.present(navController, animated: false, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -254,5 +274,14 @@ extension UploadVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: cellSpacing, bottom: 0, right: cellSpacing)
 }
+    
+}
+
+extension UploadVC: CropFilterVCDelegate {
+    func didUpdateImage(image: UIImage) {
+        uploadView.imageView.image = image
+        currentSelectedImage = image
+    }
+    
     
 }
