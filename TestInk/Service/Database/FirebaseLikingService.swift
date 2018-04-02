@@ -54,7 +54,7 @@ class FirebaseLikingService {
                 } else { //if user has not liked yet
                     //favorite the post and add self to favorites
                     favorites += 1
-                    favoritesDict[userID] = true
+                    favoritesDict[userID] = ["timestamp" : Date.timeIntervalSinceReferenceDate]
                     DispatchQueue.main.async {
                         //should like
                         self.delegate?.didFavoritePost(self, withPostID: designPostID)
@@ -92,7 +92,7 @@ class FirebaseLikingService {
                 likeDict.removeValue(forKey: postID)
             } else { //if user has not liked post before
                 //add like
-                likeDict[postID] = true
+                likeDict[postID] = ["timestamp" : Date.timeIntervalSinceReferenceDate]
             }
             currentData.value = likeDict
             return TransactionResult.success(withValue: currentData)
@@ -103,11 +103,25 @@ class FirebaseLikingService {
         let likeRef = likesRef.child(userID)
         likeRef.observe(.value) { (dataSnapshot) in
             let snapshots = dataSnapshot.value as? [String : Any] ?? [:]
-            var likesArray: [String] = []
-            for key in snapshots.keys {
-                likesArray.append(key)
+            var likesArray: [(postID: String, timestamp: Double)] = []
+            for snapshot in snapshots {
+                guard let timestampDict = snapshot.value as? [String: Any] else {
+                    print("couldn't get timestamp dict")
+                    continue
+                }
+                guard let timestamp = timestampDict["timestamp"] as? Double else {
+                    print("couldn't get timestamp")
+                    continue
+                }
+                let postID = snapshot.key
+                likesArray.append((postID, timestamp))
             }
-            completionHandler(likesArray)
+            let timeSortedLikes = likesArray.sorted(by: { (likeOne, likeTwo) -> Bool in
+                return likeOne.timestamp > likeTwo.timestamp
+            }).map({ (like) -> String in
+                return like.postID
+            })
+            completionHandler(timeSortedLikes)
         }
     }
     

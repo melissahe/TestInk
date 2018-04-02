@@ -40,6 +40,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         //navigationController?.navigationBar.barTintColor = Stylesheet.Contexts.NavigationController.BarColor
+        
+    
         if let emailExist = UserDefaultsHelper.manager.getEmail() {
             userLoginView.emailTextField.text = emailExist
         }
@@ -60,7 +62,7 @@ class LoginVC: UIViewController {
                 feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
                 
                 let profileNavController = UINavigationController(rootViewController: profileVC)
-                profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
+                profileNavController.tabBarItem = UITabBarItem(title: "Favorite", image: nil, tag: 1)
                 
                 tbc.viewControllers = [feedNavController, profileNavController]
                 present(tbc, animated: true, completion: nil)
@@ -74,11 +76,13 @@ class LoginVC: UIViewController {
         self.verificationTimer = Timer.scheduledTimer(timeInterval: 200, target: self, selector: #selector(LoginVC.signUp) , userInfo: nil, repeats: true)
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = Stylesheet.Colors.Lapislazuli
         self.navigationController?.isNavigationBarHidden = true
     }
+    
     func loginViewConstraints(){
         
         view.addSubview(logoImageView)
@@ -242,6 +246,8 @@ extension LoginVC: AuthUserDelegate {
     }
 
     func didSignIn(_ userService: AuthUserService, user: User) {
+        userLoginView.passwordTextField.text = nil
+        
         let tbc = UITabBarController()
         let profileVC = ProfileVC()
         let feedVC = FeedVC()
@@ -250,7 +256,7 @@ extension LoginVC: AuthUserDelegate {
         feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
         
         let profileNavController = UINavigationController(rootViewController: profileVC)
-        profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
+        profileNavController.tabBarItem = UITabBarItem(title: "Favorite", image: nil, tag: 1)
         
         tbc.viewControllers = [feedNavController, profileNavController]
         present(tbc, animated: true, completion: nil)
