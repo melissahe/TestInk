@@ -246,6 +246,8 @@ extension LoginVC: AuthUserDelegate {
     }
 
     func didSignIn(_ userService: AuthUserService, user: User) {
+        userLoginView.passwordTextField.text = nil
+        
         let tbc = UITabBarController()
         let profileVC = ProfileVC()
         let feedVC = FeedVC()
