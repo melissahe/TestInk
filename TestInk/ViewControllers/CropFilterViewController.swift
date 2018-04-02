@@ -134,7 +134,7 @@ class CropFilterViewController: UIViewController {
         let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
         let filteredUIImage = UIImage.init(cgImage: filteredImageRef!)//UIImage(CGImage: filteredImageRef!);
         cropFilterView.imageView.image = filteredUIImage
-        image = filteredUIImage
+        
     }
     
     @objc func crop() {
