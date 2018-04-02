@@ -43,7 +43,7 @@ class CropFilterViewController: UIViewController {
     //Final Cropped Image
     private var croppedImage = UIImage()
     
-    
+    var finalImage = UIImage()
     
     private let ciFilterNames = [
         "CIPhotoEffectChrome",
@@ -134,6 +134,7 @@ class CropFilterViewController: UIViewController {
         let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
         let filteredUIImage = UIImage.init(cgImage: filteredImageRef!)//UIImage(CGImage: filteredImageRef!);
         cropFilterView.imageView.image = filteredUIImage
+        finalImage = filteredUIImage
         
     }
     
@@ -155,7 +156,7 @@ class CropFilterViewController: UIViewController {
     }
     
     @objc func doneButtonPressed() {
-        updateImage(image: image)
+        updateImage(image: finalImage)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -246,6 +247,7 @@ extension CropFilterViewController {
         
         croppedImage = newImage!
         image = croppedImage
+        finalImage = croppedImage
        
     }
 
