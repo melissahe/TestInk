@@ -11,6 +11,8 @@
 		29AB680844A9E9DE12584F34 /* Pods_TestInkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */; };
 		54477DCC434351742E324AA2 /* Pods_TestInkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A11AACD981822A46FC1AF5 /* Pods_TestInkTests.framework */; };
 		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
+		81294E41207277E800EF50B0 /* CropFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294E40207277E800EF50B0 /* CropFilterViewController.swift */; };
+		81294E432072783A00EF50B0 /* CropFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294E422072783A00EF50B0 /* CropFilterView.swift */; };
 		81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138184F206AD5EC00E29DEA /* PreviewCell.swift */; };
 		81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381851206D2C6900E29DEA /* FirebaseLikingService.swift */; };
 		81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */; };
@@ -22,8 +24,6 @@
 		814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073020652CDD00789C14 /* NetworkHelper.swift */; };
 		814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F0732206535AD00789C14 /* StorageServiceDelegate.swift */; };
 		814F073720698F3600789C14 /* FirebaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814F073620698F3600789C14 /* FirebaseModels.swift */; };
-		8167D6C4206EC3E80072DE97 /* CropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167D6C3206EC3E80072DE97 /* CropView.swift */; };
-		8167D6C6206EC5F70072DE97 /* CropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8167D6C5206EC5F70072DE97 /* CropViewController.swift */; };
 		818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25892059CB0400401C10 /* AppDelegate.swift */; };
 		818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 818C25902059CB0400401C10 /* TestInk.xcdatamodeld */; };
 		818C25942059CB0400401C10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 818C25932059CB0400401C10 /* Assets.xcassets */; };
@@ -56,8 +56,6 @@
 		818C25FA2059E1BD00401C10 /* AuthUserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */; };
 		818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */; };
 		818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C26002059E23D00401C10 /* UserServiceDelegate.swift */; };
-		81A6CC90206FF36100B4DA64 /* ImageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */; };
-		81A6CC92206FF39300B4DA64 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A6CC91206FF39300B4DA64 /* FilterViewController.swift */; };
 		81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF4205ADF88009E0F12 /* EmptyView.swift */; };
 		81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */; };
 		81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */; };
@@ -97,6 +95,8 @@
 		3BB34E66547F8E9ABD0C9900 /* Pods-TestInkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkTests/Pods-TestInkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6417917C743170CA606FCDEC /* Pods_TestInkUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInkUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		81294E40207277E800EF50B0 /* CropFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropFilterViewController.swift; sourceTree = "<group>"; };
+		81294E422072783A00EF50B0 /* CropFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropFilterView.swift; sourceTree = "<group>"; };
 		8138184F206AD5EC00E29DEA /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		81381851206D2C6900E29DEA /* FirebaseLikingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLikingService.swift; sourceTree = "<group>"; };
 		81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceDelegate.swift; sourceTree = "<group>"; };
@@ -108,8 +108,6 @@
 		814F073020652CDD00789C14 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		814F0732206535AD00789C14 /* StorageServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceDelegate.swift; sourceTree = "<group>"; };
 		814F073620698F3600789C14 /* FirebaseModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModels.swift; sourceTree = "<group>"; };
-		8167D6C3206EC3E80072DE97 /* CropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropView.swift; sourceTree = "<group>"; };
-		8167D6C5206EC5F70072DE97 /* CropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropViewController.swift; sourceTree = "<group>"; };
 		818C25862059CB0400401C10 /* TestInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818C25892059CB0400401C10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		818C25912059CB0400401C10 /* TestInk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TestInk.xcdatamodel; sourceTree = "<group>"; };
@@ -146,8 +144,6 @@
 		818C25F92059E1BD00401C10 /* AuthUserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUserDelegate.swift; sourceTree = "<group>"; };
 		818C25FE2059E21B00401C10 /* PostServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostServiceDelegate.swift; sourceTree = "<group>"; };
 		818C26002059E23D00401C10 /* UserServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceDelegate.swift; sourceTree = "<group>"; };
-		81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterView.swift; sourceTree = "<group>"; };
-		81A6CC91206FF39300B4DA64 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		81AF0AF4205ADF88009E0F12 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		81AF0AF6205AE11D009E0F12 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		81AF0AFA205C3E89009E0F12 /* PhotoOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOptionsView.swift; sourceTree = "<group>"; };
@@ -292,8 +288,7 @@
 				81AF0AFE205C4712009E0F12 /* EditView.swift */,
 				81AF0B02206027A8009E0F12 /* FilterView.swift */,
 				81AF0AF4205ADF88009E0F12 /* EmptyView.swift */,
-				8167D6C3206EC3E80072DE97 /* CropView.swift */,
-				81A6CC8F206FF36100B4DA64 /* ImageFilterView.swift */,
+				81294E422072783A00EF50B0 /* CropFilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,8 +305,7 @@
 				818C25DB2059DD3600401C10 /* EditImageVC.swift */,
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
-				8167D6C5206EC5F70072DE97 /* CropViewController.swift */,
-				81A6CC91206FF39300B4DA64 /* FilterViewController.swift */,
+				81294E40207277E800EF50B0 /* CropFilterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -724,19 +718,18 @@
 				818C25DC2059DD3600401C10 /* EditImageVC.swift in Sources */,
 				818C258A2059CB0400401C10 /* AppDelegate.swift in Sources */,
 				818C25922059CB0400401C10 /* TestInk.xcdatamodeld in Sources */,
-				8167D6C6206EC5F70072DE97 /* CropViewController.swift in Sources */,
 				81AF0AF5205ADF88009E0F12 /* EmptyView.swift in Sources */,
 				818C25C42059DB3400401C10 /* FeedCell.swift in Sources */,
 				818C26012059E23D00401C10 /* UserServiceDelegate.swift in Sources */,
-				8167D6C4206EC3E80072DE97 /* CropView.swift in Sources */,
 				814F0733206535AD00789C14 /* StorageServiceDelegate.swift in Sources */,
 				81BBC91C2061A406003F490B /* ImageViewController.swift in Sources */,
 				81AF0B03206027A8009E0F12 /* FilterView.swift in Sources */,
 				81AF0AFF205C4712009E0F12 /* EditView.swift in Sources */,
-				81A6CC90206FF36100B4DA64 /* ImageFilterView.swift in Sources */,
+				81294E432072783A00EF50B0 /* CropFilterView.swift in Sources */,
 				81AF0AF7205AE11D009E0F12 /* UIColor+Extension.swift in Sources */,
 				818C25FF2059E21B00401C10 /* PostServiceDelegate.swift in Sources */,
 				81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */,
+				81294E41207277E800EF50B0 /* CropFilterViewController.swift in Sources */,
 				818C25DA2059DD1700401C10 /* LoginVC.swift in Sources */,
 				81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */,
 				818C25EC2059DE0500401C10 /* FeedView.swift in Sources */,
@@ -747,7 +740,6 @@
 				8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */,
 				818C25F62059DE9600401C10 /* Alerts.swift in Sources */,
 				818C25D42059DC7E00401C10 /* FirebaseStorageService.swift in Sources */,
-				81A6CC92206FF39300B4DA64 /* FilterViewController.swift in Sources */,
 				814F072B20643D9A00789C14 /* FirebaseFlaggingService.swift in Sources */,
 				818C25E82059DDE200401C10 /* LoginView.swift in Sources */,
 				818C25EE2059DE1E00401C10 /* ProfileView.swift in Sources */,
@@ -920,7 +912,7 @@
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
+				PRODUCT_BUNDLE_IDENTIFIER = ny.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -939,7 +931,7 @@
 				INFOPLIST_FILE = TestInk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInk;
+				PRODUCT_BUNDLE_IDENTIFIER = ny.c4Q.AC4.3.TestInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;

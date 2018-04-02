@@ -1,18 +1,20 @@
 //
-//  CropView.swift
+//  CropFilterView.swift
 //  TestInk
 //
-//  Created by C4Q on 3/30/18.
+//  Created by C4Q on 4/2/18.
 //  Copyright © 2018 C4Q. All rights reserved.
 //
 
 import UIKit
 
-class CropView: UIView {
-
+class CropFilterView: UIView {
+    
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.backgroundColor = .white
+        iv.isOpaque = true
+        iv.contentMode = .scaleToFill
         return iv
     }()
     
@@ -38,6 +40,23 @@ class CropView: UIView {
         
         return button
     }()
+
+    lazy var collectionView: UICollectionView = {
+        let collectionViewHeight: CGFloat = UIScreen.main.bounds.height * 0.28
+        let itemWidth: CGFloat = UIScreen.main.bounds.width * 0.40
+        let cellSpacing: CGFloat = 10.0
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: itemWidth, height: collectionViewHeight - (cellSpacing * 2.0))
+        layout.minimumLineSpacing = cellSpacing
+        layout.minimumInteritemSpacing = cellSpacing
+        layout.sectionInset = UIEdgeInsetsMake(cellSpacing, cellSpacing, cellSpacing, cellSpacing)
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.register(FilterCell.self, forCellWithReuseIdentifier: "FilterCell")
+        cv.backgroundColor = .cyan
+        return cv
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,12 +73,6 @@ class CropView: UIView {
         setupViews()
     }
     
-    private func setupViews() {
-        setupImageView()
-        setupCropButton()
-        setupCancelButton()
-    }
-    
     private func setupImageView() {
         self.addSubview(imageView)
         imageView.snp.makeConstraints { (make) in
@@ -69,7 +82,6 @@ class CropView: UIView {
             make.height.equalTo(imageView.snp.width).multipliedBy(0.8)
         }
     }
-    
     private func setupCropButton() {
         self.addSubview(cropButton)
         cropButton.snp.makeConstraints { (make) in
@@ -80,6 +92,9 @@ class CropView: UIView {
         }
     }
     
+    
+    
+  
     private func setupCancelButton() {
         self.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { (make) in
@@ -89,6 +104,13 @@ class CropView: UIView {
             make.width.equalTo(cropButton.snp.width)
             
         }
+    }
+    
+    private func setupViews() {
+        setupImageView()
+        setupCropButton()
+        setupCancelButton()
+        self.addSubview(collectionView)
     }
 
 }
