@@ -10,7 +10,6 @@ import FirebaseAuth
 
 class CreateAccountVC: UIViewController {
     
-    
     var createAccountView = CreateAccountView()
     
     var activeTextField: UITextField = UITextField()
@@ -61,6 +60,7 @@ class CreateAccountVC: UIViewController {
         guard !email.isEmpty else { self.alertForErrors(with: "Please enter a valid email."); return }
         guard let password = createAccountView.passwordTextField.text else { self.alertForErrors(with: "Password is nil "); return }
         guard !password.isEmpty else { self.alertForErrors(with: "Password field is empty"); return }
+        self.authUserService.delegate = self
         
         authUserService.createAccount(withEmail: email, password: password, displayName: userName)
         
@@ -82,5 +82,41 @@ extension CreateAccountVC: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
+
+extension CreateAccountVC: AuthUserDelegate {
+    func didFailCreatingUser(_ userService: AuthUserService, error: Error) {
+        let errorAlert = Alert.createErrorAlert(withMessage: error.localizedDescription)
+        self.present(errorAlert, animated: true, completion: nil)
+    }
+    
+    func didCreateUser(_ userService: AuthUserService, user: User) {
+        let tbc = UITabBarController()
+        let feedVC = FeedVC()
+        let feedNavVC = UINavigationController(rootViewController: feedVC)
+        let profileVC = ProfileVC()
+        let profileNavVC = UINavigationController(rootViewController: profileVC)
+        tbc.viewControllers = [feedNavVC, profileNavVC]
+        self.present(tbc, animated: true, completion: nil)
+    }
+    
+    func didFailSigningOut(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSignOut(_ userService: AuthUserService) {
+    }
+    
+    func didFailToSignIn(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSignIn(_ userService: AuthUserService, user: User) {
+    }
+    
+    func didFailToSendPasswordReset(_ userService: AuthUserService, error: Error) {
+    }
+    
+    func didSendPasswordReset(_userService: AuthUserService) {
+    }
+    
 }
 

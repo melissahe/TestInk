@@ -11,7 +11,7 @@ import SnapKit
 
 class FilterCell: UICollectionViewCell {
 
-    public lazy var filterImageView: UIImageView = {
+    lazy var filterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .white
@@ -19,7 +19,7 @@ class FilterCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var filterNameLabel: UILabel = {
+     lazy var filterNameLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         label.textColor = .white

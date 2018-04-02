@@ -55,7 +55,7 @@ class AuthUserService {
         self.auth.createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("Failure creating user with error: \(error)")
-                self.delegate?.didFailCreatingUser(self, error: AuthUserStatus.failedToCreateUser)
+                self.delegate?.didFailCreatingUser(self, error: error)
             } else if let user = user {
                 UserDefaultsHelper.manager.saveEmail(email: email)
                 print(user.uid)
