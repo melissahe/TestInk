@@ -12,25 +12,37 @@ import SnapKit
 class FeedVC: UIViewController {
     
     private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private lazy var designEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .designs)
+    private lazy var previewEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .previews)
     private var designPosts: [DesignPost] = []
     private var previewPosts: [PreviewPost] = []
     private var currentUserID: String {
         return AuthUserService.manager.getCurrentUser()!.uid
     }
-    private var refreshControl: UIRefreshControl!
-
+    private var designRefreshControl: UIRefreshControl!
+    private var previewRefreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        loadData()
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
-        feedView.designTableView.refreshControl = refreshControl
+        loadDesignData()
+        loadPreviewData()
+        designRefreshControl = UIRefreshControl()
+        previewRefreshControl = UIRefreshControl()
+        designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
+        previewRefreshControl.addTarget(self, action: #selector(loadPreviewData), for: .valueChanged)
+        //design tableview setup
+        feedView.designTableView.refreshControl = designRefreshControl
         feedView.designTableView.delegate = self
         feedView.designTableView.dataSource = self
+        //preview tableview setup
+        feedView.previewTableView.refreshControl = previewRefreshControl
+        feedView.previewTableView.delegate = self
+        feedView.previewTableView.dataSource = self
         //MARK: used for self sizing cells
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
+        feedView.previewTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
+        feedView.previewTableView.estimatedRowHeight = 200
         self.title = "Feed"
         //MARK: functionality for segmented control
         //feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_ sender: UISegmentedControl)), for: .normal)
@@ -41,7 +53,7 @@ class FeedVC: UIViewController {
 //    }
     
     @objc private func tableViewRefreshed() {
-        loadData()
+        loadDesignData()
     }
     
     private func presentNoInternetAlert() {
@@ -49,27 +61,53 @@ class FeedVC: UIViewController {
         self.present(noInternetAlert, animated: true, completion: nil)
     }
     
-    private func loadData() {
+    private func loadDesignData() {
         if noInternet {
             presentNoInternetAlert()
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
-            self.refreshControl.endRefreshing()
+            self.designRefreshControl.endRefreshing()
             if let posts = posts {
                 self.designPosts = posts
                 self.feedView.designTableView.reloadData()
+                
+                if posts.isEmpty {
+                    self.view.addSubview(self.designEmptyView)
+                    self.designEmptyView.snp.makeConstraints({ (make) in
+                        make.edges.equalTo(self.feedView.designTableView.snp.edges)
+                    })
+                } else {
+                   self.designEmptyView.removeFromSuperview()
+                    
+                }
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get designs. Please check network connection.")
                 self.present(errorAlert, animated: true, completion: nil)
             }
         }
-        
+    }
+    
+    @objc private func loadPreviewData() {
+        if noInternet {
+            presentNoInternetAlert()
+            return
+        }
         FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in
+            self.previewRefreshControl.endRefreshing()
             if let posts = posts {
                 self.previewPosts = posts
                 self.feedView.previewTableView.reloadData()
+                if posts.isEmpty {
+                    self.view.addSubview(self.previewEmptyView)
+                    self.previewEmptyView.snp.makeConstraints({ (make) in
+                        make.edges.equalTo(self.feedView.designTableView.snp.edges)
+                    })
+                } else {
+                    self.previewEmptyView.removeFromSuperview()
+                    
+                }
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get tattoo previews. Please check network connection.")
@@ -81,7 +119,6 @@ class FeedVC: UIViewController {
     private func setupViews() {
         view.addSubview(feedView)
         view.backgroundColor = UIColor.Custom.lapisLazuli
-        view.addSubview(feedView)
         feedView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
@@ -95,12 +132,14 @@ class FeedVC: UIViewController {
         let upLoadVC = UploadVC()
         navigationController?.pushViewController(upLoadVC, animated: true)
     }
-
 }
 
-extension FeedVC: UITableViewDataSource{
+extension FeedVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return designPosts.count
+        if tableView == feedView.designTableView {
+            return designPosts.count
+        }
+        return previewPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,9 +152,11 @@ extension FeedVC: UITableViewDataSource{
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell") as! PreviewCell
             //as! PreviewCell
         let currentPreview = previewPosts[indexPath.row]
+        cell.delegate = self
+        cell.configureCell(withPost: currentPreview)
 //        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
         
         return cell
@@ -125,11 +166,15 @@ extension FeedVC: UITableViewDataSource{
 extension FeedVC: UITableViewDelegate{
     //to do - should segue to ARView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentDesign = designPosts[indexPath.row]
-        if let cell = tableView.cellForRow(at: indexPath) as? FeedCell, let image = cell.feedImage.image {
-            let arVC = ARVC(tattooImage: image, designID: currentDesign.uid)
-                 self.navigationController?.pushViewController(arVC, animated: true)
+        if tableView == feedView.designTableView {
+            let currentDesign = designPosts[indexPath.row]
+            if let cell = tableView.cellForRow(at: indexPath) as? FeedCell, let image = cell.feedImage.image {
+                let arVC = ARVC(tattooImage: image, designID: currentDesign.uid)
+                self.navigationController?.pushViewController(arVC, animated: true)
+            }
         }
+        //need to check if it's ar ready, try bool?
+        
     }
 }
 
@@ -152,9 +197,22 @@ extension FeedVC: FeedCellDelegate {
                 flagAlert.addTextField(configurationHandler: nil)
                 Alert.addAction(withTitle: "Cancel", style: .cancel, andHandler: nil, to: flagAlert)
                 Alert.addAction(withTitle: "OK", style: .default, andHandler: { (_) in
+                    
+                    guard let index = self.designPosts.index(where: { (designPost) -> Bool in
+                        return post.uid == designPost.uid
+                    }) else {
+                        return
+                    }
+                    
+                    self.feedView.designTableView.beginUpdates()
+                    self.designPosts.remove(at: index)
+                    self.feedView.designTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    self.feedView.designTableView.endUpdates()
+                    
                     if let textField = flagAlert.textFields?.first, let flagText = textField.text {
                         FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
-                        FirebaseFlaggingService.service.flagPost(withDesignPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: {_ in})
+                       
+                        FirebaseFlaggingService.service.flagPost(withPostType: .design, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
                         
                         cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
                     }
@@ -193,6 +251,57 @@ extension FeedVC: FeedCellDelegate {
         FirebaseLikingService.service.favoritePost(withDesignPostID: post.uid, favoritedByUserID: currentUserID) { (numberOfLikes) in
             cell.numberOfLikes.text = numberOfLikes.description
         }
+    }
+}
+
+extension FeedVC: PreviewCellDelegate {
+    func didTapFlag(onPost post: PreviewPost, cell: PreviewCell) {
+        print("tapped flag!!")
+        if noInternet {
+            presentNoInternetAlert()
+            return
+        }
+        FirebaseFlaggingService.service.delegate = self
+        //get flags, if userID and postID aren't already there, then allow for flagging, else present error saying you've already flagged
+          
+        FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: currentUserID) { (postHasBeenFlaggedByUser) in
+            if postHasBeenFlaggedByUser {
+                let errorAlert = Alert.createErrorAlert(withMessage: "You have already flagged this post. Moderators will review your request shortly.")
+                self.present(errorAlert, animated: true, completion: nil)
+            } else {
+                let flagAlert = Alert.create(withTitle: "Flag", andMessage: "Enter a reason  for your flag request.", withPreferredStyle: .alert)
+                flagAlert.addTextField(configurationHandler: nil)
+                Alert.addAction(withTitle: "Cancel", style: .cancel, andHandler: nil, to: flagAlert)
+                Alert.addAction(withTitle: "OK", style: .default, andHandler: { (_) in
+                    
+                    guard let index = self.previewPosts.index(where: { (previewPost) -> Bool in
+                        return post.uid == previewPost.uid
+                    }) else {
+                        return
+                    }
+                    
+                    self.feedView.previewTableView.beginUpdates()
+                    self.previewPosts.remove(at: index)
+                    self.feedView.previewTableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                    self.feedView.previewTableView.endUpdates()
+                    
+                    if let textField = flagAlert.textFields?.first, let flagText = textField.text {
+                        FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
+                       
+                        FirebaseFlaggingService.service.flagPost(withPostType: .preview, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
+                        
+                        cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
+                    }
+                }, to: flagAlert)
+                self.present(flagAlert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func didTapShare(image: UIImage, forPost post: PreviewPost) {
+        print("tapped share button!!")
+        let activityVC = UIActivityViewController(activityItems: [image, "Check out this cool design from TestInk!!!"], applicationActivities: [])
+        self.present(activityVC, animated: true, completion: nil)
     }
     
 }

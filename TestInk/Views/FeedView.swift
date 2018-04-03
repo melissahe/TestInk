@@ -38,9 +38,9 @@ class FeedView: UIView {
     lazy var previewTableView: UITableView = {
         let tv = UITableView()
         //create and register a cell
-//        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
+        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
         tv.backgroundColor = UIColor.Custom.lapisLazuli
-        tv.isHidden = false
+        tv.isHidden = true
         return tv
     }()
     
@@ -61,6 +61,11 @@ class FeedView: UIView {
     
     private func setupViews() {
         setupSegmentedControl()
+        setupDesignTableView()
+        setupPreviewTableView()
+    }
+    
+    private func setupDesignTableView() {
         setupTableView()
     }
     
@@ -84,6 +89,13 @@ class FeedView: UIView {
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
             
+        }
+    }
+    
+    private func setupPreviewTableView() {
+        addSubview(previewTableView)
+        previewTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(snp.edges)
         }
     }
 }
