@@ -17,7 +17,7 @@ class FeedView: UIView {
         seg.selectedSegmentIndex = 0
         seg.accessibilityNavigationStyle = .separate
         seg.layer.borderWidth = 0
-        let font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        let font = UIFont(name: "HelveticaNeue-Medium", size: 18)
         seg.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
         seg.backgroundColor = UIColor.Custom.mandarin
         seg.tintColor = UIColor.Custom.lapisLazuli
@@ -76,7 +76,7 @@ class FeedView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.10)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.075)
         }
     }
     
@@ -94,9 +94,6 @@ class FeedView: UIView {
     
     private func setupPreviewTableView() {
         addSubview(previewTableView)
-//        previewTableView.snp.makeConstraints { (make) in
-//            make.edges.equalTo(snp.edges)
-//        }
         previewTableView.snp.makeConstraints { (make) in
             make.top.equalTo(segmentedControl.snp.bottom)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
