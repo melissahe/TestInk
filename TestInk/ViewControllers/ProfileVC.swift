@@ -12,7 +12,8 @@ import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
-    lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private lazy var profileView = ProfileView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private lazy var emptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .favorites)
 
     lazy var currentUserID = AuthUserService.manager.getCurrentUser()!.uid
     
@@ -59,6 +60,15 @@ class ProfileVC: UIViewController {
             //likedPosts.forEach{print("User likes:",self.currentUserID,$0)}
             self.favoritePostIDs = likedPosts
             self.profileView.collectionView.reloadData()
+            
+            if likedPosts.isEmpty {
+                self.view.addSubview(self.emptyView)
+                self.emptyView.snp.makeConstraints({ (make) in
+                    make.edges.equalTo(self.profileView.collectionView.snp.edges)
+                })
+            } else {
+                self.emptyView.removeFromSuperview()
+            }
         }
     }
     

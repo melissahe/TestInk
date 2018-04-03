@@ -10,6 +10,11 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+enum PostType: String {
+    case design = "design posts"
+    case preview = "preview posts"
+}
+
 enum FlagStatus: Error {
     case errorParsingFlagData
     case errorGettingFlagData
@@ -19,16 +24,15 @@ class FirebaseFlaggingService{
     
     private init(){
         //reference to root
-        let dbRef = Database.database().reference()
+        dbRef = Database.database().reference()
         //child of the root
         flagRef = dbRef.child("flags")
         usersRef = dbRef.child("users")
-        designPostRef = dbRef.child("design posts")
     }
     
+    private var dbRef: DatabaseReference!
     private var flagRef: DatabaseReference!
     private var usersRef: DatabaseReference!
-    private var designPostRef: DatabaseReference!
     
     static let service = FirebaseFlaggingService()
     weak var delegate: FlagDelegate?
@@ -58,10 +62,10 @@ class FirebaseFlaggingService{
     ////TODO: Refactor below functions to model after codable data
 
     //MARK: Flagging a post and preventing the user from flagging the post more than once
-    public func flagPost(withDesignPostID flaggedDesignPostID: String,
+    public func flagPost(withPostType postType: PostType, flaggedPostID: String,
                          flaggedByUserID userID: String,
                          flaggedCompletion: @escaping (Bool) -> Void) {
-        let ref = designPostRef.child(flaggedDesignPostID)
+        let ref = dbRef.child(postType.rawValue).child(flaggedPostID)
         
         ref.runTransactionBlock({ (currentData) -> TransactionResult in
             if var designPost = currentData.value as? [String : Any] {
@@ -127,6 +131,25 @@ class FirebaseFlaggingService{
     }
     
     public func checkIfPostIsFlagged(post: DesignPost, byUserID userID: String, completionHandler: @escaping (Bool) -> Void) {
+        
+        getAllFlags { (flags, error) in
+            if let flags = flags {
+                if flags.contains(where: { (flag) -> Bool in
+                    return flag.postID == post.uid && flag.flaggedBy == userID && flag.userFlagged == post.userID
+                }) {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            } else if let error = error {
+                print(error)
+                completionHandler(false)
+            }
+        }
+    }
+    
+    public func checkIfPostIsFlagged(post: PreviewPost, byUserID userID: String, completionHandler: @escaping (Bool) -> Void) {
+        
         getAllFlags { (flags, error) in
             if let flags = flags {
                 if flags.contains(where: { (flag) -> Bool in

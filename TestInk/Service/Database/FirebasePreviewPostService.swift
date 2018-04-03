@@ -58,7 +58,7 @@ class FirebasePreviewPostService {
     func getAllPreviewPosts(completionHandler: @escaping ([PreviewPost]?, Error?) -> Void){
         // Get reference for the node that is preview posts
         let dbReference = Database.database().reference().child("preview posts")
-        dbReference.observe(.value){(snapshot) in
+        dbReference.observeSingleEvent(of: .value){(snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {print("preview posts node has no children");return}
             var allPreviewPosts = [PreviewPost]()
             for snap in snapshots {
