@@ -30,11 +30,11 @@ class FeedVC: UIViewController {
         previewRefreshControl = UIRefreshControl()
         designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
         previewRefreshControl.addTarget(self, action: #selector(loadPreviewData), for: .valueChanged)
-        //design tableview setup
+        //MARK: design tableview setup
         feedView.designTableView.refreshControl = designRefreshControl
         feedView.designTableView.delegate = self
         feedView.designTableView.dataSource = self
-        //preview tableview setup
+        //MARK: preview tableview setup
         feedView.previewTableView.refreshControl = previewRefreshControl
         feedView.previewTableView.delegate = self
         feedView.previewTableView.dataSource = self
@@ -45,12 +45,20 @@ class FeedVC: UIViewController {
         feedView.previewTableView.estimatedRowHeight = 200
         self.title = "Feed"
         //MARK: functionality for segmented control
-        //feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_ sender: UISegmentedControl)), for: .normal)
+        feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
     
-//    @objc private func segControlIndexPressed(_ sender : UISegmentedControl){
-//        print("segmented control working")
-//    }
+    @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
+        print("segmented control working")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            feedView.designTableView.reloadData()
+        case 1:
+            feedView.previewTableView.reloadData()
+        default:
+            break
+        }
+    }
     
     @objc private func tableViewRefreshed() {
         loadDesignData()
@@ -78,7 +86,7 @@ class FeedVC: UIViewController {
                         make.edges.equalTo(self.feedView.designTableView.snp.edges)
                     })
                 } else {
-                   self.designEmptyView.removeFromSuperview()
+                    self.designEmptyView.removeFromSuperview()
                     
                 }
             } else if let error = error {
@@ -153,11 +161,11 @@ extension FeedVC: UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell") as! PreviewCell
-            //as! PreviewCell
+        //as! PreviewCell
         let currentPreview = previewPosts[indexPath.row]
         cell.delegate = self
         cell.configureCell(withPost: currentPreview)
-//        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        //        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
         
         return cell
     }
@@ -211,7 +219,7 @@ extension FeedVC: FeedCellDelegate {
                     
                     if let textField = flagAlert.textFields?.first, let flagText = textField.text {
                         FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
-                       
+                        
                         FirebaseFlaggingService.service.flagPost(withPostType: .design, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
                         
                         cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
@@ -263,7 +271,7 @@ extension FeedVC: PreviewCellDelegate {
         }
         FirebaseFlaggingService.service.delegate = self
         //get flags, if userID and postID aren't already there, then allow for flagging, else present error saying you've already flagged
-          
+        
         FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: currentUserID) { (postHasBeenFlaggedByUser) in
             if postHasBeenFlaggedByUser {
                 let errorAlert = Alert.createErrorAlert(withMessage: "You have already flagged this post. Moderators will review your request shortly.")
@@ -287,7 +295,7 @@ extension FeedVC: PreviewCellDelegate {
                     
                     if let textField = flagAlert.textFields?.first, let flagText = textField.text {
                         FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
-                       
+                        
                         FirebaseFlaggingService.service.flagPost(withPostType: .preview, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
                         
                         cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
