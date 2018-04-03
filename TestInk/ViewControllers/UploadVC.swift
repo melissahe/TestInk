@@ -78,7 +78,7 @@ class UploadVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        uploadView.imageView.image = #imageLiteral(resourceName: "addphoto")
+        //uploadView.imageView.image = #imageLiteral(resourceName: "addphoto")
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
