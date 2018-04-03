@@ -175,6 +175,17 @@ extension CropFilterViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as! FilterCell
         cell.backgroundColor = .cyan
+        let ciContext = CIContext(options: nil)
+        let coreImage = CIImage(image: image)
+        let filter = CIFilter(name: ciFilterNames[indexPath.row])
+        filter!.setDefaults()
+        filter!.setValue(coreImage, forKey: kCIInputImageKey)
+        let filteredImageData = filter!.value(forKey: kCIOutputImageKey) as! CIImage
+        let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
+        let filteredUIImage = UIImage.init(cgImage: filteredImageRef!)//UIImage(CGImage:
+        cell.filterImageView.image = filteredUIImage
+        
+        
         let filterName = ciFilterNames[indexPath.row]
         cell.filterNameLabel.text = filterName
         return cell
