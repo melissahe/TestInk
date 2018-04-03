@@ -21,7 +21,6 @@ class FeedVC: UIViewController {
     }
     private var designRefreshControl: UIRefreshControl!
     private var previewRefreshControl: UIRefreshControl!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -31,17 +30,34 @@ class FeedVC: UIViewController {
         previewRefreshControl = UIRefreshControl()
         designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
         previewRefreshControl.addTarget(self, action: #selector(loadPreviewData), for: .valueChanged)
+        //MARK: design tableview setup
         feedView.designTableView.refreshControl = designRefreshControl
-        feedView.previewTableView.refreshControl = previewRefreshControl
         feedView.designTableView.delegate = self
-        feedView.previewTableView.delegate = self
         feedView.designTableView.dataSource = self
+        //MARK: preview tableview setup
+        feedView.previewTableView.refreshControl = previewRefreshControl
+        feedView.previewTableView.delegate = self
         feedView.previewTableView.dataSource = self
+        //MARK: used for self sizing cells
         feedView.designTableView.rowHeight = UITableViewAutomaticDimension
         feedView.previewTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         feedView.previewTableView.estimatedRowHeight = 200
         self.title = "Feed"
+        //MARK: functionality for segmented control
+        feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
+    }
+    
+    @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
+        print("segmented control working")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            feedView.designTableView.reloadData()
+        case 1:
+            feedView.previewTableView.reloadData()
+        default:
+            break
+        }
     }
     
     @objc private func tableViewRefreshed() {
@@ -70,7 +86,7 @@ class FeedVC: UIViewController {
                         make.edges.equalTo(self.feedView.designTableView.snp.edges)
                     })
                 } else {
-                   self.designEmptyView.removeFromSuperview()
+                    self.designEmptyView.removeFromSuperview()
                     
                 }
             } else if let error = error {
@@ -139,16 +155,17 @@ extension FeedVC: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedCell
             let currentDesign = designPosts[indexPath.row]
             cell.delegate = self
+            cell.selectionStyle = .none
             cell.configureCell(withPost: currentDesign)
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PreviewCell") as! PreviewCell
-            //as! PreviewCell
+        //as! PreviewCell
         let currentPreview = previewPosts[indexPath.row]
         cell.delegate = self
         cell.configureCell(withPost: currentPreview)
-//        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
+        //        cell.userImage.image = #imageLiteral(resourceName: "catplaceholder") //todo
         
         return cell
     }
@@ -202,7 +219,7 @@ extension FeedVC: FeedCellDelegate {
                     
                     if let textField = flagAlert.textFields?.first, let flagText = textField.text {
                         FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
-                       
+                        
                         FirebaseFlaggingService.service.flagPost(withPostType: .design, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
                         
                         cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
@@ -254,7 +271,7 @@ extension FeedVC: PreviewCellDelegate {
         }
         FirebaseFlaggingService.service.delegate = self
         //get flags, if userID and postID aren't already there, then allow for flagging, else present error saying you've already flagged
-          
+        
         FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: currentUserID) { (postHasBeenFlaggedByUser) in
             if postHasBeenFlaggedByUser {
                 let errorAlert = Alert.createErrorAlert(withMessage: "You have already flagged this post. Moderators will review your request shortly.")
@@ -278,7 +295,7 @@ extension FeedVC: PreviewCellDelegate {
                     
                     if let textField = flagAlert.textFields?.first, let flagText = textField.text {
                         FirebaseFlaggingService.service.addFlagToFirebase(flaggedBy: self.currentUserID, userFlagged: post.userID, postID: post.uid, flagMessage: flagText)
-                       
+                        
                         FirebaseFlaggingService.service.flagPost(withPostType: .preview, flaggedPostID: post.uid, flaggedByUserID: self.currentUserID, flaggedCompletion: { (_) in})
                         
                         cell.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
@@ -328,5 +345,57 @@ extension FeedVC: LikeServiceDelegate {
     }
     
     func didFailFavoritingPost(_ service: FirebaseLikingService, error: String) {
+    }
+}
+
+//////////////////MARK: this will remove the the border from the segmented control and add an underline for the selected segment
+//inspiration: https://stackoverflow.com/questions/42755590/how-to-display-only-bottom-border-for-selected-item-in-uisegmentedcontrol
+extension UISegmentedControl{
+    
+    func removeBorder(){
+        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: self.bounds.size)
+        self.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
+        self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
+        self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
+        
+        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
+        self.setDividerImage(deviderImage, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
+        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)], for: .selected)
+    }
+    
+    func addUnderlineForSelectedSegment(){
+        removeBorder()
+        let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
+        let underlineHeight: CGFloat = 2.0
+        let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
+        let underLineYPosition = self.bounds.size.height - 1.0
+        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
+        let underline = UIView(frame: underlineFrame)
+        underline.backgroundColor = UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)
+        underline.tag = 1
+        self.addSubview(underline)
+    }
+    
+    func changeUnderlinePosition(){
+        guard let underline = self.viewWithTag(1) else {return}
+        let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
+        UIView.animate(withDuration: 0.1, animations: {
+            underline.frame.origin.x = underlineFinalXPosition
+        })
+    }
+}
+
+extension UIImage{
+    
+    class func getColoredRectImageWith(color: CGColor, andSize size: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        let graphicsContext = UIGraphicsGetCurrentContext()
+        graphicsContext?.setFillColor(color)
+        let rectangle = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        graphicsContext?.fill(rectangle)
+        let rectangleImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return rectangleImage!
     }
 }
