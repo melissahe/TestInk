@@ -24,7 +24,7 @@ class FeedView: UIView {
     lazy var previewTableView: UITableView = {
         let tv = UITableView()
         //create and register a cell
-//        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
+        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
         tv.backgroundColor = UIColor.Custom.lapisLazuli
         tv.isHidden = false
         return tv
@@ -46,12 +46,20 @@ class FeedView: UIView {
     }
     
     private func setupViews() {
-        setupTableView()
+        setupDesignTableView()
+        setupPreviewTableView()
     }
     
-    private func setupTableView() {
+    private func setupDesignTableView() {
         addSubview(designTableView)
         designTableView.snp.makeConstraints { (make) in
+            make.edges.equalTo(snp.edges)
+        }
+    }
+    
+    private func setupPreviewTableView() {
+        addSubview(previewTableView)
+        previewTableView.snp.makeConstraints { (make) in
             make.edges.equalTo(snp.edges)
         }
     }
