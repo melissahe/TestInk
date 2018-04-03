@@ -26,7 +26,7 @@ class FeedView: UIView {
         //create and register a cell
         tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
         tv.backgroundColor = UIColor.Custom.lapisLazuli
-        tv.isHidden = false
+        tv.isHidden = true
         return tv
     }()
     
