@@ -45,10 +45,13 @@ class FeedVC: UIViewController {
         feedView.previewTableView.estimatedRowHeight = 200
         self.title = "Feed"
         //MARK: functionality for segmented control
+        feedView.segmentedControl.addUnderlineForSelectedSegment()
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
+        feedView.segmentedControl.changeUnderlinePosition()
+        feedView.designTableView.reloadData()
         switch sender.selectedSegmentIndex {
         case 0:
             navigationItem.title = "Tattoo Designs"
@@ -377,7 +380,7 @@ extension UISegmentedControl{
         let underLineYPosition = self.bounds.size.height - 1.0
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
-        underline.backgroundColor = UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)
+        underline.backgroundColor = Stylesheet.Colors.Lapislazuli
         underline.tag = 1
         self.addSubview(underline)
     }
