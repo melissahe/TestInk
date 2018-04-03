@@ -59,8 +59,6 @@ class UploadVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))

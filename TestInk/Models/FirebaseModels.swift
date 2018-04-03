@@ -43,7 +43,7 @@ struct DesignPost: Codable {
 struct PreviewPost: Codable {
     let uid: String
     let userID: String
-    let imageURL: String? = nil
+    let image: String?
     let likes: Int
     let timestamp: Double
     let flags: Int

@@ -38,7 +38,7 @@ class FirebasePreviewPostService {
         let childByAutoID = Database.database().reference(withPath: "preview posts").childByAutoId()
         let childKey = childByAutoID.key
         var previewPost: PreviewPost
-        previewPost = PreviewPost(uid: childKey, userID: userID, likes: likes, timestamp: timeStamp, flags: flags, designID: designID)
+        previewPost = PreviewPost(uid: childKey, userID: userID, image: nil, likes: likes, timestamp: timeStamp, flags: flags, designID: designID)
         //setting the value of the design posts
         childByAutoID.setValue(previewPost.previewPosToJSON()) { (error, dbRef) in
             if let error = error {

@@ -56,8 +56,7 @@ class FirebaseFlaggingService{
     
   
     ////TODO: Refactor below functions to model after codable data
-    
-    
+
     //MARK: Flagging a post and preventing the user from flagging the post more than once
     public func flagPost(withDesignPostID flaggedDesignPostID: String,
                          flaggedByUserID userID: String,
@@ -145,7 +144,7 @@ class FirebaseFlaggingService{
     }
     
     ///////// VERSION 2 of app: flag users
-    
+
     //MARK: Flagging a user
     public func flagUser(withUserID flaggedUserID: String,
                          flaggedByUserID userID: String,
