@@ -23,7 +23,6 @@ class FirebaseFlaggingService{
         //child of the root
         flagRef = dbRef.child("flags")
         usersRef = dbRef.child("users")
-        designPostRef = dbRef.child("design posts")
     }
     
     private var flagRef: DatabaseReference!
@@ -62,7 +61,7 @@ class FirebaseFlaggingService{
     public func flagPost(withDesignPostID flaggedDesignPostID: String,
                          flaggedByUserID userID: String,
                          flaggedCompletion: @escaping (Bool) -> Void) {
-        let ref = designPostRef.child(flaggedDesignPostID)
+        let ref = dbRef.child(postType.rawValue).child(flaggedPostID)
         
         ref.runTransactionBlock({ (currentData) -> TransactionResult in
             if var designPost = currentData.value as? [String : Any] {
@@ -128,6 +127,25 @@ class FirebaseFlaggingService{
     }
     
     public func checkIfPostIsFlagged(post: DesignPost, byUserID userID: String, completionHandler: @escaping (Bool) -> Void) {
+        
+        getAllFlags { (flags, error) in
+            if let flags = flags {
+                if flags.contains(where: { (flag) -> Bool in
+                    return flag.postID == post.uid && flag.flaggedBy == userID && flag.userFlagged == post.userID
+                }) {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            } else if let error = error {
+                print(error)
+                completionHandler(false)
+            }
+        }
+    }
+    
+    public func checkIfPostIsFlagged(post: PreviewPost, byUserID userID: String, completionHandler: @escaping (Bool) -> Void) {
+        
         getAllFlags { (flags, error) in
             if let flags = flags {
                 if flags.contains(where: { (flag) -> Bool in
