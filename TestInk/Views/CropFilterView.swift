@@ -53,7 +53,7 @@ class CropFilterView: UIView {
         layout.sectionInset = UIEdgeInsetsMake(cellSpacing, cellSpacing, cellSpacing, cellSpacing)
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.register(FilterCell.self, forCellWithReuseIdentifier: "FilterCell")
-        cv.backgroundColor = .cyan
+        cv.backgroundColor = .clear
         return cv
     }()
     
