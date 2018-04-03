@@ -23,19 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tbc = UITabBarController()
         let profileVC = ProfileVC()
         let feedVC = FeedVC()
+        let loginVC = LoginVC()
         
         let feedNavController = UINavigationController(rootViewController: feedVC)
+        let logInViewController = UINavigationController(rootViewController: loginVC)
         feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
  
         let profileNavController = UINavigationController(rootViewController: profileVC)
-        profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
+        profileNavController.tabBarItem = UITabBarItem(title: "Favorite", image: nil, tag: 1)
         
         tbc.viewControllers = [feedNavController, profileNavController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tbc
+        window?.rootViewController = logInViewController
         window?.makeKeyAndVisible()
-        
         return true
     }
     

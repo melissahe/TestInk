@@ -20,7 +20,7 @@ enum AuthUserStatus: Error {
 }
 
 
-//MARK: This API client is responsible for logging the user in and creating accounts in the Firebase database.
+//MARK: This service is responsible for logging the user in and creating accounts in the Firebase database.
 class AuthUserService {
     
     private init(){
@@ -55,15 +55,16 @@ class AuthUserService {
         self.auth.createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("Failure creating user with error: \(error)")
-                self.delegate?.didFailCreatingUser(self, error: AuthUserStatus.failedToCreateUser)
+                self.delegate?.didFailCreatingUser(self, error: error)
             } else if let user = user {
+                UserDefaultsHelper.manager.saveEmail(email: email)
                 print(user.uid)
                 // update and authenticate user display name with their email
                 let changeRequest = user.createProfileChangeRequest()
                 let stringArray = user.email!.components(separatedBy: "@") //["ncsouvenir", "@", "gmail.com"]
                 let userName = stringArray[0] //["ncsouvenir"]
                 changeRequest.displayName = userName
-                changeRequest.commitChanges(completion: { (error) in
+                changeRequest.commitChanges(completion: {(error) in
                     if let error = error{
                         print("change request error: \(error)")
                     } else{
@@ -78,13 +79,14 @@ class AuthUserService {
     }
     
     
-    //MARK: Logs the user in with their email and password.WORKS!
+    //MARK: Logs the user in with their email and password
     public func login(withEmail email: String, password: String){
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let error = error {
                 print("failed to sign in with error: \(error)")
                 self.delegate?.didFailToSignIn(self, error: AuthUserStatus.failedToSignIn)
             } else if let user = user {
+                UserDefaultsHelper.manager.saveEmail(email: email)
                 self.delegate?.didSignIn(self, user: user)
                 print("\(user.email, user.uid) logged in")
                 print(Auth.auth().currentUser?.uid ?? "No ID login")
@@ -104,7 +106,7 @@ class AuthUserService {
         }
     }
     
-    //MARK: Sends user email to reset
+    //MARK: Sends the user an email to reset password
     public func forgotPassword(withEmail email: String){
         auth.sendPasswordReset(withEmail: email) { (error) in
             if let error = error {
