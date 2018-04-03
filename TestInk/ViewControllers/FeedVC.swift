@@ -24,8 +24,8 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        loadDesignData()
-        loadPreviewData()
+//        loadDesignData()
+        //loadPreviewData()
         designRefreshControl = UIRefreshControl()
         previewRefreshControl = UIRefreshControl()
         designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
@@ -49,12 +49,17 @@ class FeedVC: UIViewController {
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
-        print("segmented control working")
         switch sender.selectedSegmentIndex {
         case 0:
-            feedView.designTableView.reloadData()
+            navigationItem.title = "Tattoo Designs"
+            loadDesignData()
+            feedView.previewTableView.isHidden = true
+            feedView.designTableView.isHidden = false
         case 1:
-            feedView.previewTableView.reloadData()
+             navigationItem.title = "Tattoo Previews"
+            loadPreviewData()
+            feedView.designTableView.isHidden = true
+            feedView.previewTableView.isHidden = false
         default:
             break
         }
