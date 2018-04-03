@@ -98,6 +98,7 @@ class CropFilterViewController: UIViewController {
         cropFilterView.imageView.image = image
         cropFilterView.collectionView.dataSource = self
         cropFilterView.collectionView.delegate = self
+        finalImage = image
 
   
     }
@@ -161,7 +162,7 @@ class CropFilterViewController: UIViewController {
     }
     
     func updateImage(image: UIImage) {
-        delegate?.didUpdateImage(image: image)
+        delegate?.didUpdateImage(image: finalImage)
     }
 
 
