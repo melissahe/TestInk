@@ -36,7 +36,7 @@ class UploadView: UIView {
         button.layer.borderWidth = 0.6
         button.layer.borderColor = UIColor.black.cgColor
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("Post", for: .normal)
+        button.setTitle("Post Design", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
         
