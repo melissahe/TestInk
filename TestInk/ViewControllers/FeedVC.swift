@@ -12,6 +12,8 @@ import SnapKit
 class FeedVC: UIViewController {
     
     private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private lazy var designEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .designs)
+    private lazy var previewEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .previews)
     private var designPosts: [DesignPost] = []
     private var previewPosts: [PreviewPost] = []
     private var currentUserID: String {
@@ -61,6 +63,16 @@ class FeedVC: UIViewController {
             if let posts = posts {
                 self.designPosts = posts
                 self.feedView.designTableView.reloadData()
+                
+                if posts.isEmpty {
+                    self.view.addSubview(self.designEmptyView)
+                    self.designEmptyView.snp.makeConstraints({ (make) in
+                        make.edges.equalTo(self.feedView.designTableView.snp.edges)
+                    })
+                } else {
+                   self.designEmptyView.removeFromSuperview()
+                    
+                }
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get designs. Please check network connection.")
@@ -79,6 +91,15 @@ class FeedVC: UIViewController {
             if let posts = posts {
                 self.previewPosts = posts
                 self.feedView.previewTableView.reloadData()
+                if posts.isEmpty {
+                    self.view.addSubview(self.previewEmptyView)
+                    self.previewEmptyView.snp.makeConstraints({ (make) in
+                        make.edges.equalTo(self.feedView.designTableView.snp.edges)
+                    })
+                } else {
+                    self.previewEmptyView.removeFromSuperview()
+                    
+                }
             } else if let error = error {
                 print(error)
                 let errorAlert = Alert.createErrorAlert(withMessage: "Could not get tattoo previews. Please check network connection.")
@@ -90,7 +111,6 @@ class FeedVC: UIViewController {
     private func setupViews() {
         view.addSubview(feedView)
         view.backgroundColor = UIColor.Custom.lapisLazuli
-        view.addSubview(feedView)
         feedView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
