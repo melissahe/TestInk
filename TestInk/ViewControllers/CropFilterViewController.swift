@@ -43,7 +43,7 @@ class CropFilterViewController: UIViewController {
     //Final Cropped Image
     private var croppedImage = UIImage()
     
-    
+    var finalImage = UIImage()
     
     private let ciFilterNames = [
         "CIPhotoEffectChrome",
@@ -98,6 +98,7 @@ class CropFilterViewController: UIViewController {
         cropFilterView.imageView.image = image
         cropFilterView.collectionView.dataSource = self
         cropFilterView.collectionView.delegate = self
+        finalImage = image
 
   
     }
@@ -134,7 +135,8 @@ class CropFilterViewController: UIViewController {
         let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
         let filteredUIImage = UIImage.init(cgImage: filteredImageRef!)//UIImage(CGImage: filteredImageRef!);
         cropFilterView.imageView.image = filteredUIImage
-        image = filteredUIImage
+        finalImage = filteredUIImage
+        
     }
     
     @objc func crop() {
@@ -155,12 +157,12 @@ class CropFilterViewController: UIViewController {
     }
     
     @objc func doneButtonPressed() {
-        updateImage(image: image)
+        updateImage(image: finalImage)
         self.dismiss(animated: true, completion: nil)
     }
     
     func updateImage(image: UIImage) {
-        delegate?.didUpdateImage(image: image)
+        delegate?.didUpdateImage(image: finalImage)
     }
 
 
@@ -173,7 +175,18 @@ extension CropFilterViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as! FilterCell
-        cell.backgroundColor = .cyan
+        cell.backgroundColor = .clear
+        let ciContext = CIContext(options: nil)
+        let coreImage = CIImage(image: image)
+        let filter = CIFilter(name: ciFilterNames[indexPath.row])
+        filter!.setDefaults()
+        filter!.setValue(coreImage, forKey: kCIInputImageKey)
+        let filteredImageData = filter!.value(forKey: kCIOutputImageKey) as! CIImage
+        let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
+        let filteredUIImage = UIImage.init(cgImage: filteredImageRef!)//UIImage(CGImage:
+        cell.filterImageView.image = filteredUIImage
+        
+        
         let filterName = ciFilterNames[indexPath.row]
         cell.filterNameLabel.text = filterName
         return cell
@@ -246,6 +259,7 @@ extension CropFilterViewController {
         
         croppedImage = newImage!
         image = croppedImage
+        finalImage = croppedImage
        
     }
 
