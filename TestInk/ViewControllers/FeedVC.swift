@@ -50,15 +50,18 @@ class FeedVC: UIViewController {
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
-        feedView.segmentedControl.changeUnderlinePosition()
-        feedView.designTableView.reloadData()
+       
         switch sender.selectedSegmentIndex {
         case 0:
+            feedView.segmentedControl.changeUnderlinePosition()
+            feedView.designTableView.reloadData()
             navigationItem.title = "Tattoo Designs"
             loadDesignData()
             feedView.previewTableView.isHidden = true
             feedView.designTableView.isHidden = false
         case 1:
+            feedView.segmentedControl.changeUnderlinePosition()
+            feedView.previewTableView.reloadData()
              navigationItem.title = "Tattoo Previews"
             loadPreviewData()
             feedView.designTableView.isHidden = true
