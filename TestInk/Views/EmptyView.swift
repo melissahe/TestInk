@@ -50,9 +50,13 @@ class EmptyView: UIView {
         super.init(frame: frame)
         switch emptyStateType {
         case .designs:
-            return //to fix
+            self.emptyStateImageView.image = #imageLiteral(resourceName: "coloredPreviewIcon")
+            self.titleTextLabel.text = "No tattoo designs in the feed. :("
+            self.detailedTextLabel.text = "Tap the \"+\" button in the upper right and add a design!"
         case .previews:
-            return //to fix
+            self.emptyStateImageView.image = #imageLiteral(resourceName: "coloredPreviewIcon")
+            self.titleTextLabel.text = "There are no tattoo previews in the feed."
+            self.detailedTextLabel.text = "Try on a tattoo, take a picture, and share it to the feed!"
         case.favorites:
             self.emptyStateImageView.image = #imageLiteral(resourceName: "heartIcon")
             self.titleTextLabel.text = "You have no favorites saved."
@@ -84,7 +88,7 @@ class EmptyView: UIView {
         emptyStateImageView.snp.makeConstraints { (make) in
             make.height.equalTo(self).multipliedBy(0.33)
             make.centerX.equalTo(self)
-            make.centerY.equalTo(self).multipliedBy(0.90)
+            make.centerY.equalTo(self).multipliedBy(0.80)
         }
         emptyStateImageView.layer.opacity = 0.7
     }
