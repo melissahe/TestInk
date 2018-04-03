@@ -19,4 +19,5 @@ protocol FlagDelegate: class {
     func didFlagPostAlready(_ service: FirebaseFlaggingService, error: String)
     func didFlagPost(_ service: FirebaseFlaggingService)
     func didFailToFlagPost(_ service: FirebaseFlaggingService, error: String)
+    
 }

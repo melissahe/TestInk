@@ -25,7 +25,7 @@ class StockImagesCollectionViewCell: UICollectionViewCell {
         commonInit()
     }
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = .clear
         setupViews()
     }
     
