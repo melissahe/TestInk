@@ -44,6 +44,7 @@ class ProfileVC: UIViewController {
                 ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
                     self.profileView.profileImageView.image = profileImage
                     FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: self.currentUserID, image: profileImage)
+                    //NSCacheHelper.manager.addImage(with: self.currentUserID, and: profileImage)
                 }, errorHandler: { (error) in
                     print("Couldn't get profile Image \(error)")
                 })
@@ -56,7 +57,7 @@ class ProfileVC: UIViewController {
             self.profileView.displayName.text = displayName
         }
         FirebaseLikingService.service.getAllLikes(forUserID: currentUserID) { (likedPosts) in
-            
+            //likedPosts.forEach{print("User likes:",self.currentUserID,$0)}
             self.favoritePostIDs = likedPosts
             self.profileView.collectionView.reloadData()
             
