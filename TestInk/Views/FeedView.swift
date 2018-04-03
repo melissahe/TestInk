@@ -94,8 +94,16 @@ class FeedView: UIView {
     
     private func setupPreviewTableView() {
         addSubview(previewTableView)
+//        previewTableView.snp.makeConstraints { (make) in
+//            make.edges.equalTo(snp.edges)
+//        }
         previewTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(snp.edges)
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            
         }
+
     }
 }

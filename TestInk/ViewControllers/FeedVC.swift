@@ -24,7 +24,7 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-//        loadDesignData()
+        loadDesignData()
         //loadPreviewData()
         designRefreshControl = UIRefreshControl()
         previewRefreshControl = UIRefreshControl()
