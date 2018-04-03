@@ -10,6 +10,11 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+enum PostType: String {
+    case design = "design posts"
+    case preview = "preview posts"
+}
+
 enum FlagStatus: Error {
     case errorParsingFlagData
     case errorGettingFlagData
@@ -19,15 +24,15 @@ class FirebaseFlaggingService{
     
     private init(){
         //reference to root
-        let dbRef = Database.database().reference()
+        dbRef = Database.database().reference()
         //child of the root
         flagRef = dbRef.child("flags")
         usersRef = dbRef.child("users")
     }
     
+    private var dbRef: DatabaseReference!
     private var flagRef: DatabaseReference!
     private var usersRef: DatabaseReference!
-    private var designPostRef: DatabaseReference!
     
     static let service = FirebaseFlaggingService()
     weak var delegate: FlagDelegate?
@@ -58,7 +63,7 @@ class FirebaseFlaggingService{
     
     
     //MARK: Flagging a post and preventing the user from flagging the post more than once
-    public func flagPost(withDesignPostID flaggedDesignPostID: String,
+    public func flagPost(withPostType postType: PostType, flaggedPostID: String,
                          flaggedByUserID userID: String,
                          flaggedCompletion: @escaping (Bool) -> Void) {
         let ref = dbRef.child(postType.rawValue).child(flaggedPostID)
