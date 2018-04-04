@@ -17,10 +17,10 @@ class FeedView: UIView {
         seg.selectedSegmentIndex = 0
         seg.accessibilityNavigationStyle = .separate
         seg.layer.borderWidth = 0
-        let font = UIFont(name: "HelveticaNeue-Medium", size: 17)
+        let font = UIFont(name: "HelveticaNeue", size: 13)
         seg.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
-        seg.backgroundColor = UIColor.Custom.mandarin
-        seg.tintColor = UIColor.Custom.lapisLazuli
+        seg.backgroundColor = UIColor.white
+        seg.tintColor = UIColor.Custom.gainsboro
         return seg
     }()
     
@@ -76,7 +76,7 @@ class FeedView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.10)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.07)
         }
     }
     
