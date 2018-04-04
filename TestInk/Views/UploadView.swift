@@ -13,7 +13,7 @@ class UploadView: UIView {
     
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .white
+        iv.backgroundColor = Stylesheet.Colors.LightBlue
         iv.isUserInteractionEnabled = true
         iv.image = #imageLiteral(resourceName: "addphoto")
         iv.contentMode = .scaleAspectFit
@@ -67,7 +67,7 @@ class UploadView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
+        backgroundColor = UIColor.white//UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         setupViews()
     }
     
