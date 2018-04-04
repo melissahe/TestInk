@@ -54,17 +54,7 @@ class LoginVC: UIViewController {
         
         //To check if user is already logged in.
             if Auth.auth().currentUser != nil {
-                let tbc = UITabBarController()
-                let profileVC = ProfileVC()
-                let feedVC = FeedVC()
-                
-                let feedNavController = UINavigationController(rootViewController: feedVC)
-                feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
-                
-                let profileNavController = UINavigationController(rootViewController: profileVC)
-                profileNavController.tabBarItem = UITabBarItem(title: "Favorite", image: nil, tag: 1)
-                
-                tbc.viewControllers = [feedNavController, profileNavController]
+                let tbc = TabBarController()
                 present(tbc, animated: true, completion: nil)
                 
          //self.present(feedVC, animated: true, completion: nil)
@@ -248,17 +238,7 @@ extension LoginVC: AuthUserDelegate {
     func didSignIn(_ userService: AuthUserService, user: User) {
         userLoginView.passwordTextField.text = nil
         
-        let tbc = UITabBarController()
-        let profileVC = ProfileVC()
-        let feedVC = FeedVC()
-        
-        let feedNavController = UINavigationController(rootViewController: feedVC)
-        feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
-        
-        let profileNavController = UINavigationController(rootViewController: profileVC)
-        profileNavController.tabBarItem = UITabBarItem(title: "Favorite", image: nil, tag: 1)
-        
-        tbc.viewControllers = [feedNavController, profileNavController]
+        let tbc = TabBarController()
         present(tbc, animated: true, completion: nil)
     }
     
