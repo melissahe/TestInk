@@ -132,16 +132,7 @@ class FeedVC: UIViewController {
         feedView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
-        
-        //right bar button
-//        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
-//        navigationItem.rightBarButtonItem = uploadButton
     }
-    
-//    @objc private func uploadButtonPressed() {
-//        let upLoadVC = UploadVC()
-//        navigationController?.pushViewController(upLoadVC, animated: true)
-//    }
 }
 
 extension FeedVC: UITableViewDataSource {
