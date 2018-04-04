@@ -25,12 +25,16 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Favorite"
+//        self.title = "Favorites"
         setupViews()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
         imagePickerController.delegate = self
         loadData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        profileView.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,8 +179,9 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
 
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        let cellWidth = (screenWidth - (cellSpacing * numSpaces)) / numCells
 
-        return CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numCells, height: screenHeight * 0.19)
+        return CGSize(width: cellWidth, height: cellWidth)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

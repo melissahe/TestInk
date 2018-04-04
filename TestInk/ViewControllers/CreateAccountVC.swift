@@ -91,12 +91,7 @@ extension CreateAccountVC: AuthUserDelegate {
     }
     
     func didCreateUser(_ userService: AuthUserService, user: User) {
-        let tbc = UITabBarController()
-        let feedVC = FeedVC()
-        let feedNavVC = UINavigationController(rootViewController: feedVC)
-        let profileVC = ProfileVC()
-        let profileNavVC = UINavigationController(rootViewController: profileVC)
-        tbc.viewControllers = [feedNavVC, profileNavVC]
+        let tbc = TabBarController()
         self.present(tbc, animated: true, completion: nil)
     }
     
