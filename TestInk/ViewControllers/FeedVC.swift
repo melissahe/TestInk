@@ -43,7 +43,7 @@ class FeedVC: UIViewController {
         feedView.previewTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         feedView.previewTableView.estimatedRowHeight = 200
-        self.title = "Feed"
+        self.navigationItem.title = "Feed"
         //MARK: functionality for segmented control
         //feedView.segmentedControl.addUnderlineForSelectedSegment()
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
@@ -83,6 +83,7 @@ class FeedVC: UIViewController {
     private func loadDesignData() {
         if noInternet {
             presentNoInternetAlert()
+            designRefreshControl.endRefreshing()
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
@@ -111,6 +112,7 @@ class FeedVC: UIViewController {
     @objc private func loadPreviewData() {
         if noInternet {
             presentNoInternetAlert()
+            previewRefreshControl.endRefreshing()
             return
         }
         FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in
@@ -143,14 +145,14 @@ class FeedVC: UIViewController {
         }
         
         //right bar button
-        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
-        navigationItem.rightBarButtonItem = uploadButton
+//        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
+//        navigationItem.rightBarButtonItem = uploadButton
     }
     
-    @objc private func uploadButtonPressed() {
-        let upLoadVC = UploadVC()
-        navigationController?.pushViewController(upLoadVC, animated: true)
-    }
+//    @objc private func uploadButtonPressed() {
+//        let upLoadVC = UploadVC()
+//        navigationController?.pushViewController(upLoadVC, animated: true)
+//    }
 }
 
 extension FeedVC: UITableViewDataSource {

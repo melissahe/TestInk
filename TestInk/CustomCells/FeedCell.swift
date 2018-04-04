@@ -39,6 +39,7 @@ class FeedCell: UITableViewCell {
 //        label.text = "Billy"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
+        label.textColor = Stylesheet.Colors.Lapislazuli
         return label
     }()
     
@@ -51,8 +52,9 @@ class FeedCell: UITableViewCell {
     }()
     
     lazy var flagButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(flagButtonTapped), for: .touchUpInside)
         return button
@@ -70,27 +72,23 @@ class FeedCell: UITableViewCell {
         let label = UILabel()
         label.text = "23" // to do
         label.textColor = .black
-        label.textColor = Stylesheet.Colors.White
+        label.textColor = Stylesheet.Colors.Lapislazuli
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
         return label
     }()
     
     lazy var shareButton: UIButton = {
         let button = UIButton(type: .system)
-       // button.setImage(#imageLiteral(resourceName: "icons8-upload-32"), for: .normal)
-         button.tintColor = .white
+         button.tintColor = Stylesheet.Colors.Lapislazuli
          button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
-        
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-        button.tintColor = Stylesheet.Colors.White
         return button
     }()
     
     lazy var canvasView: UIView = {
         let view = UIView()
-        //view.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
-        view.backgroundColor = Stylesheet.Colors.LightBlue
+        view.backgroundColor = Stylesheet.Colors.WhiteSmoke
         return view
     }()
     
@@ -273,7 +271,7 @@ class FeedCell: UITableViewCell {
     }
     
     private func setupCanvasView() {
-        contentView.addSubview(canvasView)
+        
         canvasView.snp.makeConstraints { (make) in
            make.top.equalTo(feedImage.snp.bottom)
             //make.height.equalTo(self.snp.height).multipliedBy(0.33)
@@ -286,6 +284,7 @@ class FeedCell: UITableViewCell {
     private func setupLikeButton() {
         
         likeButton.snp.makeConstraints { (make) -> Void in
+           // make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.height.equalTo(userImage)
             make.leading.bottom.equalTo(contentView).inset(8)
