@@ -27,6 +27,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 //        self.title = "Favorites"
         setupViews()
+        setupNavigation()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
         imagePickerController.delegate = self
@@ -83,13 +84,17 @@ class ProfileVC: UIViewController {
         profileView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
-        
+    }
+    
+    private func setupNavigation() {
         //right bar button
-        let addLogoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
+        let addLogoutItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settingIcon"), style: .done, target: self, action: #selector(logoutPressed))
+            
+//            UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
+        
         navigationItem.rightBarButtonItem = addLogoutItem
         profileView.changeProfileImageButton.addTarget(self, action: #selector(changeProfileButtonPressed), for: .touchUpInside)
     }
-    
     
     @objc private func logoutPressed() {
         AuthUserService.manager.delegate = self
