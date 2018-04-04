@@ -14,13 +14,17 @@ class FeedVC: UIViewController {
     private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     private lazy var designEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .designs)
     private lazy var previewEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .previews)
+    
     private var designPosts: [DesignPost] = []
     private var previewPosts: [PreviewPost] = []
+    
     private var currentUserID: String {
         return AuthUserService.manager.getCurrentUser()!.uid
     }
+    
     private var designRefreshControl: UIRefreshControl!
     private var previewRefreshControl: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -60,12 +64,12 @@ class FeedVC: UIViewController {
             feedView.previewTableView.isHidden = true
             feedView.designTableView.isHidden = false
         case 1:
-            feedView.segmentedControl.changeUnderlinePosition()
-            feedView.previewTableView.reloadData()
+//            feedView.segmentedControl.changeUnderlinePosition()
+//            feedView.previewTableView.reloadData()
              navigationItem.title = "Tattoo Previews"
             loadPreviewData()
-//            feedView.designTableView.isHidden = true
-//            feedView.previewTableView.isHidden = false
+            feedView.designTableView.isHidden = true
+            feedView.previewTableView.isHidden = false
         default:
             break
         }

@@ -26,7 +26,6 @@ class TabBarController: UITabBarController {
         
         
         //Feed NavController
-
         let feedNavController = UINavigationController(rootViewController: feedVC)
         feedNavController.navigationBar.isTranslucent = false
         feedNavController.navigationBar.titleTextAttributes = textAttributes
