@@ -43,7 +43,7 @@ class FeedVC: UIViewController {
         feedView.previewTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         feedView.previewTableView.estimatedRowHeight = 200
-        self.title = "Feed"
+        self.navigationItem.title = "Feed"
         //MARK: functionality for segmented control
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
@@ -72,6 +72,7 @@ class FeedVC: UIViewController {
     private func loadDesignData() {
         if noInternet {
             presentNoInternetAlert()
+            designRefreshControl.endRefreshing()
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
@@ -100,6 +101,7 @@ class FeedVC: UIViewController {
     @objc private func loadPreviewData() {
         if noInternet {
             presentNoInternetAlert()
+            previewRefreshControl.endRefreshing()
             return
         }
         FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in

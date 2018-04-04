@@ -25,12 +25,16 @@ class ProfileVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Favorite"
+//        self.title = "Favorites"
         setupViews()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
         imagePickerController.delegate = self
         loadData()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        profileView.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +48,7 @@ class ProfileVC: UIViewController {
                 ImageHelper.manager.getImage(from: imageURL, completionHandler: { (profileImage) in
                     self.profileView.profileImageView.image = profileImage
                     FirebaseStorageService.service.storeImage(withImageType: .userProfileImg, imageUID: self.currentUserID, image: profileImage)
+                    //NSCacheHelper.manager.addImage(with: self.currentUserID, and: profileImage)
                 }, errorHandler: { (error) in
                     print("Couldn't get profile Image \(error)")
                 })
@@ -56,7 +61,7 @@ class ProfileVC: UIViewController {
             self.profileView.displayName.text = displayName
         }
         FirebaseLikingService.service.getAllLikes(forUserID: currentUserID) { (likedPosts) in
-            
+            //likedPosts.forEach{print("User likes:",self.currentUserID,$0)}
             self.favoritePostIDs = likedPosts
             self.profileView.collectionView.reloadData()
             
@@ -174,8 +179,9 @@ extension ProfileVC: UICollectionViewDelegateFlowLayout {
 
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        let cellWidth = (screenWidth - (cellSpacing * numSpaces)) / numCells
 
-        return CGSize(width: (screenWidth - (cellSpacing * numSpaces)) / numCells, height: screenHeight * 0.19)
+        return CGSize(width: cellWidth, height: cellWidth)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
