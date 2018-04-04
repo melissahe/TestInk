@@ -72,6 +72,7 @@ class FeedVC: UIViewController {
     private func loadDesignData() {
         if noInternet {
             presentNoInternetAlert()
+            designRefreshControl.endRefreshing()
             return
         }
         FirebaseDesignPostService.service.getAllDesignPosts { (posts, error) in
@@ -100,6 +101,7 @@ class FeedVC: UIViewController {
     @objc private func loadPreviewData() {
         if noInternet {
             presentNoInternetAlert()
+            previewRefreshControl.endRefreshing()
             return
         }
         FirebasePreviewPostService.service.getAllPreviewPosts { (posts, error) in
