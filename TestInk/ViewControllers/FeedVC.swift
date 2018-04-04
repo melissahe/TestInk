@@ -134,14 +134,14 @@ class FeedVC: UIViewController {
         }
         
         //right bar button
-        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
-        navigationItem.rightBarButtonItem = uploadButton
+//        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(uploadButtonPressed))
+//        navigationItem.rightBarButtonItem = uploadButton
     }
     
-    @objc private func uploadButtonPressed() {
-        let upLoadVC = UploadVC()
-        navigationController?.pushViewController(upLoadVC, animated: true)
-    }
+//    @objc private func uploadButtonPressed() {
+//        let upLoadVC = UploadVC()
+//        navigationController?.pushViewController(upLoadVC, animated: true)
+//    }
 }
 
 extension FeedVC: UITableViewDataSource {
