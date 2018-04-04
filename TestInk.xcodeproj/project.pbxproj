@@ -70,6 +70,7 @@
 		81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1D206046D000F7D450 /* FilterCell.swift */; };
 		81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1F2060510D00F7D450 /* FilterModel.swift */; };
 		81D17682206EC5D90049D76A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D17681206EC5D90049D76A /* UserDefault.swift */; };
+		81E465E820742E58007A9FC3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E465E720742E58007A9FC3 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		81BDAD1D206046D000F7D450 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		81BDAD1F2060510D00F7D450 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		81D17681206EC5D90049D76A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		81E465E720742E58007A9FC3 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +308,7 @@
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 				81294E40207277E800EF50B0 /* CropFilterViewController.swift */,
+				81E465E720742E58007A9FC3 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */,
 				81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */,
 				818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */,
+				81E465E820742E58007A9FC3 /* TabBarController.swift in Sources */,
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
 				81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */,
 				81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */,
