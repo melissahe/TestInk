@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
         let feedVC = FeedVC()
         let upLoadVC = UploadVC()
         
-        let textAttributes = [NSAttributedStringKey.foregroundColor : UIColor.Custom.whiteSmoke]
+        let textAttributes = [NSAttributedStringKey.foregroundColor : UIColor.Custom.lapisLazuli]
         let barColor = Stylesheet.Colors.LightBlue
         let tintColor = UIColor.Custom.whiteSmoke
         let feedImageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
@@ -44,7 +44,8 @@ class TabBarController: UITabBarController {
         upLoadNavController.navigationBar.tintColor = tintColor
         upLoadNavController.navigationBar.shadowImage = UIImage()
         upLoadNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        upLoadNavController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-plus-withCircle"), tag: 1)
+        upLoadNavController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "uploadUnfilledIcon"), tag: 1)
+        upLoadNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "uploadFilledIcon")
         upLoadNavController.tabBarItem.imageInsets = uploadImageInsets
         
         //Profile NavController
@@ -60,16 +61,12 @@ class TabBarController: UITabBarController {
         profileNavController.tabBarItem = profileTabBarItem
         profileTabBarItem.imageInsets = profileImageInsets
         profileTabBarItem.selectedImage = #imageLiteral(resourceName: "favoriteFilledIcon")
-        
-        self.viewControllers = [feedNavController, profileNavController]
-        self.tabBar.barTintColor = UIColor.Custom.lapisLazuli
-        self.tabBar.tintColor = UIColor.Custom.mediumSkyBlue
-        self.tabBar.unselectedItemTintColor = UIColor.Custom.gainsboro
+
         
         self.viewControllers = [feedNavController, upLoadNavController, profileNavController]
         self.tabBar.barTintColor = Stylesheet.Colors.Lapislazuli
-        self.tabBar.tintColor = Stylesheet.Colors.MediumSkyBlue
-        self.tabBar.unselectedItemTintColor = Stylesheet.Colors.Gainsboro
+        self.tabBar.tintColor = Stylesheet.Colors.LightBlue
+        self.tabBar.unselectedItemTintColor = Stylesheet.Colors.LightBlue
     }
 
 }

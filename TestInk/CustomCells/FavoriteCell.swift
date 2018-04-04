@@ -59,7 +59,9 @@ class FavoriteCell: UICollectionViewCell {
     }
     
     private func commonInit() {
-        backgroundColor = .gray
+        backgroundColor = UIColor.white
+        self.layer.borderWidth = 2
+        self.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor
         setupViews()
     }
     
