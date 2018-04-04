@@ -43,7 +43,7 @@ class FeedVC: UIViewController {
         feedView.previewTableView.rowHeight = UITableViewAutomaticDimension
         feedView.designTableView.estimatedRowHeight = 200
         feedView.previewTableView.estimatedRowHeight = 200
-        self.title = "Feed"
+        self.navigationItem.title = "Feed"
         //MARK: functionality for segmented control
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
