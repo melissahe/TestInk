@@ -63,6 +63,7 @@ class UploadVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Upload"
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
         imagePickerController.delegate = self
         FirebaseStorageService.service.delegate = self
@@ -73,7 +74,7 @@ class UploadVC: UIViewController {
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
         uploadView.ARTestButton.addTarget(self, action: #selector(ARTestButtonPressed), for: .touchUpInside)
         uploadView.postButton.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-        self.title = "Upload"
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
