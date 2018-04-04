@@ -20,20 +20,23 @@ class CropFilterView: UIView {
     
     lazy var cropButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 7
         button.layer.borderWidth = 0.6
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Crop", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
+        button.backgroundColor = UIColor.Custom.mandarin
         return button
     }()
     
     lazy var cancelButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 7
         button.layer.borderWidth = 0.6
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
+        button.setTitleColor(UIColor.Custom.mandarin, for: .normal)
         button.setTitle("Cancel", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
@@ -88,7 +91,7 @@ class CropFilterView: UIView {
             make.centerX.equalTo(imageView.snp.centerX)
             make.top.equalTo(imageView.snp.bottom).offset(25)
             make.width.equalTo(imageView.snp.width).multipliedBy(0.4)
-            make.height.equalTo(imageView.snp.height).multipliedBy(0.11)
+            make.height.equalTo(imageView.snp.height).multipliedBy(0.15)
         }
     }
     
@@ -98,7 +101,7 @@ class CropFilterView: UIView {
     private func setupCancelButton() {
         self.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { (make) in
-            make.top.equalTo(cropButton.snp.bottom).offset(15)
+            make.top.equalTo(cropButton.snp.bottom).offset(9)
             make.centerX.equalTo(cropButton.snp.centerX)
             make.height.equalTo(cropButton.snp.height)
             make.width.equalTo(cropButton.snp.width)

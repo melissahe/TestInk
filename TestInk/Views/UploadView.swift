@@ -22,24 +22,27 @@ class UploadView: UIView {
     
     lazy var ARTestButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 7
         button.layer.borderWidth = 0.6
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("AR Test", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
+        button.backgroundColor = UIColor.Custom.mandarin
         return button
     }()
     
     lazy var postButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 7
         button.layer.borderWidth = 0.6
-        button.layer.borderColor = UIColor.black.cgColor
-        button.setTitleColor(.black, for: .normal)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Post Design", for: .normal)
         let font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)
         button.titleLabel?.font = font
-        
+        button.backgroundColor = UIColor.Custom.lapisLazuli
         return button
     }()
     
@@ -96,14 +99,14 @@ class UploadView: UIView {
             make.centerX.equalTo(imageView.snp.centerX)
             make.top.equalTo(imageView.snp.bottom).offset(25)
             make.width.equalTo(imageView.snp.width).multipliedBy(0.4)
-            make.height.equalTo(imageView.snp.height).multipliedBy(0.11)
+            make.height.equalTo(imageView.snp.height).multipliedBy(0.15)
         }
     }
     
     private func setupPostButton() {
         self.addSubview(postButton)
         postButton.snp.makeConstraints { (make) in
-            make.top.equalTo(ARTestButton.snp.bottom).offset(15)
+            make.top.equalTo(ARTestButton.snp.bottom).offset(9)
             make.centerX.equalTo(ARTestButton.snp.centerX)
             make.height.equalTo(ARTestButton.snp.height)
             make.width.equalTo(ARTestButton.snp.width)
