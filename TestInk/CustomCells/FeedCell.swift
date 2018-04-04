@@ -52,8 +52,9 @@ class FeedCell: UITableViewCell {
     }()
     
     lazy var flagButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(flagButtonTapped), for: .touchUpInside)
         return button
@@ -82,7 +83,6 @@ class FeedCell: UITableViewCell {
          button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
-       // button.tintColor = Stylesheet.Colors.White
         return button
     }()
     
