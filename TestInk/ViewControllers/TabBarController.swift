@@ -21,7 +21,9 @@ class TabBarController: UITabBarController {
         let barColor = Stylesheet.Colors.LightBlue
         let tintColor = UIColor.Custom.whiteSmoke
         let feedImageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
+        let uploadImageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
         let profileImageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+        
         
         //Feed NavController
 
@@ -44,6 +46,8 @@ class TabBarController: UITabBarController {
         upLoadNavController.navigationBar.shadowImage = UIImage()
         upLoadNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         upLoadNavController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-plus-withCircle"), tag: 1)
+        upLoadNavController.tabBarItem.imageInsets = uploadImageInsets
+        
         //Profile NavController
         let profileNavController = UINavigationController(rootViewController: profileVC)
         profileNavController.navigationBar.isTranslucent = false
@@ -53,7 +57,7 @@ class TabBarController: UITabBarController {
         profileNavController.navigationBar.shadowImage = UIImage()
         profileNavController.navigationBar.setBackgroundImage(UIImage(), for: .default)
 
-        let profileTabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "favoriteUnfilledIcon"), tag: 1)
+        let profileTabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "favoriteUnfilledIcon"), tag: 2)
         profileNavController.tabBarItem = profileTabBarItem
         profileTabBarItem.imageInsets = profileImageInsets
         profileTabBarItem.selectedImage = #imageLiteral(resourceName: "favoriteFilledIcon")
@@ -62,8 +66,7 @@ class TabBarController: UITabBarController {
         self.tabBar.barTintColor = UIColor.Custom.lapisLazuli
         self.tabBar.tintColor = UIColor.Custom.mediumSkyBlue
         self.tabBar.unselectedItemTintColor = UIColor.Custom.gainsboro
-        profileNavController.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "favoriteIcon"), tag: 2)
-        //
+        
         self.viewControllers = [feedNavController, upLoadNavController, profileNavController]
         self.tabBar.barTintColor = Stylesheet.Colors.Lapislazuli
         self.tabBar.tintColor = Stylesheet.Colors.MediumSkyBlue
