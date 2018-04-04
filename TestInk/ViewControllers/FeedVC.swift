@@ -45,7 +45,7 @@ class FeedVC: UIViewController {
         feedView.previewTableView.estimatedRowHeight = 200
         self.title = "Feed"
         //MARK: functionality for segmented control
-        feedView.segmentedControl.addUnderlineForSelectedSegment()
+        //feedView.segmentedControl.addUnderlineForSelectedSegment()
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
     
@@ -53,8 +53,8 @@ class FeedVC: UIViewController {
        
         switch sender.selectedSegmentIndex {
         case 0:
-            feedView.segmentedControl.changeUnderlinePosition()
-            feedView.designTableView.reloadData()
+//            feedView.segmentedControl.changeUnderlinePosition()
+//            feedView.designTableView.reloadData()
             navigationItem.title = "Tattoo Designs"
             loadDesignData()
             feedView.previewTableView.isHidden = true
@@ -64,8 +64,8 @@ class FeedVC: UIViewController {
             feedView.previewTableView.reloadData()
              navigationItem.title = "Tattoo Previews"
             loadPreviewData()
-            feedView.designTableView.isHidden = true
-            feedView.previewTableView.isHidden = false
+//            feedView.designTableView.isHidden = true
+//            feedView.previewTableView.isHidden = false
         default:
             break
         }
