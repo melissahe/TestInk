@@ -19,15 +19,16 @@ class TabBarController: UITabBarController {
         
         let textAttributes = [NSAttributedStringKey.foregroundColor : UIColor.Custom.lapisLazuli]
         let barColor = Stylesheet.Colors.LightBlue
-        let tintColor = UIColor.Custom.whiteSmoke
+        let tintColor = Stylesheet.Colors.Lapislazuli
         let feedImageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
-        let uploadImageInsets = UIEdgeInsets(top: 7, left: 0, bottom: -7, right: 0)
+        let uploadImageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
         let profileImageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         
         
         //Feed NavController
         let feedNavController = UINavigationController(rootViewController: feedVC)
         feedNavController.navigationBar.isTranslucent = false
+        feedNavController.navigationBar.shadowImage = UIImage()
         feedNavController.navigationBar.titleTextAttributes = textAttributes
         feedNavController.navigationBar.barTintColor = barColor
         feedNavController.navigationBar.tintColor = tintColor

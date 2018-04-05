@@ -52,7 +52,7 @@ class EmptyView: UIView {
         case .designs:
             self.emptyStateImageView.image = #imageLiteral(resourceName: "coloredPreviewIcon")
             self.titleTextLabel.text = "No tattoo designs in the feed. :("
-            self.detailedTextLabel.text = "Tap the \"+\" button in the upper right and add a design!"
+            self.detailedTextLabel.text = "Tap the \"+\" tab in the bottom bar and add a design!"
         case .previews:
             self.emptyStateImageView.image = #imageLiteral(resourceName: "coloredPreviewIcon")
             self.titleTextLabel.text = "There are no tattoo previews in the feed."
