@@ -13,6 +13,7 @@
 		8127EFA9205B1EA8001AAF6D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */; };
 		81294E41207277E800EF50B0 /* CropFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294E40207277E800EF50B0 /* CropFilterViewController.swift */; };
 		81294E432072783A00EF50B0 /* CropFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294E422072783A00EF50B0 /* CropFilterView.swift */; };
+		81294E452075247C00EF50B0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81294E442075245B00EF50B0 /* TabBarController.swift */; };
 		81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8138184F206AD5EC00E29DEA /* PreviewCell.swift */; };
 		81381852206D2C6900E29DEA /* FirebaseLikingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381851206D2C6900E29DEA /* FirebaseLikingService.swift */; };
 		81381854206D2D7B00E29DEA /* LikeServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */; };
@@ -70,7 +71,6 @@
 		81BDAD1E206046D000F7D450 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1D206046D000F7D450 /* FilterCell.swift */; };
 		81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BDAD1F2060510D00F7D450 /* FilterModel.swift */; };
 		81D17682206EC5D90049D76A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D17681206EC5D90049D76A /* UserDefault.swift */; };
-		81E465E820742E58007A9FC3 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E465E720742E58007A9FC3 /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +98,7 @@
 		8127EFA8205B1EA8001AAF6D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		81294E40207277E800EF50B0 /* CropFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropFilterViewController.swift; sourceTree = "<group>"; };
 		81294E422072783A00EF50B0 /* CropFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropFilterView.swift; sourceTree = "<group>"; };
+		81294E442075245B00EF50B0 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8138184F206AD5EC00E29DEA /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
 		81381851206D2C6900E29DEA /* FirebaseLikingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseLikingService.swift; sourceTree = "<group>"; };
 		81381853206D2D7B00E29DEA /* LikeServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeServiceDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +160,6 @@
 		81BDAD1D206046D000F7D450 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		81BDAD1F2060510D00F7D450 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		81D17681206EC5D90049D76A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
-		81E465E720742E58007A9FC3 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8711C29D4D31533542BE6F63 /* Pods-TestInkUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInkUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInkUITests/Pods-TestInkUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDF863F3845F9651D8E094C /* Pods-TestInk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestInk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestInk/Pods-TestInk.debug.xcconfig"; sourceTree = "<group>"; };
 		C1D766212326535D36FF19E7 /* Pods_TestInk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestInk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				818C25D92059DD1700401C10 /* LoginVC.swift */,
+				81294E442075245B00EF50B0 /* TabBarController.swift */,
 				818C25E52059DDB700401C10 /* CreateAccountVC.swift */,
 				818C25E32059DD8A00401C10 /* FeedVC.swift */,
 				818C25E12059DD7200401C10 /* ProfileVC.swift */,
@@ -308,7 +309,6 @@
 				81BBC9192061A2AD003F490B /* TutorialPageViewController.swift */,
 				81BBC91B2061A406003F490B /* ImageViewController.swift */,
 				81294E40207277E800EF50B0 /* CropFilterViewController.swift */,
-				81E465E720742E58007A9FC3 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -713,7 +713,7 @@
 				814F073120652CDD00789C14 /* NetworkHelper.swift in Sources */,
 				81AF0AFB205C3E89009E0F12 /* PhotoOptionsView.swift in Sources */,
 				818C25D82059DCE800401C10 /* FirebaseUserService.swift in Sources */,
-				81E465E820742E58007A9FC3 /* TabBarController.swift in Sources */,
+				81294E452075247C00EF50B0 /* TabBarController.swift in Sources */,
 				818C25DE2059DD4B00401C10 /* ARVC.swift in Sources */,
 				81381850206AD5EC00E29DEA /* PreviewCell.swift in Sources */,
 				81BDAD202060510D00F7D450 /* FilterModel.swift in Sources */,
@@ -950,9 +950,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 26RHXP32FH;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -969,9 +968,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 26RHXP32FH;
+				DEVELOPMENT_TEAM = 86N2U73XRJ;
 				INFOPLIST_FILE = TestInkTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nyc.c4Q.AC4.3.TestInkTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
