@@ -14,18 +14,22 @@ class FeedVC: UIViewController {
     private lazy var feedView = FeedView(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     private lazy var designEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .designs)
     private lazy var previewEmptyView = EmptyView(frame: self.view.safeAreaLayoutGuide.layoutFrame, emptyStateType: .previews)
+    
     private var designPosts: [DesignPost] = []
     private var previewPosts: [PreviewPost] = []
+    
     private var currentUserID: String {
         return AuthUserService.manager.getCurrentUser()!.uid
     }
+    
     private var designRefreshControl: UIRefreshControl!
     private var previewRefreshControl: UIRefreshControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         loadDesignData()
-        loadPreviewData()
+        //loadPreviewData()
         designRefreshControl = UIRefreshControl()
         previewRefreshControl = UIRefreshControl()
         designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
@@ -45,16 +49,27 @@ class FeedVC: UIViewController {
         feedView.previewTableView.estimatedRowHeight = 200
         self.navigationItem.title = "Feed"
         //MARK: functionality for segmented control
+        //feedView.segmentedControl.addUnderlineForSelectedSegment()
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
-        print("segmented control working")
+       
         switch sender.selectedSegmentIndex {
         case 0:
-            feedView.designTableView.reloadData()
+//            feedView.segmentedControl.changeUnderlinePosition()
+//            feedView.designTableView.reloadData()
+            navigationItem.title = "Tattoo Designs"
+            loadDesignData()
+            feedView.previewTableView.isHidden = true
+            feedView.designTableView.isHidden = false
         case 1:
-            feedView.previewTableView.reloadData()
+//            feedView.segmentedControl.changeUnderlinePosition()
+//            feedView.previewTableView.reloadData()
+             navigationItem.title = "Tattoo Previews"
+            loadPreviewData()
+            feedView.designTableView.isHidden = true
+            feedView.previewTableView.isHidden = false
         default:
             break
         }
@@ -365,7 +380,7 @@ extension UISegmentedControl{
         let underLineYPosition = self.bounds.size.height - 1.0
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
-        underline.backgroundColor = UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)
+        underline.backgroundColor = Stylesheet.Colors.Lapislazuli
         underline.tag = 1
         self.addSubview(underline)
     }

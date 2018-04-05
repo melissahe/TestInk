@@ -117,16 +117,16 @@ class FirebaseFlaggingService{
                     let data = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
                     let flag = try JSONDecoder().decode(Flags.self, from: data)
                     flags.append(flag)
-                    print("Added flag to array of flags")
+                    //print("Added flag to array of flags")
                 } catch let error {
                     print("Failed to parse flag data: \(error)")
                     completionHandler(nil, FlagStatus.errorParsingFlagData)
-                    print("failed to get all flags")
+                    //print("failed to get all flags")
                     return
                 }   
             }
             completionHandler(flags, nil)
-            print("got all flags successfully!")
+            //print("got all flags successfully!")
         }
     }
     

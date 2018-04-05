@@ -29,7 +29,7 @@ class FeedCell: UITableViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
@@ -45,7 +45,7 @@ class FeedCell: UITableViewCell {
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .clear
+        iv.backgroundColor = UIColor.white
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         return iv
@@ -88,7 +88,7 @@ class FeedCell: UITableViewCell {
     
     lazy var canvasView: UIView = {
         let view = UIView()
-        view.backgroundColor = Stylesheet.Colors.WhiteSmoke
+        view.backgroundColor = UIColor.white
         return view
     }()
     
@@ -187,6 +187,19 @@ class FeedCell: UITableViewCell {
     private func configureFlag(withPost post: DesignPost) {
         FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
             if postHasBeenFlaggedByUser {
+//                for subview in self.subviews {
+//                    subview.snp.removeConstraints()
+//                    subview.snp.makeConstraints({ (make) in
+//                        make.height.equalTo(0)
+//                    })
+//                    subview.isHidden = true
+//                }
+//                self.isHidden = true
+//                self.contentView.snp.makeConstraints({ (make) in
+//                    make.top.equalTo(self.contentView.snp.bottom)
+//                })
+//                self.setNeedsLayout()
+//                self.layoutIfNeeded()
                 self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
             } else {
                 self.flagButton.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)

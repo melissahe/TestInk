@@ -88,7 +88,7 @@ class ProfileVC: UIViewController {
     
     private func setupNavigation() {
         //right bar button
-        let addLogoutItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settingIcon"), style: .done, target: self, action: #selector(logoutPressed))
+        let addLogoutItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settingIcon"), style: .done, target: self, action: #selector(settingsButtonPressed))
             
 //            UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
         
@@ -96,9 +96,14 @@ class ProfileVC: UIViewController {
         profileView.changeProfileImageButton.addTarget(self, action: #selector(changeProfileButtonPressed), for: .touchUpInside)
     }
     
-    @objc private func logoutPressed() {
-        AuthUserService.manager.delegate = self
-        AuthUserService.manager.logout()
+    @objc private func settingsButtonPressed() {
+        let settingsAlert = Alert.create(withTitle: nil, andMessage: nil, withPreferredStyle: .actionSheet)
+        Alert.addAction(withTitle: "Logout", style: .destructive, andHandler: { (_) in
+            AuthUserService.manager.delegate = self
+            AuthUserService.manager.logout()
+        }, to: settingsAlert)
+        Alert.addAction(withTitle: "Cancel", style: .cancel, andHandler: nil, to: settingsAlert)
+        self.present(settingsAlert, animated: true, completion: nil)
     }
     
     @objc private func changeProfileButtonPressed() {
