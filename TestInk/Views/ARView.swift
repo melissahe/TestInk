@@ -30,18 +30,14 @@ class ARView: UIView {
 
     lazy var ARView: ARSCNView = {
         let view = ARSCNView()
-        view.backgroundColor = UIColor.Custom.lapisLazuli
+        view.backgroundColor = .black
         return view
     }()
     
     lazy var captureButton: UIButton = {
         let button = UIButton(type: .system)
-        
-        button.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
-        button.layer.borderWidth = 2
-        
-        button.setImage(UIImage(named:"icons8-camera-32"), for: .normal)
-        button.tintColor = UIColor.Custom.whiteSmoke
+        button.setImage(#imageLiteral(resourceName: "cameraIcon"), for: .normal)
+        button.tintColor = Stylesheet.Colors.WhiteSmoke
         return button
     }()
     
@@ -71,7 +67,7 @@ class ARView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = UIColor.Custom.lapisLazuli
+        backgroundColor = Stylesheet.Colors.LightBlue
         setupViews()
     }
     
@@ -118,8 +114,8 @@ class ARView: UIView {
     private func setupCaptureButton() {
         self.addSubview(captureButton)
         captureButton.snp.makeConstraints { (make) in
-            make.top.equalTo(ARView.snp.bottom).offset(20)
-            make.bottom.equalTo(self.snp.bottom).offset(-20)
+            make.top.equalTo(ARView.snp.bottom).offset(5)
+            make.bottom.equalTo(self.snp.bottom).offset(-5)
 //            make.width.equalTo(ARView.snp.width).multipliedBy(0.13)
             make.width.equalTo(captureButton.snp.height)
 //            make.height.equalTo(captureButton.snp.width)
