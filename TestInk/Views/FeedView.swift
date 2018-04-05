@@ -10,6 +10,20 @@ import UIKit
 import SnapKit
 
 class FeedView: UIView {
+    
+    //segmented control to tab between design and preview table views
+    lazy var segmentedControl: UISegmentedControl = {
+       let seg = UISegmentedControl(items: ["Designs", "Body Previews"])
+        seg.selectedSegmentIndex = 0
+        seg.accessibilityNavigationStyle = .separate
+        seg.layer.borderWidth = 0
+        let font = UIFont(name: "HelveticaNeue", size: 13)
+        seg.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+        seg.backgroundColor = UIColor.white
+        seg.tintColor = UIColor.Custom.gainsboro
+        return seg
+    }()
+    
     //tableview - register cell using FeedTableViewCell
     lazy var designTableView: UITableView = {
         let tv = UITableView()
@@ -46,21 +60,47 @@ class FeedView: UIView {
     }
     
     private func setupViews() {
+        setupSegmentedControl()
         setupDesignTableView()
         setupPreviewTableView()
     }
     
     private func setupDesignTableView() {
+        setupTableView()
+    }
+    
+    
+    private func setupSegmentedControl(){
+        addSubview(segmentedControl)
+        segmentedControl.snp.makeConstraints { (make) in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.07)
+        }
+    }
+    
+    
+    private func setupTableView() {
         addSubview(designTableView)
         designTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(snp.edges)
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            
         }
     }
     
     private func setupPreviewTableView() {
         addSubview(previewTableView)
         previewTableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(snp.edges)
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            
         }
+
     }
 }

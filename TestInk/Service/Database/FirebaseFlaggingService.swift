@@ -60,8 +60,7 @@ class FirebaseFlaggingService{
     
   
     ////TODO: Refactor below functions to model after codable data
-    
-    
+
     //MARK: Flagging a post and preventing the user from flagging the post more than once
     public func flagPost(withPostType postType: PostType, flaggedPostID: String,
                          flaggedByUserID userID: String,
@@ -118,16 +117,16 @@ class FirebaseFlaggingService{
                     let data = try JSONSerialization.data(withJSONObject: rawJSON, options: [])
                     let flag = try JSONDecoder().decode(Flags.self, from: data)
                     flags.append(flag)
-                    print("Added flag to array of flags")
+                    //print("Added flag to array of flags")
                 } catch let error {
                     print("Failed to parse flag data: \(error)")
                     completionHandler(nil, FlagStatus.errorParsingFlagData)
-                    print("failed to get all flags")
+                    //print("failed to get all flags")
                     return
                 }   
             }
             completionHandler(flags, nil)
-            print("got all flags successfully!")
+            //print("got all flags successfully!")
         }
     }
     
@@ -168,7 +167,7 @@ class FirebaseFlaggingService{
     }
     
     ///////// VERSION 2 of app: flag users
-    
+
     //MARK: Flagging a user
     public func flagUser(withUserID flaggedUserID: String,
                          flaggedByUserID userID: String,

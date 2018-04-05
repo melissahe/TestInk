@@ -17,23 +17,25 @@ class UploadVC: UIViewController {
     private var selectedCellIndex = 0
     
     
-    let stockImages = [UIImage(named:"swiftbird")!,
-                       UIImage(named:"tattoo1"),
+    let stockImages = [UIImage(named:"swiftbird"),
+                       UIImage(named:"tattoo1")!,
                        UIImage(named:"tattoo2")!,
                        UIImage(named:"tattoo3")!,
                        UIImage(named:"tattoo4")!,
                        UIImage(named:"tattoo5")!,
+                       UIImage(named:"pheonix")!,
+                       UIImage(named: "rose-tattoo")!,
+                       UIImage(named: "butterfly-tattoo")!,
                        UIImage(named:"bear")!,
                        UIImage(named:"chicago")!,
-                       UIImage(named:"car")!,
                        UIImage(named:"crown")!,
                        UIImage(named:"eyeball")!,
                        UIImage(named:"feather")!,
                        UIImage(named:"flowertat")!,
                        UIImage(named:"music")!,
-                       UIImage(named:"nodetree")!,
+                      // UIImage(named:"nodetree")!,
                        UIImage(named:"owl")!,
-                       UIImage(named:"pheonix")!,
+                       UIImage(named:"car")!,
                        UIImage(named:"star")!,
                        UIImage(named:"sun")!,
                        
@@ -59,10 +61,9 @@ class UploadVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Upload"
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(showActionSheet))
         imagePickerController.delegate = self
         FirebaseStorageService.service.delegate = self
@@ -73,7 +74,7 @@ class UploadVC: UIViewController {
         uploadView.imageView.addGestureRecognizer(tapRecognizer)
         uploadView.ARTestButton.addTarget(self, action: #selector(ARTestButtonPressed), for: .touchUpInside)
         uploadView.postButton.addTarget(self, action: #selector(postButtonPressed), for: .touchUpInside)
-        self.title = "Upload"
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

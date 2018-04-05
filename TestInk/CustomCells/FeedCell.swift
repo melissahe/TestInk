@@ -29,7 +29,7 @@ class FeedCell: UITableViewCell {
         let iv = UIImageView()
         iv.backgroundColor = .clear
         iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
@@ -39,20 +39,22 @@ class FeedCell: UITableViewCell {
 //        label.text = "Billy"
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
+        label.textColor = Stylesheet.Colors.Lapislazuli
         return label
     }()
     
     lazy var feedImage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .clear
+        iv.backgroundColor = UIColor.white
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "placeholder") //placeholder
         return iv
     }()
     
     lazy var flagButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(flagButtonTapped), for: .touchUpInside)
         return button
@@ -69,16 +71,25 @@ class FeedCell: UITableViewCell {
     lazy var numberOfLikes: UILabel = {
         let label = UILabel()
         label.text = "23" // to do
+        label.textColor = .black
+        label.textColor = Stylesheet.Colors.Lapislazuli
         label.setContentHuggingPriority(UILayoutPriority(249), for: .horizontal)
         return label
     }()
     
     lazy var shareButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
+        let button = UIButton(type: .system)
+         button.tintColor = Stylesheet.Colors.Lapislazuli
+         button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
         button.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var canvasView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white
+        return view
     }()
     
     //initialization
@@ -92,7 +103,8 @@ class FeedCell: UITableViewCell {
     }
     
     private func setUpGUI() {
-        backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
+        backgroundColor = Stylesheet.Colors.LightBlue //UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
+        addSubviews()
         setupViews()
     }
     
@@ -102,6 +114,7 @@ class FeedCell: UITableViewCell {
         userImage.layer.masksToBounds = true
         userImage.layer.borderWidth = 0.5
         userImage.layer.borderColor = UIColor.Custom.lapisLazuli.cgColor
+        canvasView.setNeedsLayout()
     }
     
     public func configureCell(withPost post: DesignPost) {
@@ -174,6 +187,19 @@ class FeedCell: UITableViewCell {
     private func configureFlag(withPost post: DesignPost) {
         FirebaseFlaggingService.service.checkIfPostIsFlagged(post: post, byUserID: AuthUserService.manager.getCurrentUser()!.uid) { (postHasBeenFlaggedByUser) in
             if postHasBeenFlaggedByUser {
+//                for subview in self.subviews {
+//                    subview.snp.removeConstraints()
+//                    subview.snp.makeConstraints({ (make) in
+//                        make.height.equalTo(0)
+//                    })
+//                    subview.isHidden = true
+//                }
+//                self.isHidden = true
+//                self.contentView.snp.makeConstraints({ (make) in
+//                    make.top.equalTo(self.contentView.snp.bottom)
+//                })
+//                self.setNeedsLayout()
+//                self.layoutIfNeeded()
                 self.flagButton.setImage(#imageLiteral(resourceName: "flagFilled"), for: .normal)
             } else {
                 self.flagButton.setImage(#imageLiteral(resourceName: "flagUnfilled"), for: .normal)
@@ -194,11 +220,23 @@ class FeedCell: UITableViewCell {
             self.numberOfLikes.text = likesArray.count.description
         }
     }
-    
+    private func addSubviews(){
+        contentView.addSubview(userImage)
+        contentView.addSubview(userNameLabel)
+        contentView.addSubview(flagButton)
+        contentView.addSubview(feedImage)
+        contentView.addSubview(canvasView)
+        addSubview(likeButton)
+        contentView.addSubview(numberOfLikes)
+        addSubview(shareButton)
+        contentView.addSubview(activityIndicator)
+    }
     private func setupViews() {
+        setupCanvasView()
         setupUserImage()
         setupUserNameLabel()
         setupFlagButton()
+        setupCanvasView()
         setupFeedImage()
         setupLikeButton()
         setupNumberOfLikes()
@@ -208,7 +246,6 @@ class FeedCell: UITableViewCell {
     
     //constraints
     private func setupUserImage() {
-        contentView.addSubview(userImage)
         userImage.snp.makeConstraints { (make) -> Void in
             make.leading.top.equalTo(contentView).offset(8)
             make.height.equalTo(40)
@@ -218,7 +255,6 @@ class FeedCell: UITableViewCell {
     }
 
     private func setupUserNameLabel() {
-        contentView.addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(userImage.snp.trailing).offset(8)
 //            make.trailing.equalTo(contentView).inset(8)
@@ -229,8 +265,6 @@ class FeedCell: UITableViewCell {
     }
     
     private func setupFlagButton() {
-        contentView.addSubview(flagButton)
-        
         flagButton.snp.makeConstraints { (make) in
             make.top.bottom.equalTo(userImage)
             make.leading.equalTo(userNameLabel.snp.trailing).offset(8)
@@ -239,7 +273,6 @@ class FeedCell: UITableViewCell {
     }
 
     private func setupFeedImage() {
-        contentView.addSubview(feedImage)
         feedImage.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(userImage.snp.bottom).offset(8).priority(999)
             make.bottom.equalTo(contentView.snp.bottom).priority(999)
@@ -249,10 +282,22 @@ class FeedCell: UITableViewCell {
         }
         feedImage.clipsToBounds = true
     }
+    
+    private func setupCanvasView() {
+        
+        canvasView.snp.makeConstraints { (make) in
+           make.top.equalTo(feedImage.snp.bottom)
+            //make.height.equalTo(self.snp.height).multipliedBy(0.33)
+            make.left.equalTo(self.snp.left)
+            make.right.equalTo(self.snp.right)
+            make.bottom.equalTo(self.snp.bottom)
+        }
+    }
 
     private func setupLikeButton() {
-        addSubview(likeButton)
+        
         likeButton.snp.makeConstraints { (make) -> Void in
+           // make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.top.equalTo(feedImage.snp.bottom).offset(8)
             make.height.equalTo(userImage)
             make.leading.bottom.equalTo(contentView).inset(8)
@@ -260,7 +305,7 @@ class FeedCell: UITableViewCell {
     }
 
     private func setupNumberOfLikes() {
-        contentView.addSubview(numberOfLikes)
+        
         numberOfLikes.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(likeButton.snp.trailing).offset(8)
             make.centerY.equalTo(likeButton)
@@ -270,7 +315,6 @@ class FeedCell: UITableViewCell {
     }
 
     private func setupShareButton() {
-        addSubview(shareButton)
         shareButton.snp.makeConstraints { (make) -> Void in
             make.leading.equalTo(numberOfLikes.snp.trailing).offset(8)
             make.trailing.equalTo(contentView).offset(-8)
@@ -281,7 +325,7 @@ class FeedCell: UITableViewCell {
     }
     
     private func setupActivityIndicator() {
-        contentView.addSubview(activityIndicator)
+        
         activityIndicator.snp.makeConstraints { (make) in
             make.center.equalTo(feedImage)
         }
