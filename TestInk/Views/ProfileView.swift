@@ -109,7 +109,7 @@ class ProfileView: UIView {
     private func setUpProfileImageView() {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(8)
+            make.top.equalTo(self)
 //            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
             make.centerX.equalTo(self)
             make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
@@ -132,7 +132,7 @@ class ProfileView: UIView {
         displayName.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(profileImageView.snp.bottom).offset(5)
             make.centerX.equalTo(self)
-            make.bottom.equalTo(collectionView.snp.top).offset(-5)
+            make.bottom.equalTo(collectionView.snp.top).offset(-10)
             make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(spacing)
             make.trailing.equalTo(self.snp.trailing).offset(-spacing)
         }

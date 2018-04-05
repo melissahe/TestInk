@@ -88,7 +88,7 @@ class FeedCell: UITableViewCell {
     
     lazy var canvasView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = Stylesheet.Colors.LightBlue
         return view
     }()
     
@@ -103,7 +103,7 @@ class FeedCell: UITableViewCell {
     }
     
     private func setUpGUI() {
-        backgroundColor = Stylesheet.Colors.LightBlue //UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
+        backgroundColor = .white //UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         addSubviews()
         setupViews()
     }
