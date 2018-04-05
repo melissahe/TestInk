@@ -21,6 +21,17 @@ class FavoriteCell: UICollectionViewCell {
         return pImageView
     }()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layoutIfNeeded()
+        self.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor  //UIColor.black.cgColor
+        self.layer.borderWidth = 3.0
+        self.layer.cornerRadius = 10
+        //self.favoriteImageView.layer.cornerRadius = favoriteImageView.frame.width / 2
+        self.favoriteImageView.layer.masksToBounds = true
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
