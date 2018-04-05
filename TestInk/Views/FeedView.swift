@@ -19,8 +19,8 @@ class FeedView: UIView {
         seg.layer.borderWidth = 0
         let font = UIFont(name: "HelveticaNeue", size: 13)
         seg.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
-        seg.backgroundColor = UIColor.white
-        seg.tintColor = UIColor.Custom.gainsboro
+        seg.backgroundColor = Stylesheet.Colors.Lapislazuli
+        seg.tintColor = Stylesheet.Colors.LightBlue
         return seg
     }()
     
@@ -29,7 +29,7 @@ class FeedView: UIView {
         let tv = UITableView()
         //create and register a cell
         tv.register(FeedCell.self, forCellReuseIdentifier: "FeedCell")
-        tv.backgroundColor = UIColor.Custom.lapisLazuli
+        tv.backgroundColor = Stylesheet.Colors.LightBlue
         tv.isHidden = false
         return tv
     }()
@@ -39,7 +39,7 @@ class FeedView: UIView {
         let tv = UITableView()
         //create and register a cell
         tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
-        tv.backgroundColor = UIColor.Custom.lapisLazuli
+        tv.backgroundColor = Stylesheet.Colors.LightBlue
         tv.isHidden = true
         return tv
     }()

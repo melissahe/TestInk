@@ -28,6 +28,7 @@ class TabBarController: UITabBarController {
         //Feed NavController
         let feedNavController = UINavigationController(rootViewController: feedVC)
         feedNavController.navigationBar.isTranslucent = false
+        feedNavController.navigationBar.shadowImage = UIImage()
         feedNavController.navigationBar.titleTextAttributes = textAttributes
         feedNavController.navigationBar.barTintColor = barColor
         feedNavController.navigationBar.tintColor = tintColor

@@ -15,7 +15,9 @@ class UploadView: UIView {
         let iv = UIImageView()
         iv.backgroundColor = Stylesheet.Colors.LightBlue
         iv.isUserInteractionEnabled = true
-        iv.image = #imageLiteral(resourceName: "addphoto")
+        let image = UIImage(named: "addphoto")?.withRenderingMode(.alwaysTemplate)
+        iv.image = image
+        iv.tintColor = Stylesheet.Colors.DarkSlateGray
         iv.contentMode = .scaleAspectFit
         return iv
     }()
