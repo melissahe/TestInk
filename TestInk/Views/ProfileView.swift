@@ -109,7 +109,7 @@ class ProfileView: UIView {
     private func setUpProfileImageView() {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(spacing)
+            make.top.equalTo(self).offset(8)
 //            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
             make.centerX.equalTo(self)
             make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
@@ -120,7 +120,7 @@ class ProfileView: UIView {
     private func setupChangeProfileButton() {
         addSubview(changeProfileImageButton)
         changeProfileImageButton.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.05)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.06)
             make.width.equalTo(changeProfileImageButton.snp.height)
             make.bottom.equalTo(profileImageView.snp.bottom)
             make.right.equalTo(profileImageView.snp.right)
@@ -142,7 +142,7 @@ class ProfileView: UIView {
             self.addSubview(collectionView)
             collectionView.snp.makeConstraints { (make) in
 //                make.top.equalTo(displayName.snp.bottom).offset(spacing)
-                make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.6).priority(999)
+                make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8).priority(999)
                 make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
                 make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
                 make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
