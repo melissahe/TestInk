@@ -32,7 +32,7 @@ class FeedVC: UIViewController {
         //loadPreviewData()
         designRefreshControl = UIRefreshControl()
         previewRefreshControl = UIRefreshControl()
-        designRefreshControl.addTarget(self, action: #selector(tableViewRefreshed), for: .valueChanged)
+        designRefreshControl.addTarget(self, action: #selector(loadDesignData), for: .valueChanged)
         previewRefreshControl.addTarget(self, action: #selector(loadPreviewData), for: .valueChanged)
         //MARK: design tableview setup
         feedView.designTableView.refreshControl = designRefreshControl
@@ -49,34 +49,57 @@ class FeedVC: UIViewController {
         feedView.previewTableView.estimatedRowHeight = 200
         self.navigationItem.title = "Feed"
         //MARK: functionality for segmented control
-        //feedView.segmentedControl.addUnderlineForSelectedSegment()
+        feedView.segmentedControl.removeBorder()
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
+    }
+    
+    func addUnderlineForSelectedSegment(segmentedControl: UISegmentedControl){
+        let underlineWidth: CGFloat = (feedView.frame.size.width / CGFloat(segmentedControl.numberOfSegments))
+        let underlineHeight: CGFloat = 2
+        let underlineXPosition = CGFloat(segmentedControl.selectedSegmentIndex * Int(underlineWidth))
+        let underLineYPosition = segmentedControl.frame.maxY + 8
+        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
+        let underline = UIView(frame: underlineFrame)
+        underline.backgroundColor = Stylesheet.Colors.Lapislazuli
+        underline.tag = 1
+        feedView.addSubview(underline)
+        underline.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func changeUnderlinePosition(segmentedControl: UISegmentedControl){
+        guard let underline = self.feedView.viewWithTag(1) else {return}
+        let underlineFinalXPosition = (self.feedView.frame.width / CGFloat(segmentedControl.numberOfSegments)) * CGFloat(segmentedControl.selectedSegmentIndex)
+        UIView.animate(withDuration: 0.15, animations: {
+            underline.frame.origin.x = underlineFinalXPosition
+        })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if self.feedView.viewWithTag(1) == nil {
+            addUnderlineForSelectedSegment(segmentedControl: feedView.segmentedControl)
+        }
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
        
         switch sender.selectedSegmentIndex {
         case 0:
-//            feedView.segmentedControl.changeUnderlinePosition()
-//            feedView.designTableView.reloadData()
-            navigationItem.title = "Tattoo Designs"
+            changeUnderlinePosition(segmentedControl: feedView.segmentedControl)
             loadDesignData()
+            navigationItem.title = "Tattoo Designs"
             feedView.previewTableView.isHidden = true
             feedView.designTableView.isHidden = false
+            previewEmptyView.removeFromSuperview()
         case 1:
-//            feedView.segmentedControl.changeUnderlinePosition()
-//            feedView.previewTableView.reloadData()
-             navigationItem.title = "Tattoo Previews"
+            changeUnderlinePosition(segmentedControl: feedView.segmentedControl)
             loadPreviewData()
+             navigationItem.title = "Tattoo Previews"
             feedView.designTableView.isHidden = true
             feedView.previewTableView.isHidden = false
+            designEmptyView.removeFromSuperview()
         default:
             break
         }
-    }
-    
-    @objc private func tableViewRefreshed() {
-        loadDesignData()
     }
     
     private func presentNoInternetAlert() {
@@ -84,7 +107,7 @@ class FeedVC: UIViewController {
         self.present(noInternetAlert, animated: true, completion: nil)
     }
     
-    private func loadDesignData() {
+    @objc private func loadDesignData() {
         if noInternet {
             presentNoInternetAlert()
             designRefreshControl.endRefreshing()
@@ -361,36 +384,20 @@ extension FeedVC: LikeServiceDelegate {
 extension UISegmentedControl{
     
     func removeBorder(){
-        let backgroundImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: self.bounds.size)
+        //background image - if you want both options to have the same color, you need to set the same background image for different states
+        let backgroundImage = UIImage.getColoredRectImageWith(color: Stylesheet.Colors.LightBlue.cgColor, andSize: self.bounds.size)
         self.setBackgroundImage(backgroundImage, for: .normal, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .selected, barMetrics: .default)
         self.setBackgroundImage(backgroundImage, for: .highlighted, barMetrics: .default)
         
-        let deviderImage = UIImage.getColoredRectImageWith(color: UIColor.white.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
-        self.setDividerImage(deviderImage, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
-        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.gray], for: .normal)
-        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor(red: 67/255, green: 129/255, blue: 244/255, alpha: 1.0)], for: .selected)
-    }
-    
-    func addUnderlineForSelectedSegment(){
-        removeBorder()
-        let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
-        let underlineHeight: CGFloat = 2.0
-        let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
-        let underLineYPosition = self.bounds.size.height - 1.0
-        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
-        let underline = UIView(frame: underlineFrame)
-        underline.backgroundColor = Stylesheet.Colors.Lapislazuli
-        underline.tag = 1
-        self.addSubview(underline)
-    }
-    
-    func changeUnderlinePosition(){
-        guard let underline = self.viewWithTag(1) else {return}
-        let underlineFinalXPosition = (self.bounds.width / CGFloat(self.numberOfSegments)) * CGFloat(selectedSegmentIndex)
-        UIView.animate(withDuration: 0.1, animations: {
-            underline.frame.origin.x = underlineFinalXPosition
-        })
+        //the dividing line - the line that divides the options
+        let dividerImage = UIImage.getColoredRectImageWith(color: Stylesheet.Colors.LightBlue.cgColor, andSize: CGSize(width: 1.0, height: self.bounds.size.height))
+        self.setDividerImage(dividerImage, forLeftSegmentState: .selected, rightSegmentState: .normal, barMetrics: .default)
+        
+        //unselected
+        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.Custom.taupeGrey], for: .normal)
+        //selected
+        self.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: Stylesheet.Colors.Lapislazuli], for: .selected)
     }
 }
 
