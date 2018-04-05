@@ -16,6 +16,7 @@ class EditImageVC: UIViewController {
     private var pastImage: UIImage!
     private var originalImage: UIImage!
     private var designID: String?
+    private var feedView = FeedView()
     private var filters: [(displayName: String, filterName: Filter)] = FilterModel.getFilters()
     
     lazy private var editImageView = EditImageView(frame: view.safeAreaLayoutGuide.layoutFrame)
@@ -61,7 +62,7 @@ class EditImageVC: UIViewController {
     }
     
     private func setUpNavigation() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post to Feed", style: .done, target: self, action: #selector(postButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post Tattoo", style: .done, target: self, action: #selector(postButtonPressed))
     }
     
     private func addEditView() {
@@ -174,7 +175,7 @@ extension EditImageVC: UICollectionViewDataSource {
 extension EditImageVC: PreviewPostDelegate {
     func didAddPreviewPostToFirebase(_ postService: FirebasePreviewPostService, post: PreviewPost) {
         //success
-        let successAlert = Alert.create(withTitle: "Success", andMessage: "Posted tattoo preview to feed.", withPreferredStyle: .alert)
+        let successAlert = Alert.create(withTitle: "Success", andMessage: "Tattoo posted to feed.", withPreferredStyle: .alert)
         Alert.addAction(withTitle: "OK", style: .default, andHandler: nil, to: successAlert)
         self.present(successAlert, animated: true, completion: nil)
     }

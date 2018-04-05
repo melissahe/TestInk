@@ -27,6 +27,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 //        self.title = "Favorites"
         setupViews()
+        setupNavigation()
         profileView.collectionView.dataSource = self
         profileView.collectionView.delegate = self
         imagePickerController.delegate = self
@@ -83,17 +84,26 @@ class ProfileVC: UIViewController {
         profileView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
         }
-        
+    }
+    
+    private func setupNavigation() {
         //right bar button
-        let addLogoutItem = UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
+        let addLogoutItem = UIBarButtonItem(image: #imageLiteral(resourceName: "settingIcon"), style: .done, target: self, action: #selector(settingsButtonPressed))
+            
+//            UIBarButtonItem(title: "Log Out", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutPressed))
+        
         navigationItem.rightBarButtonItem = addLogoutItem
         profileView.changeProfileImageButton.addTarget(self, action: #selector(changeProfileButtonPressed), for: .touchUpInside)
     }
     
-    
-    @objc private func logoutPressed() {
-        AuthUserService.manager.delegate = self
-        AuthUserService.manager.logout()
+    @objc private func settingsButtonPressed() {
+        let settingsAlert = Alert.create(withTitle: nil, andMessage: nil, withPreferredStyle: .actionSheet)
+        Alert.addAction(withTitle: "Logout", style: .destructive, andHandler: { (_) in
+            AuthUserService.manager.delegate = self
+            AuthUserService.manager.logout()
+        }, to: settingsAlert)
+        Alert.addAction(withTitle: "Cancel", style: .cancel, andHandler: nil, to: settingsAlert)
+        self.present(settingsAlert, animated: true, completion: nil)
     }
     
     @objc private func changeProfileButtonPressed() {

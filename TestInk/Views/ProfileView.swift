@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileView: UIView {
 
-    var spacing = 16 //Use this for even spacing
+    var spacing = 5 //Use this for even spacing
     
     lazy var profileBarView: UIView = {
         let view = UIView()
@@ -46,7 +46,7 @@ class ProfileView: UIView {
         dn.text = "" //should be changed in table view
         dn.textAlignment = .center
         dn.textColor = UIColor.Custom.lapisLazuli
-        dn.font = UIFont(name: "HelveticaNeue-Medium", size: 15)
+        dn.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
         dn.adjustsFontSizeToFitWidth = true
         dn.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
         return dn
@@ -56,7 +56,7 @@ class ProfileView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
+        cv.backgroundColor = UIColor.white //UIColor(red:0.95, green:0.98, blue:0.96, alpha:1.0)
         cv.register(FavoriteCell.self, forCellWithReuseIdentifier: "FavoriteCell")
         cv.setContentCompressionResistancePriority(UILayoutPriority(249), for: .vertical)
         return cv
@@ -72,8 +72,8 @@ class ProfileView: UIView {
         // we get the frame of the UI elements here
         profileImageView.layer.cornerRadius = profileImageView.bounds.height/2
         profileImageView.layer.masksToBounds = true
-        profileImageView.layer.borderWidth = 3.0
-        profileImageView.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
+        profileImageView.layer.borderWidth = 2.0
+        profileImageView.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor
         changeProfileImageButton.layer.cornerRadius = changeProfileImageButton.bounds.height/2
         changeProfileImageButton.layer.masksToBounds = true
     }
@@ -109,7 +109,7 @@ class ProfileView: UIView {
     private func setUpProfileImageView() {
         addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(self).offset(spacing)
+            make.top.equalTo(self).offset(8)
 //            make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(150)
             make.centerX.equalTo(self)
             make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.25)
@@ -120,7 +120,7 @@ class ProfileView: UIView {
     private func setupChangeProfileButton() {
         addSubview(changeProfileImageButton)
         changeProfileImageButton.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.05)
+            make.height.equalTo(self.safeAreaLayoutGuide.snp.height).multipliedBy(0.06)
             make.width.equalTo(changeProfileImageButton.snp.height)
             make.bottom.equalTo(profileImageView.snp.bottom)
             make.right.equalTo(profileImageView.snp.right)
@@ -142,7 +142,7 @@ class ProfileView: UIView {
             self.addSubview(collectionView)
             collectionView.snp.makeConstraints { (make) in
 //                make.top.equalTo(displayName.snp.bottom).offset(spacing)
-                make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.6).priority(999)
+                make.height.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.8).priority(999)
                 make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
                 make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
                 make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
