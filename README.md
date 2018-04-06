@@ -1,8 +1,11 @@
 ![Introduction](https://github.com/melissahe/TestInk/blob/qa/Gifs/Screen%20Shot%202018-04-06%20at%2012.00.41%20PM.png)
 
+<p align="center">
 ## TestInk is an app that allows users to preview tattos using augmented reality
+</p>
 
 ## What's the Problem?
+
 There are **45,000,000** Americans who have at least one tattoo abut there is a lack of technology that specifically aims to serve and cultivate the tattoo community at large.
 
 ## TestInk's Solution
