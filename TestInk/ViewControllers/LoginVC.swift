@@ -25,7 +25,7 @@ class LoginVC: UIViewController {
     let feedVC = FeedVC()
     
     private var authUserService = AuthUserService.manager
-    var verificationTimer: Timer = Timer() //For email verification
+    //var verificationTimer: Timer = Timer() //For email verification
     
     
     lazy var logoImageView: UIImageView = {
@@ -63,7 +63,7 @@ class LoginVC: UIViewController {
         userLoginView.loginButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         userLoginView.signUpButton.addTarget(self, action: #selector(signUp), for: .touchUpInside)
         userLoginView.forgotPassButton.addTarget(self, action: #selector(resetpassword), for: .touchUpInside)
-        self.verificationTimer = Timer.scheduledTimer(timeInterval: 200, target: self, selector: #selector(LoginVC.signUp) , userInfo: nil, repeats: true)
+        //self.verificationTimer = Timer.scheduledTimer(timeInterval: 200, target: self, selector: #selector(LoginVC.signUp) , userInfo: nil, repeats: true)
         
     }
     
