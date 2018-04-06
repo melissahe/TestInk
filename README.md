@@ -18,16 +18,17 @@
 |:-------------:|:-------------:|
 |<img src="TODO" width="358" height="626">|<img src="TODO" width="358" height="626">|
 
-## Features
-//TODO
-
 ## Future Updates
+- Network with other tattoo artists and use their designs
+- Use photo sharing services to import other tattoo designs
+- Try on tattoos without needing stickers using Core ML to recognize a drawing as the image on you skin
 
 
 ## Requirements
 //TODO
 - iOS 8.0+ / Mac OS X 10.11+ / tvOS 9.0+
-- Xcode 9.0+
+- Xcode 9.3+
+- iOS 11.3
 - Swift 4.0+
 - ARKit Compatible Device (Apple A9 processor or higher)
 
