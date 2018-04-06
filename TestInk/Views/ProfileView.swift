@@ -35,8 +35,6 @@ class ProfileView: UIView {
     lazy var changeProfileImageButton: UIButton = {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "addIcon"), for: .normal)
-        btn.layer.borderWidth = 2
-        btn.layer.borderColor = Stylesheet.Colors.LightBlue.cgColor
         //btn.setTitleColor(.black, for: .normal)
         return btn
     }()
@@ -76,6 +74,8 @@ class ProfileView: UIView {
         profileImageView.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor
         changeProfileImageButton.layer.cornerRadius = changeProfileImageButton.bounds.height/2
         changeProfileImageButton.layer.masksToBounds = true
+        changeProfileImageButton.layer.borderWidth = 2
+        changeProfileImageButton.layer.borderColor = Stylesheet.Colors.LightBlue.cgColor
     }
     
     required init?(coder aDecoder: NSCoder) {
