@@ -23,8 +23,8 @@ class PhotoOptionsView: UIView {
         let button = UIButton(type: UIButtonType.system)
         button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
         //Meseret
-        button.backgroundColor = UIColor.Custom.lapisLazuli
-        button.tintColor = UIColor.Custom.whiteSmoke
+        button.backgroundColor = Stylesheet.Colors.LightBlue
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         return button
     }()
     
@@ -33,8 +33,8 @@ class PhotoOptionsView: UIView {
         button.setImage(#imageLiteral(resourceName: "filterIcon"), for: .normal)
 //        button.setTitle("FILTERS", for: .normal)
         //Meseret
-        button.backgroundColor = UIColor.Custom.lapisLazuli
-        button.tintColor = UIColor.Custom.whiteSmoke
+        button.backgroundColor = Stylesheet.Colors.LightBlue
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         return button
     }()
     
@@ -83,7 +83,7 @@ class PhotoOptionsView: UIView {
         
         shareButton.layer.masksToBounds = true
         shareButton.layer.borderWidth = 0.75
-        shareButton.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
+        shareButton.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor
     }
     
     private func setUpFiltersButton() {
@@ -101,7 +101,7 @@ class PhotoOptionsView: UIView {
         
         filtersButton.layer.masksToBounds = true
         filtersButton.layer.borderWidth = 0.75
-        filtersButton.layer.borderColor = UIColor.Custom.whiteSmoke.cgColor
+        filtersButton.layer.borderColor = Stylesheet.Colors.Lapislazuli.cgColor
     }
 
 }
