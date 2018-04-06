@@ -133,31 +133,31 @@ class PreviewCell: UITableViewCell {
         configureFlag(withPost: post)
     }
     
-    private func configureTattooImage(withDesignID designID: String) {
-        self.tattooImage = nil
-        if let image = NSCacheHelper.manager.getImage(with: designID) {
-            self.tattooImage = image
-            self.activityIndicator.isHidden = true
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
-        } else {
-            FirebaseDesignPostService.service.getPost(withPostID: designID) { (designPost, error) in
-                if let designPost = designPost, let imageURLString = designPost.image {
-                    ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
-                        //cache image for post id
-                        NSCacheHelper.manager.addImage(with: designID, and: image)
-                        self.tattooImage = image
-                    }, errorHandler: { (error) in
-                        self.activityIndicator.isHidden = true
-                        print("Error: Could not get image:\n\(error)")
-                    })
-                } else if let error = error {
-                    print(error)
-                }
-            }
-            
-        }
-    }
+//    private func configureTattooImage(withDesignID designID: String) {
+//        self.tattooImage = nil
+//        if let image = NSCacheHelper.manager.getImage(with: designID) {
+//            self.tattooImage = image
+//            self.activityIndicator.isHidden = true
+//            self.setNeedsLayout()
+//            self.layoutIfNeeded()
+//        } else {
+//            FirebaseDesignPostService.service.getPost(withPostID: designID) { (designPost, error) in
+//                if let designPost = designPost, let imageURLString = designPost.image {
+//                    ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
+//                        //cache image for post id
+//                        NSCacheHelper.manager.addImage(with: designID, and: image)
+//                        self.tattooImage = image
+//                    }, errorHandler: { (error) in
+//                        self.activityIndicator.isHidden = true
+//                        print("Error: Could not get image:\n\(error)")
+//                    })
+//                } else if let error = error {
+//                    print(error)
+//                }
+//            }
+//            
+//        }
+//    }
     
     private func configurePreviewImage(withPost post: PreviewPost) {
         self.previewImageView.image = nil
