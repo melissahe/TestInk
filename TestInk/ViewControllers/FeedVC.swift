@@ -53,17 +53,16 @@ class FeedVC: UIViewController {
         feedView.segmentedControl.addTarget(self, action: #selector(segControlIndexPressed(_:)), for: .valueChanged)
     }
     
-    func addUnderlineForSelectedSegment(segmentedControl: UISegmentedControl){
+    func createUnderlineForSelectedSegment(segmentedControl: UISegmentedControl) -> UIView {
         let underlineWidth: CGFloat = (feedView.frame.size.width / CGFloat(segmentedControl.numberOfSegments))
         let underlineHeight: CGFloat = 2
         let underlineXPosition = CGFloat(segmentedControl.selectedSegmentIndex * Int(underlineWidth))
-        let underLineYPosition = segmentedControl.frame.maxY + 8
+        let underLineYPosition = segmentedControl.frame.maxY - underlineHeight
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
         underline.backgroundColor = Stylesheet.Colors.Lapislazuli
         underline.tag = 1
-        feedView.addSubview(underline)
-        underline.translatesAutoresizingMaskIntoConstraints = false
+        return underline
     }
     
     func changeUnderlinePosition(segmentedControl: UISegmentedControl){
@@ -75,13 +74,18 @@ class FeedVC: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         if self.feedView.viewWithTag(1) == nil {
-            addUnderlineForSelectedSegment(segmentedControl: feedView.segmentedControl)
+            let underline = createUnderlineForSelectedSegment(segmentedControl: feedView.segmentedControl)
+            feedView.addSubview(underline)
+            underline.translatesAutoresizingMaskIntoConstraints = false
+        } else if let underline = self.feedView.viewWithTag(1) {
+            let updatedUnderline = createUnderlineForSelectedSegment(segmentedControl: feedView.segmentedControl)
+            underline.frame = updatedUnderline.frame
         }
     }
     
     @objc private func segControlIndexPressed(_ sender: UISegmentedControl){
-       
         switch sender.selectedSegmentIndex {
         case 0:
             changeUnderlinePosition(segmentedControl: feedView.segmentedControl)
@@ -211,8 +215,12 @@ extension FeedVC: UITableViewDelegate{
                 let arVC = ARVC(tattooImage: image, designID: currentDesign.uid)
                 self.navigationController?.pushViewController(arVC, animated: true)
             }
+        } else if let designID = previewPosts[indexPath.row].designID {
+            if let cell = tableView.cellForRow(at: indexPath) as? PreviewCell, let image = cell.tattooImage {
+                let arVC = ARVC(tattooImage: image, designID: designID)
+                self.navigationController?.pushViewController(arVC, animated: true)
+            }
         }
-        //need to check if it's ar ready, try bool?
         
     }
 }
