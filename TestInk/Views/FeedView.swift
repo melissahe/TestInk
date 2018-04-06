@@ -10,18 +10,42 @@ import UIKit
 import SnapKit
 
 class FeedView: UIView {
+    
+    //segmented control to tab between design and preview table views
+    lazy var segmentedControl: UISegmentedControl = {
+       let seg = UISegmentedControl(items: ["Designs", "Body Previews"])
+        seg.selectedSegmentIndex = 0
+        seg.accessibilityNavigationStyle = .separate
+        seg.layer.borderWidth = 0
+        let font = UIFont(name: "HelveticaNeue", size: 13)
+        seg.setTitleTextAttributes([NSAttributedStringKey.font: font], for: .normal)
+        seg.backgroundColor = Stylesheet.Colors.Lapislazuli
+        seg.tintColor = Stylesheet.Colors.LightBlue
+        return seg
+    }()
+    
     //tableview - register cell using FeedTableViewCell
-    lazy var tableView: UITableView = {
+    lazy var designTableView: UITableView = {
         let tv = UITableView()
         //create and register a cell
         tv.register(FeedCell.self, forCellReuseIdentifier: "FeedCell")
-        tv.backgroundColor = UIColor(red:0.92, green:0.47, blue:0.25, alpha:1.0)
+        tv.backgroundColor = Stylesheet.Colors.LightBlue
         tv.isHidden = false
         return tv
     }()
     
+    //to do when FeedCell is finished
+    lazy var previewTableView: UITableView = {
+        let tv = UITableView()
+        //create and register a cell
+        tv.register(PreviewCell.self, forCellReuseIdentifier: "PreviewCell")
+        tv.backgroundColor = Stylesheet.Colors.LightBlue
+        tv.isHidden = true
+        return tv
+    }()
+    
     override init(frame: CGRect) {
-        super.init(frame: UIScreen.main.bounds)
+        super.init(frame: frame)
         commonInit()
     }
     
@@ -31,31 +55,52 @@ class FeedView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = UIColor.Custom.lapisLazuli
         setupViews()
     }
     
     private func setupViews() {
+        setupSegmentedControl()
+        setupDesignTableView()
+        setupPreviewTableView()
+    }
+    
+    private func setupDesignTableView() {
         setupTableView()
     }
     
-    private func setupTableView() {
-        addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(snp.edges)
+    
+    private func setupSegmentedControl(){
+        addSubview(segmentedControl)
+        segmentedControl.snp.makeConstraints { (make) in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.07)
         }
     }
+    
+    
+    private func setupTableView() {
+        addSubview(designTableView)
+        designTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            
+        }
+    }
+    
+    private func setupPreviewTableView() {
+        addSubview(previewTableView)
+        previewTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(segmentedControl.snp.bottom)
+            make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
+            make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            
+        }
 
-    private func setupViews() {
-        setupTableView()
-    }
-    
-    private func setupTableView() {
-        addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-            make.width.equalTo(self.safeAreaLayoutGuide.snp.width)
-        }
     }
 }

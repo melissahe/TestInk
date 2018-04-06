@@ -8,140 +8,95 @@
 
 import UIKit
 import Firebase
+import Toucan
 import Foundation
 import FirebaseStorage
 import FirebaseDatabase
 
 
-enum ImageType {
-    case user
-    case designPost
-    case previewPost
+enum ImageType: String {
+    case userProfileImg = "users"
+    case designPost = "design posts"
+    case previewPost = "preview posts"
 }
 
-class FirebaseStorageService{
-    
-    private init(){
 
+class FirebaseStorageService {
+    private init(){
         // Get a reference to the storage service using the default Firebase App
         storage = Storage.storage()
         // Create a storage reference from our storage service
         storageRef = storage.reference()
-        // Create a child reference folder
-        imagesRef = storageRef.child("images")
-        designImgRef = storageRef.child("design images")
-        previewImgRef = storageRef.child("preview images")
-        userProfileImgRef = storageRef.child("user profile images")
+        
+        //Create a child reference
+        designImgRef = storageRef.child("design posts")
+        previewImgRef = storageRef.child("preview posts")
+        userProfileImgRef = storageRef.child("users")
     }
+    
     static let service = FirebaseStorageService()
+    weak var delegate: StorageServiceDelegate?
+    
+    //storage references
     private var storage: Storage!
     private var storageRef: StorageReference!
-    private var imagesRef: StorageReference!
-    
     private var designImgRef: StorageReference!
     private var previewImgRef: StorageReference!
     private var userProfileImgRef: StorageReference!
     
+    /* MARK: Storing images to Firebase
+     
+     - Parameters:
+     - imageRef: POINTS to specific node in FB where image will be stored i.e) designImgRef --> design posts node in FB
+     - imageType: Name of node that dictates WHERE the image data will be set i.e ) - design posts
+     - imageUID: unique identifier associated with image type. i.e) - design posts
+     - Khwfekh32k5h2H524kUh5 (uid)
+     - image: The image associated with the current post.
+     */
     
-    //Add File Metadata
-    func storeImage(type: ImageType, uid: String, image: UIImage) {
-        //convert image to png: best practices
-        guard let data = UIImagePNGRepresentation(image) else { print("image is nil"); return }
+    func storeImage(withImageType imageType: ImageType, imageUID: String, image: UIImage){
+        //Resize the image
+        guard let resizedImage = Toucan(image: image).resize(CGSize(width: 400, height: 400)).image else {return}
+        //Convert data to PNG representation
+        guard let data = UIImagePNGRepresentation(resizedImage) else {return}
         
+        //Initialize storage meta data and set its content type
         let metadata = StorageMetadata()
-        metadata.contentType = "image/png" //MUST HAVE THIS TO STORE
-        
-        
-        
-        //TODO: upload task to other references
-        //Initializing a NSData object and returns an FIRStorageUploadTask, which you can use to manage your upload and monitor its status.
-        let uploadTask = FirebaseStorageService.service.imagesRef.child(uid).putData(data, metadata: metadata) { (storageMetadata, error) in
+        metadata.contentType = "image/png"
+        //Uploads the file to the path under the specific image type
+        //ImageUID will be the same as the database post UID that it is associated with i.e) 12345 == 12345
+        let uploadTask = storageRef.child(imageType.rawValue).child(imageUID).putData(data, metadata: metadata) { (storageMetaData, error) in
             if let error = error {
                 print("uploadTask error: \(error)")
-            } else if let storageMetadata = storageMetadata {
-                print("storageMetadata: \(storageMetadata)")
+            } else if let storageMetaData = storageMetaData{
+                print("storageMetadata: \(storageMetaData)")
                 //there are alot of properties on storageMetaData!!
             }
         }
         
-//        let uploadTask = FirebaseStorageService.service.designImgRef.child(uid).putData(data, metadata: metadata) { (storageMetadata, error) in
-//            if let error = error {
-//                print("uploadTask error: \(error)")
-//            } else if let storageMetadata = storageMetadata {
-//                print("storageMetadata: \(storageMetadata)")
-//                //there are alot of properties on storageMetaData!!
-//            }
-//        }
-        
-        //When upload task is resumed, listen for state changes, errors, and completion of the upload.
-        uploadTask.observe(.resume) { snapshot in
-            // Upload resumed, also fires when the upload starts
-        }
-        
-        //When upload task is resumed, paused, do things
-        uploadTask.observe(.pause) { snapshot in
-            // Upload paused
-        }
-        
-        //PROGRESS -- observes the percentage / 100 that the image is uploading
-        uploadTask.observe(.progress) { snapshot in
-            // Upload reported progress
-            let percentProgress = 100.0 * Double(snapshot.progress!.completedUnitCount)
-                / Double(snapshot.progress!.totalUnitCount)
-            print(percentProgress)
-        }
-        
-        //SUCCESS: when the image is successully stored and it matches a specific case, set its filePath in the storage database
-        uploadTask.observe(.success) { snapshot in
-            // Upload completed successfully: set users and posts imageURL
-            let imageURL = String(describing: snapshot.metadata!.downloadURL()!)
-            switch type {
-            case .user:
-                Database.database().reference(withPath: "users").child(uid).child("image").setValue(imageURL) //users/uid/image = pic
-            case .designPost:
-                Database.database().reference(withPath: "posts").child(uid).child("image").setValue(imageURL)
-            case .previewPost:
-                 Database.database().reference(withPath: "posts").child(uid).child("image").setValue(imageURL)
+        //When upload is successful call the delegate and alert user of changes
+        uploadTask.observe(.success) { (snapshot) in
+            self.delegate?.didStoreImage(self)
+            if let downloadedURL = snapshot.metadata?.downloadURL(){
+                let imageURL = String(describing: downloadedURL)
+                //set that url string at the correct reference: EX) whatever bucket/uid/image = pic
+                Database.database().reference(withPath: imageType.rawValue).child(imageUID).child("image").setValue(imageURL)
             }
         }
         
-        //FAILURE: If image failes to load return error reasoning
-        uploadTask.observe(.failure) { snapshot in
-            if let error = snapshot.error as NSError? {
-                switch (StorageErrorCode(rawValue: error.code)!) {
-                case .objectNotFound:
-                    // File doesn't exist
-                    break
-                case .unauthorized:
-                    // User doesn't have permission to access file
-                    break
-                case .cancelled:
-                    // User canceled the upload
-                    break
-                    
-                    /* ... */
-                    
-                case .unknown:
-                    // Unknown error occurred, inspect the server response
-                    break
-                default:
-                    // A separate error occurred. This is a good place to retry the upload.
-                    break
-                }
-            }
+        //If upload is unsucessful call the delegate andalert the user of changes
+        uploadTask.observe(.failure) { (snapshot) in
+            self.delegate?.didFailStoreImage(self, error: "Error with notifying user when upload fails")
         }
     }
     
-    //Getting the image from firebase
-//    func retrieveImage(imageURL: String,
-//                       completionHandler: @escaping (UIImage) -> Void,
-//                       errorHandler: @escaping (Error) -> Void) {
-//        ImageHelper.manager.getImage(from: imageURL,
-//                                     completionHandler: { completionHandler($0)},
-//                                     errorHandler: { errorHandler($0) })
-//    }
+    //MARK: Getting the image from Firebase
+    func retrieveImage(imageURL: String,
+                       completionHandler: @escaping (UIImage) -> Void,
+                       errorHandler: @escaping (Error) -> Void) {
+        ImageHelper.manager.getImage(from: imageURL,
+                                     completionHandler: { completionHandler($0)},
+                                     errorHandler: { errorHandler($0) })
+    }
 }
-
-
-
 

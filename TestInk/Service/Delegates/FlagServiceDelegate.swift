@@ -9,5 +9,15 @@
 import Foundation
 
 protocol FlagDelegate: class {
-    //TODO: create flag delegates
+    
+    //Methods to handle adding flags to Firebase
+    func didAddFlagToFirebase(_ service: FirebaseFlaggingService)
+    func failedToAddFlagToFirebase(_ service: FirebaseFlaggingService, error: String)
+    
+    
+    //Methods to handle post flagging functionality
+    func didFlagPostAlready(_ service: FirebaseFlaggingService, error: String)
+    func didFlagPost(_ service: FirebaseFlaggingService)
+    func didFailToFlagPost(_ service: FirebaseFlaggingService, error: String)
+    
 }

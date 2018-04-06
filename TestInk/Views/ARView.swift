@@ -30,26 +30,23 @@ class ARView: UIView {
 
     lazy var ARView: ARSCNView = {
         let view = ARSCNView()
-        view.backgroundColor = UIColor.Custom.lapisLazuli
+        view.backgroundColor = .black
         return view
     }()
     
     lazy var captureButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 160, y: 100, width: 50, height: 50))
-        
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 2
-        
-        button.setImage(UIImage(named:"icons8-camera-32"), for: .normal)
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "cameraIcon"), for: .normal)
+        button.tintColor = Stylesheet.Colors.WhiteSmoke
         return button
     }()
     
-    lazy var segmentedControl: UISegmentedControl = {
-        let items = ["AR ON", "AR OFF"]
-        let sc = UISegmentedControl(items: items)
-        sc.selectedSegmentIndex = 0
-        return sc
-    }()
+//    lazy var segmentedControl: UISegmentedControl = {
+//        let items = ["AR ON", "AR OFF"]
+//        let sc = UISegmentedControl(items: items)
+//        sc.selectedSegmentIndex = 0
+//        return sc
+//    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -70,7 +67,7 @@ class ARView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor = .white
+        backgroundColor = Stylesheet.Colors.LightBlue
         setupViews()
     }
     
@@ -78,7 +75,7 @@ class ARView: UIView {
 //        setupSaveButton()
 //        setupDismissButton()
         setupARView()
-        setupSegmentedControl()
+//        setupSegmentedControl()
         setupCaptureButton()
     }
     
@@ -110,15 +107,15 @@ class ARView: UIView {
             make.top.equalTo(self)
             make.leading.equalTo(safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(safeAreaLayoutGuide.snp.trailing)
-            make.height.equalTo(self).multipliedBy(0.75)
+            make.height.equalTo(self).multipliedBy(0.80)
         }
     }
     
     private func setupCaptureButton() {
         self.addSubview(captureButton)
         captureButton.snp.makeConstraints { (make) in
-            make.top.equalTo(ARView.snp.bottom).offset(10)
-            make.bottom.equalTo(segmentedControl.snp.top).offset(-10)
+            make.top.equalTo(ARView.snp.bottom).offset(5)
+            make.bottom.equalTo(self.snp.bottom).offset(-5)
 //            make.width.equalTo(ARView.snp.width).multipliedBy(0.13)
             make.width.equalTo(captureButton.snp.height)
 //            make.height.equalTo(captureButton.snp.width)
@@ -127,14 +124,14 @@ class ARView: UIView {
         }
     }
     
-    private func setupSegmentedControl() {
-        self.addSubview(segmentedControl)
-        segmentedControl.snp.makeConstraints { (make) in
-            //make.top.equalTo(captureButton.snp.bottom).offset(25)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-15)
-            make.width.equalTo(safeAreaLayoutGuide.snp.width)
-            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.054)
-        }
-    }
+//    private func setupSegmentedControl() {
+//        self.addSubview(segmentedControl)
+//        segmentedControl.snp.makeConstraints { (make) in
+//            //make.top.equalTo(captureButton.snp.bottom).offset(25)
+//            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-15)
+//            make.width.equalTo(safeAreaLayoutGuide.snp.width)
+//            make.height.equalTo(safeAreaLayoutGuide.snp.height).multipliedBy(0.054)
+//        }
+//    }
 
 }

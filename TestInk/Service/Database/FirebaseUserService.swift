@@ -19,7 +19,7 @@ enum UserProfileStatus: Error {
 
 }
 
-//This API client is responsible for handling any changes, updatesin regards to the User Profile Object.
+//This service is responsible for handling any changes in regards to the User Profile Object.
 class UserProfileService {
     
     init(){ //not private because class is needed to add user profile object to firbase when the user is created
@@ -36,10 +36,9 @@ class UserProfileService {
     
     //MARK: Adds user to database
     func addUserToFirebaseDatabase(userUID: String, displayName: String, likes: Int, profileImageURL: String, favorites: String, flags: Int, isBanned: Bool){
-        let userNameDatabaseReference = usersRef.child(displayName)
-        let childKey = userNameDatabaseReference.key
+        let userNameDatabaseReference = usersRef.child(userUID)
         let user: UserProfile
-        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, favorites: favorites, flags: flags, isBanned: isBanned)
+        user = UserProfile(userID: userUID, displayName: displayName, likes: likes, image: nil, flags: flags, isBanned: isBanned)
         userNameDatabaseReference.setValue(user.convertToJSON()) { (error, _) in
             if let error = error {
                 print("User not added with error: \(error)")
@@ -51,22 +50,34 @@ class UserProfileService {
     
     
     //MARK: get user for injection into public and private user profiles
-    private func getUser(fromUserUID userUID: String, completion: @escaping (_ currentUser: UserProfile) -> Void){
+    public func getUser(fromUserUID userUID: String, completion: @escaping (_ currentUser: UserProfile) -> Void){
         usersRef.child(userUID)
-        usersRef.observe(.value) { (dataSnapshot) in
-            if let json = dataSnapshot.value {
-                do{
-                    let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-                    let currentUser = try JSONDecoder().decode(UserProfile.self, from: jsonData)
-                    completion(currentUser)
-                }catch{
-                    print("Unable to parse currentUser")
+        usersRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            guard let snapshots = dataSnapshot.children.allObjects as? [DataSnapshot] else {
+                print("couldn't get user snapshots")
+                return
+            }
+            var currentUsers: [UserProfile] = []
+            for snapshot in snapshots {
+                if let json = snapshot.value {
+                    do{
+                        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+                        let currentUser = try JSONDecoder().decode(UserProfile.self, from: jsonData)
+                        currentUsers.append(currentUser)
+                    }catch{
+                        print("Unable to parse currentUser")
+                    }
                 }
+            }
+            if let index = currentUsers.index(where: { (userProfile) -> Bool in
+                return userProfile.userID == userUID
+            }) {
+                let currentUser = currentUsers[index]
+                completion(currentUser)
             }
         }
     }
-    
-    
+
     /////////////Functions to use in version 2
     
     
@@ -92,6 +103,7 @@ class UserProfileService {
         let child = usersRef.child(userUID)
         child.child("userName").setValue(newUserName)
     }
+    
 
     //TODO: delete user account and sign them out
 }

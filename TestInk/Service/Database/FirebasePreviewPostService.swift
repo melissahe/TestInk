@@ -33,18 +33,20 @@ class FirebasePreviewPostService {
     
     
     //MARK: Adding a design post to database
-    public func addPreviewPostToDatabase(with uid: String, userID: String, imageURL: String?, likes: Int, likedBy: Bool, timeStamp: Double, comments: String, designID: String, flags: Int){
+    public func addPreviewPostToDatabase(userID: String, image: UIImage, likes: Int, timeStamp: Double, comments: String, designID: String?, flags: Int){
         //creating a unique key identifier
         let childByAutoID = Database.database().reference(withPath: "preview posts").childByAutoId()
         let childKey = childByAutoID.key
         var previewPost: PreviewPost
-        previewPost = PreviewPost(uid: childKey, userID: userID, likes: likes, likedBy: likedBy, timestamp: timeStamp, flags: flags, designID: designID)
+        previewPost = PreviewPost(uid: childKey, userID: userID, image: nil, likes: likes, timestamp: timeStamp, flags: flags, designID: designID)
         //setting the value of the design posts
         childByAutoID.setValue(previewPost.previewPosToJSON()) { (error, dbRef) in
             if let error = error {
                 self.delegate?.failedToAddPreviewPostToFirebase(self, error: PreviewPostStatus.previewPostNotAdded)
                 print("failed to add flashcard error: \(error)")
             } else {
+                //storing image into preview posts bucket in firebase
+                FirebaseStorageService.service.storeImage(withImageType: .previewPost, imageUID: childKey, image: image)
                 self.delegate?.didAddPreviewPostToFirebase(self, post: previewPost)
                 print("flashcard saved to dbRef: \(dbRef)")
             }
@@ -56,7 +58,7 @@ class FirebasePreviewPostService {
     func getAllPreviewPosts(completionHandler: @escaping ([PreviewPost]?, Error?) -> Void){
         // Get reference for the node that is preview posts
         let dbReference = Database.database().reference().child("preview posts")
-        dbReference.observe(.value){(snapshot) in
+        dbReference.observeSingleEvent(of: .value){(snapshot) in
             guard let snapshots = snapshot.children.allObjects as? [DataSnapshot] else {print("preview posts node has no children");return}
             var allPreviewPosts = [PreviewPost]()
             for snap in snapshots {

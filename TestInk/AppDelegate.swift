@@ -20,22 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         //MARK: setting up
-        let tbc = UITabBarController()
-        let profileVC = ProfileVC()
-        let feedVC = FeedVC()
-        
-        let feedNavController = UINavigationController(rootViewController: feedVC)
-        feedNavController.tabBarItem = UITabBarItem(title: "Feed", image: nil, tag: 0)
- 
-        let profileNavController = UINavigationController(rootViewController: profileVC)
-        profileNavController.tabBarItem = UITabBarItem(title: "Profile", image: nil, tag: 1)
-        
-        tbc.viewControllers = [feedNavController, profileNavController]
-        
+        let loginVC = LoginVC()
+        let logInViewController = UINavigationController(rootViewController: loginVC)
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tbc
+        window?.rootViewController = logInViewController
         window?.makeKeyAndVisible()
-        
         return true
     }
     
