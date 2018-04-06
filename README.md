@@ -27,7 +27,7 @@ Search View| Detail View | .
 ## App Flow
 |Login View|Profile View|Cropping Functionality|Flitering Functionality|
 |:-------------:|:-------------:|
-|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif" width="358" height="626">
+|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif"App asks user for location width="358" height="626">
 
 ## Future Updates
 - Network with other tattoo artists and use their designs
