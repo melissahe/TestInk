@@ -19,15 +19,13 @@ There are **45,000,000** Americans who have at least one tattoo abut there is a 
 alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="240" height="180" border="10" /></a>
 </p>
 
-|Login View|Profile View|Cropping Functionality|Flitering Functionality|.
-:---: | :---: | :---: | :---: |
+Login View| Profile View |Cropping Functionality |Flitering Functionality | .
+:---: | :---: | :---: 
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) App asks user for location authorization | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) User searches for resource cneter by borough | 
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) Get directions from user location to resource center | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) User can save a resource center and delete | |
 
 ## App Flow
-|Login View|Profile View|Cropping Functionality|Flitering Functionality|
-|:-------------:|:-------------:|
-|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif"App asks user for location width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif"App asks user for location width="358" height="626">
+
 
 ## Future Updates
 - Network with other tattoo artists and use their designs
