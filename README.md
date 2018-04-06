@@ -1,6 +1,6 @@
 ![Introduction](https://github.com/melissahe/TestInk/blob/qa/Gifs/Screen%20Shot%202018-04-06%20at%2012.00.41%20PM.png)
 
-## TestInk is an app that allows users to preview tattos using augmented reality (ARTechnology)
+## TestInk is an app that allows users to preview tattos using augmented reality
 
 ## What's the Problem?
 There are 45,000,000 Americans who have at least one tattoo abut there is a lack of technology that specifically aims to serve and cultivate the tattoo community at large.
@@ -20,6 +20,12 @@ There are 45,000,000 Americans who have at least one tattoo abut there is a lack
 - Network with other tattoo artists and use their designs
 - Use photo sharing services to import other tattoo designs
 - Try on tattoos without needing stickers using Core ML to recognize a drawing as the image on you skin
+
+## Technologies Used
+- Firebase as a backend service
+- ARKit Technology
+- Core Image to add filtering functionality
+- Core Graphics for cropping functionality
 
 
 ## Requirements
