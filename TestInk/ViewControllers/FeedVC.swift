@@ -207,22 +207,21 @@ extension FeedVC: UITableViewDataSource {
 }
 
 extension FeedVC: UITableViewDelegate{
-    //to do - should segue to ARView
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if tableView == feedView.designTableView {
-            let currentDesign = designPosts[indexPath.row]
-            if let cell = tableView.cellForRow(at: indexPath) as? FeedCell, let image = cell.feedImage.image {
-                let arVC = ARVC(tattooImage: image, designID: currentDesign.uid)
-                self.navigationController?.pushViewController(arVC, animated: true)
-            }
-        } else if let designID = previewPosts[indexPath.row].designID {
-            if let cell = tableView.cellForRow(at: indexPath) as? PreviewCell, let image = cell.tattooImage {
-                let arVC = ARVC(tattooImage: image, designID: designID)
-                self.navigationController?.pushViewController(arVC, animated: true)
-            }
-        }
-        
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        //need to resolve async return
+//        if tableView == feedView.designTableView {
+//            let currentDesign = designPosts[indexPath.row]
+//            if let cell = tableView.cellForRow(at: indexPath) as? FeedCell, let image = cell.feedImage.image {
+//                let arVC = ARVC(tattooImage: image, designID: currentDesign.uid)
+//                self.navigationController?.pushViewController(arVC, animated: true)
+//            }
+//        } else if let designID = previewPosts[indexPath.row].designID {
+//            if let cell = tableView.cellForRow(at: indexPath) as? PreviewCell, let image = cell.tattooImage {
+//                let arVC = ARVC(tattooImage: image, designID: designID)
+//                self.navigationController?.pushViewController(arVC, animated: true)
+//            }
+//        }
+//    }
 }
 
 extension FeedVC: FeedCellDelegate {
