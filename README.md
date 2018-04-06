@@ -11,10 +11,11 @@ There are **45,000,000** Americans who have at least one tattoo abut there is a 
 - Accessible to ANY artistic level!
 
 ## Click on YouTube to preview a video of our app including AR functionality
+<p align="center">
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE
 " target="_blank"><img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" 
 alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="240" height="180" border="10" /></a>
-
+</p>
 
 ## App Flow
 |TODO|TODO|
