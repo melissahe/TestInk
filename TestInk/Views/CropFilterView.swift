@@ -12,7 +12,7 @@ class CropFilterView: UIView {
     
     lazy var imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .white
+        iv.backgroundColor = .clear
         iv.isOpaque = true
         iv.contentMode = .scaleToFill
         return iv
