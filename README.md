@@ -23,7 +23,7 @@ alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="24
 :---: | :---: | :---: 
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) Login to scroll through social feed designs uploaded by community members | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) Users can like or share tattoo designs then check out their favorites in their profile | 
 **Cropping**| **Filtering** |
-![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) Get directions from user location to resource center | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) User can save a resource center and delete | |
+![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) Choose a photo from photo library to edit by cropping | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) Use photo library to choose and edit a phot by adding adding filters | |
 
 ## App Flow
 
