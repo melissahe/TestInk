@@ -1,4 +1,4 @@
-![Introduction](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/Screen%20Shot%202018-03-17%20at%206.47.10%20PM.png)
+![Introduction](Screen Shot 2018-04-06 at 12.00.41 PM.png)
 
 ## Overview
 //TODO
