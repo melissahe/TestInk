@@ -19,6 +19,7 @@ class UploadVC: UIViewController {
     
     let stockImages = [UIImage(named:"swiftbird"),
                        UIImage(named:"tattoo1")!,
+                       UIImage(named:"LPLogo")!,
                        UIImage(named:"tattoo2")!,
                        UIImage(named:"tattoo3")!,
                        UIImage(named:"tattoo4")!,
