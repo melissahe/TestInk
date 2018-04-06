@@ -1,5 +1,5 @@
-# TestInk
-//some catchy slogan about ink hehe
+![Introduction](https://github.com/ncsouvenir/SevenDay/blob/master/Gifs/Screen%20Shot%202018-03-17%20at%206.47.10%20PM.png)
+
 ## Overview
 //TODO
 
@@ -37,15 +37,11 @@ CocoaPods is a dependency manager for Cocoa projects. You can install it with th
   - Firebase/Auth
   - Firebase/Database
   -Firebase/Storage
-- [IQKeyboardManagerSwift](https://github.com/hackiftekhar/IQKeyboardManager)
-- [KingFisher](https://github.com/onevcat/Kingfisher)
 - [SnapKit](http://snapkit.io/docs)
-- [SVProgessHUD](https://github.com/SVProgressHUD/SVProgressHUD)
 - [Toucan](https://github.com/gavinbunney/Toucan)
 
 ### How to Install Pods
 To integrate these pods into your Xcode project using CocoaPods, specify it in your Podfile:
-
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
@@ -57,10 +53,7 @@ target '<Your Target Name>' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
-    pod 'Kingfisher'
     pod 'Toucan'
-    pod 'IQKeyboardManagerSwift'
-    pod 'SVProgessHUD'
 end
 ```
 
