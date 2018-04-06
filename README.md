@@ -1,4 +1,4 @@
-![Introduction](Screen Shot 2018-04-06 at 12.00.41 PM.png)
+![Introduction](https://github.com/melissahe/TestInk/blob/qa/Gifs/Screen%20Shot%202018-04-06%20at%2012.00.41%20PM.png)
 
 ## Overview
 //TODO
