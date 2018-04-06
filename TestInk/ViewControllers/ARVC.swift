@@ -79,9 +79,10 @@ class ARVC: UIViewController {
     }
     
     private func setUpViews() {
-         sceneView.delegate = self
+        sceneView.delegate = self
         sceneView.allowsCameraControl = true
-        sceneView.showsStatistics = true
+        //hide statistics for now
+//        sceneView.showsStatistics = true
         arView.captureButton.addTarget(self, action: #selector(captureButtonPressed), for: .touchUpInside)
     }
     
