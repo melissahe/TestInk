@@ -5,8 +5,8 @@
 </p>
 
 ## What's the Problem?
-
-There are **45,000,000** Americans who have at least one tattoo abut there is a lack of technology that specifically aims to serve and cultivate the tattoo community at large.
+<p align="center">
+There are **45,000,000** Americans who have at least one tattoo abut there is a lack of technology that specifically aims to serve and cultivate the tattoo community at large.</p>
 
 ## TestInk's Solution
 - Preview designs on your skin using AR Technology!
