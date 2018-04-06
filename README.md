@@ -19,10 +19,15 @@ There are **45,000,000** Americans who have at least one tattoo abut there is a 
 alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="240" height="180" border="10" /></a>
 </p>
 
+Search View| Detail View | .
+:---: | :---: | :---:
+![gif](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/launchAndLocationAuth.gif) App asks user for location authorization | ![gif](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/searchByBorough.gif) User searches for resource cneter by borough | 
+![gif](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/getDirections.gif) Get directions from user location to resource center | ![gif](https://github.com/ncsouvenir/OneStopShop/blob/master/Gifs/saveAndDelete.gif) User can save a resource center and delete | |
+
 ## App Flow
-|TODO|TODO|
+|Login View|Profile View|Cropping Functionality|Flitering Functionality|
 |:-------------:|:-------------:|
-|<img src="TODO" width="358" height="626">|<img src="TODO" width="358" height="626">|
+|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif" width="358" height="626">|<img src="https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif" width="358" height="626">
 
 ## Future Updates
 - Network with other tattoo artists and use their designs
