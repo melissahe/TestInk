@@ -21,7 +21,7 @@ alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="24
 
 **Login View**| **Profile View** |.
 :---: | :---: | :---: 
-![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) App asks user for location authorization | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) User searches for resource cneter by borough | 
+![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) Login to scroll through social feed design s uploaded by community members | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) User searches for resource cneter by borough | 
 **Cropping**| **Filtering** |
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) Get directions from user location to resource center | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) User can save a resource center and delete | |
 
