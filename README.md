@@ -19,11 +19,11 @@ There are **45,000,000** Americans who have at least one tattoo abut there is a 
 alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="240" height="180" border="10" /></a>
 </p>
 
-**Login View**| **Profile View** |.
+**Login View**| **Profile View** |
 :---: | :---: | :---: 
-![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) </n>Login to scroll through designs uploaded by community members | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) Like or share tattoo designs then check out their favorites in their profile | 
+![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) <br/>Login to scroll through designs uploaded by community members | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) <br/>Like or share tattoo designs then check out their favorites in their profile | 
 **Cropping**| **Filtering** |
-![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) Choose a photo from photo library to edit by cropping | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) Add filters to photos upload from photo library| |
+![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) <br/>Choose a photo from photo library to edit by cropping | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) <br/>Add filters to photos upload from photo library| |
 
 ## App Flow
 
@@ -90,3 +90,4 @@ Then, run the following command in Terminal:
 - **Tech Lead**: [Nicole Souvenir](https://github.com/ncsouvenir/)
 - **Design Lead**: [Meseret Gebru](https://github.com/meseretgebru/)
 - **Demo Lead**: [Izza Nadeem](https://github.com/izzanadeem/)
+
