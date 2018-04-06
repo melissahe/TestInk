@@ -20,7 +20,7 @@ alt="https://github.com/melissahe/TestInk/blob/qa/Gifs/youtubeImg.png" width="24
 </p>
 
 **Login View**| **Profile View** |
-:---: | :---: | :---: 
+:---: | :---: |
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Login.gif) <br/>Login to scroll through designs uploaded by community members | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/Like%20and%20Fev.gif) <br/>Like or share tattoo designs then check out their favorites in their profile | 
 **Cropping**| **Filtering** |
 ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/CropDemo.gif) <br/>Choose a photo from photo library to edit by cropping | ![gif](https://github.com/melissahe/TestInk/blob/qa/Gifs/FilterDemo.gif) <br/>Add filters to photos upload from photo library| |
