@@ -8,7 +8,10 @@
 ### There are 45,000,000 Americans who have at least one tattoo abut there is a lack of technology that specifically aims to serve and cultivate the tattoo community at large.
 
 ## TestInk's Solution
-//TODO
+- Preview designs on your skin using AR Technology!
+- Discover and share designs with the community.
+- Accessible to ANY artistic level!
+
 
 ## App Flow
 |TODO|TODO|
