@@ -74,6 +74,7 @@ class FirebasePreviewPostService {
                     print(error)
                 }
             }
+            allPreviewPosts.reverse()
             completionHandler(allPreviewPosts, nil)
             if allPreviewPosts.isEmpty {
                 print("There are no preview posts in the database")

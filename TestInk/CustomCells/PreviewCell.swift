@@ -17,6 +17,7 @@ class PreviewCell: UITableViewCell {
     
     public weak var delegate: PreviewCellDelegate?
     private var previewPost: PreviewPost?
+    //public var tattooImage: UIImage?
     
     lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -47,7 +48,7 @@ class PreviewCell: UITableViewCell {
     
     lazy var previewImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .clear
+        imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
         imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.setContentHuggingPriority(UILayoutPriority(255), for: .vertical)
@@ -58,7 +59,7 @@ class PreviewCell: UITableViewCell {
     lazy var shareButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "actionIcon"), for: .normal)
-        button.tintColor = UIColor.Custom.taupeGrey
+        button.tintColor = Stylesheet.Colors.Lapislazuli
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -121,15 +122,42 @@ class PreviewCell: UITableViewCell {
         //to do
         self.previewPost = post
         
-        if post.designID != nil {
-            arLabel.isHidden = false
-            arBlurView.isHidden = false
-        }
+//        if let designID = post.designID {
+//            arLabel.isHidden = false
+//            arBlurView.isHidden = false
+//            configureTattooImage(withDesignID: designID)
+//        }
         
         configurePreviewImage(withPost: post)
         configureUserNameAndImage(withPost: post)
         configureFlag(withPost: post)
     }
+    
+//    private func configureTattooImage(withDesignID designID: String) {
+//        self.tattooImage = nil
+//        if let image = NSCacheHelper.manager.getImage(with: designID) {
+//            self.tattooImage = image
+//            self.activityIndicator.isHidden = true
+//            self.setNeedsLayout()
+//            self.layoutIfNeeded()
+//        } else {
+//            FirebaseDesignPostService.service.getPost(withPostID: designID) { (designPost, error) in
+//                if let designPost = designPost, let imageURLString = designPost.image {
+//                    ImageHelper.manager.getImage(from: imageURLString, completionHandler: { (image) in
+//                        //cache image for post id
+//                        NSCacheHelper.manager.addImage(with: designID, and: image)
+//                        self.tattooImage = image
+//                    }, errorHandler: { (error) in
+//                        self.activityIndicator.isHidden = true
+//                        print("Error: Could not get image:\n\(error)")
+//                    })
+//                } else if let error = error {
+//                    print(error)
+//                }
+//            }
+//            
+//        }
+//    }
     
     private func configurePreviewImage(withPost post: PreviewPost) {
         self.previewImageView.image = nil
@@ -218,8 +246,8 @@ class PreviewCell: UITableViewCell {
         setupFlagButton()
         setupPreviewImageView()
         setupShareButton()
-        setupARBlurView()
-        setupARLabel()
+//        setupARBlurView()
+//        setupARLabel()
         setupActivityIndicator()
     }
     
